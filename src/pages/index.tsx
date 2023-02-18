@@ -1,3 +1,4 @@
+import ProjectContainer from "components/containers/ProjectContainer/ProjectContainer";
 import GridLayout from "components/layouts/GridLayout/GridLayout";
 import { type NextPage } from "next";
 import Head from "next/head";
@@ -12,12 +13,15 @@ const Home: NextPage = () => {
       </Head>
       <main>
         <GridLayout minWith="250px">
-          <div>
-            <h1 className="text-4xl font-bold">
-              Hi! My name is Aigars, I am FRONT-END developer.
+          <div className="px-40 py-64">
+            <h1 className="text-6xl font-semibold leading-[3.8rem]">
+              Hi! My name is Aigars.
             </h1>
+            <p className="mt-4 text-lg">I am front-end developer.</p>
           </div>
-          <div>Staff</div>
+          <div>
+            <ProjectContainer />
+          </div>
         </GridLayout>
       </main>
     </>
