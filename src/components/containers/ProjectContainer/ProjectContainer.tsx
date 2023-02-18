@@ -1,8 +1,9 @@
 import ProjectCard from "components/elements/ProjectCard/ProjectCard";
 import { PROJECTS } from "hardcoded";
 import type { FC } from "react";
+import { classNames } from "utils/classNames";
 
-const CardVariant = ["dark", "light", "green", "yellow"] as const;
+const CardVariant = ["dark", "green", "yellow", "light"] as const;
 
 const ProjectContainer: FC = () => {
   const getCardVariant = (idx: number) => {
@@ -10,14 +11,19 @@ const ProjectContainer: FC = () => {
   };
 
   return (
-    <div className="space-y-8">
-      {PROJECTS.map((project, i) => {
-        return (
-          <div key={project.id}>
-            <ProjectCard cardVariant={getCardVariant(i)} />
-          </div>
-        );
-      })}
+    <div className="max-w-2xl py-5">
+      <div className="grid max-h-96 w-full grid-cols-2 gap-4">
+        {PROJECTS.map((project, i) => {
+          return (
+            <div
+              key={project.id}
+              className={classNames(i % 2 !== 0 ? "mb-5" : "mt-12")}
+            >
+              <ProjectCard cardVariant={getCardVariant(i)} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

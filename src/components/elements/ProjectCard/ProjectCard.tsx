@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { classNames } from "../../../utils/classNames";
+import { classNames } from "utils/classNames";
 
 interface ProjectCardProps {
   cardVariant?: "dark" | "light" | "green" | "yellow";
@@ -7,7 +7,15 @@ interface ProjectCardProps {
 
 const ProjectCard: FC<ProjectCardProps> = ({ cardVariant = "dark" }) => {
   return (
-    <div className="relative">
+    <div
+      className={classNames(
+        // cardVariant === "dark" ? "mt-10" : "",
+        // cardVariant === "light" ? "mt-5" : "",
+        // cardVariant === "green" ? "mt-0" : "",
+        // cardVariant === "yellow" ? "mt-0" : "",
+        "relative"
+      )}
+    >
       <div
         className={classNames(
           cardVariant === "dark" ? "bg-black" : "",

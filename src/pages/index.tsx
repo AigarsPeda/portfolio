@@ -17,7 +17,7 @@ const Home: NextPage = () => {
             <h1 className="text-6xl font-semibold leading-[3.8rem]">
               Hi! My name is Aigars.
             </h1>
-            <p className="mt-4 text-lg">I am front-end developer.</p>
+            <p className="mt-4 text-2xl">I am front-end developer.</p>
           </div>
           <div>
             <ProjectContainer />
