@@ -8,18 +8,19 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>Aigars</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Aigars Peda portfolio" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <GridLayout minWith="250px">
-          <div className="px-40 py-64">
-            <h1 className="text-6xl font-semibold leading-[3.8rem]">
+        <GridLayout minWith="350px">
+          <div className="w-full bg-red-400 p-2">
+            <h1 className="text-xl font-semibold leading-[3.8rem]">
               Hi! My name is Aigars.
             </h1>
-            <p className="mt-4 text-2xl">I am front-end developer.</p>
+            <p className="mt-4 text-xl">I am front-end developer.</p>
           </div>
-          <div>
+          <div className="">
             <ProjectContainer />
           </div>
         </GridLayout>
