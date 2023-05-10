@@ -27,6 +27,7 @@ const ProjectContainer: FC = () => {
                 projectTitle={project.title}
                 cardVariant={getCardVariant(i)}
                 projectImageSrc={project.imageSrc}
+                projectAboutLink={project.aboutLink}
                 projectDescription={project.description}
               />
             </div>

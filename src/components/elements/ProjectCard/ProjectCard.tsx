@@ -1,13 +1,14 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { FC } from "react";
 import { FiExternalLink } from "react-icons/fi";
 import classNames from "utils/classNames";
-import Image from "next/image";
 
 interface ProjectCardProps {
   projectTitle: string;
   projectLink: string | undefined;
   projectImageSrc: string | undefined;
+  projectAboutLink: string | undefined;
   projectDescription: string | undefined;
   cardVariant?: "dark" | "light" | "green" | "yellow";
 }
@@ -16,6 +17,7 @@ const ProjectCard: FC<ProjectCardProps> = ({
   projectLink,
   projectTitle,
   projectImageSrc,
+  projectAboutLink,
   projectDescription,
   cardVariant = "dark",
 }) => {
@@ -72,9 +74,9 @@ const ProjectCard: FC<ProjectCardProps> = ({
             </div>
           )}
           <div className="flex w-full justify-between md:block md2:flex">
-            {projectLink && (
+            {projectAboutLink && (
               <Link
-                href={`/projects/${projectTitle}`}
+                href={`/projects/${projectAboutLink}`}
                 className={classNames(
                   cardVariant === "dark" &&
                     "text-white hover:text-primary-yellow",

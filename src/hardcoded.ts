@@ -4,8 +4,9 @@ export const PROJECTS = [
     title: "Wupzy",
     description:
       "Tournament management platform to organize tournaments. Create teams, save scores and share results.",
-    imageSrc: "/asset/wupzy.webp",
+    imageSrc: "/asset/wupzy/wupzy_logo.jpg",
     link: "https://wupzy.com",
+    aboutLink: "/wupzy",
   },
   {
     id: 2,
@@ -13,6 +14,7 @@ export const PROJECTS = [
     description: undefined,
     imageSrc: undefined,
     link: undefined,
+    aboutLink: undefined,
   },
   {
     id: 3,
@@ -20,6 +22,7 @@ export const PROJECTS = [
     description: undefined,
     imageSrc: undefined,
     link: undefined,
+    aboutLink: undefined,
   },
   {
     id: 4,
@@ -27,5 +30,6 @@ export const PROJECTS = [
     description: undefined,
     imageSrc: undefined,
     link: undefined,
+    aboutLink: undefined,
   },
 ];
