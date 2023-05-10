@@ -12,15 +12,18 @@ const ProjectContainer: FC = () => {
 
   return (
     <div className="w-full py-5">
-      <div className="  grid max-h-96 grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="grid max-h-96 grid-cols-1 gap-4 sm:grid-cols-2">
         {PROJECTS.map((project, i) => {
           return (
             <div
               key={project.id}
               className={classNames(
-                i % 2 !== 0 ? "mb-5" : "mb-5 md:mt-12 md:mb-0",
-                " mx-auto"
+                i % 2 !== 0 ? "z-2 mb-5" : "z-10 mb-5 md:mt-12 md:mb-0",
+                "mx-auto hover:z-[100]"
               )}
+              style={{
+                perspective: "1500px",
+              }}
             >
               <ProjectCard
                 projectLink={project.link}

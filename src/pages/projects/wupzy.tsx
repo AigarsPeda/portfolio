@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FiExternalLink } from "react-icons/fi";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import classNames from "utils/classNames";
@@ -63,16 +64,16 @@ const AboutProject: NextPage = () => {
             <Link
               target="_blank"
               href="www.wupzy.com"
-              className="text-gray-900 transition-all duration-200 hover:underline"
+              className="flex items-center text-gray-900 transition-all duration-200 hover:underline"
             >
-              Website
+              Website <FiExternalLink className={classNames("ml-2 h-4 w-4")} />
             </Link>
             <Link
               target="_blank"
               href="https://github.com/AigarsPeda/wupzy"
-              className="text-gray-900 transition-all duration-200 hover:underline"
+              className="flex items-center text-gray-900 transition-all duration-200 hover:underline"
             >
-              Code
+              Code <FiExternalLink className={classNames("ml-2 h-4 w-4")} />
             </Link>
           </div>
         </div>

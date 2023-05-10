@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { FC } from "react";
+import type { FC, MouseEvent } from "react";
+import { useRef } from "react";
 import { FiExternalLink } from "react-icons/fi";
 import classNames from "utils/classNames";
 
@@ -21,8 +22,62 @@ const ProjectCard: FC<ProjectCardProps> = ({
   projectDescription,
   cardVariant = "dark",
 }) => {
+  const inputRef = useRef<HTMLDivElement>(null);
+  const rotateToMouse = (e: MouseEvent) => {
+    if (!inputRef.current) return;
+
+    const bounds = inputRef.current?.getBoundingClientRect();
+
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+    const topY = mouseY - bounds.y;
+    const leftX = mouseX - bounds.x;
+
+    const center = {
+      x: leftX - bounds.width / 2,
+      y: topY - bounds.height / 2,
+    };
+    const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
+
+    inputRef.current.style.transform = `
+      scale3d(1.07, 1.07, 1.07)
+      rotate3d(
+        ${center.y / 100},
+        ${-center.x / 100},
+        0,
+        ${Math.log(distance) * 2}deg
+      )
+    `;
+
+    // add z-index to the hovered card
+    // inputRef.current.style.zIndex = "10";
+
+    // console.log(center.y / 100);
+    // glowRef.current.style.backgroundImage = `
+    //   radial-gradient(
+    //     circle at
+    //     ${center.x * 2 + bounds.width / 2}px
+    //     ${center.y * 2 + bounds.height / 2}px,
+    //     #ffffff55,
+    //     #0000000f
+    //   )
+    // `;
+  };
+
+  const removeListener = () => {
+    if (!inputRef.current) return;
+
+    inputRef.current.style.transform = "";
+    inputRef.current.style.background = "";
+  };
+
   return (
-    <div className="flex justify-center">
+    <div
+      className="flex justify-center"
+      ref={inputRef}
+      onMouseLeave={removeListener}
+      onMouseMove={rotateToMouse}
+    >
       <div className={classNames("relative")}>
         <div
           className={classNames(
