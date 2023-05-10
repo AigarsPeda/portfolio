@@ -45,6 +45,41 @@ const ProjectCard: FC<ProjectCardProps> = ({
             >
               {projectTitle}
             </p>
+            <div className="my-4 flex w-full justify-between md:block md2:flex">
+              {projectAboutLink && (
+                <Link
+                  href={`/projects/${projectAboutLink}`}
+                  className={classNames(
+                    cardVariant === "dark" &&
+                      "text-primary-yellow hover:text-yellow-500",
+                    cardVariant === "light" && "text-white hover:text-gray-50",
+                    cardVariant === "green" && "text-white hover:text-gray-50",
+                    cardVariant === "yellow" && "text-white hover:text-gray-50",
+                    "mb-0 flex items-center text-sm font-semibold transition-all duration-100 ease-in-out md:mb-2 md2:mb-0"
+                  )}
+                >
+                  About Project
+                  <FiExternalLink className={classNames("ml-2 h-5 w-5")} />
+                </Link>
+              )}
+              {projectLink && (
+                <Link
+                  target="_blank"
+                  href={projectLink}
+                  className={classNames(
+                    cardVariant === "dark" &&
+                      "text-primary-yellow hover:text-yellow-500",
+                    cardVariant === "light" && "text-white hover:text-gray-50",
+                    cardVariant === "green" && "text-white hover:text-gray-50",
+                    cardVariant === "yellow" && "text-white hover:text-gray-50",
+                    "flex items-center text-sm font-semibold"
+                  )}
+                >
+                  View Project
+                  <FiExternalLink className={classNames("ml-2 h-5 w-5")} />
+                </Link>
+              )}
+            </div>
             {projectDescription && (
               <p
                 className={classNames(
@@ -52,7 +87,7 @@ const ProjectCard: FC<ProjectCardProps> = ({
                   cardVariant === "light" && "text-black",
                   cardVariant === "green" && "text-black",
                   cardVariant === "yellow" && "text-black",
-                  "mt-2 text-base font-medium md:text-sm md2:text-base"
+                  "mt-2 text-sm "
                 )}
               >
                 {projectDescription}
@@ -73,41 +108,6 @@ const ProjectCard: FC<ProjectCardProps> = ({
               />
             </div>
           )}
-          <div className="flex w-full justify-between md:block md2:flex">
-            {projectAboutLink && (
-              <Link
-                href={`/projects/${projectAboutLink}`}
-                className={classNames(
-                  cardVariant === "dark" &&
-                    "text-white hover:text-primary-yellow",
-                  cardVariant === "light" && "text-black hover:text-white",
-                  cardVariant === "green" && "text-black hover:text-white",
-                  cardVariant === "yellow" && "text-black hover:text-white",
-                  "mb-0 flex items-center text-sm font-semibold transition-all duration-100 ease-in-out md:mb-2 md2:mb-0"
-                )}
-              >
-                About Project
-                <FiExternalLink className={classNames("ml-2 h-5 w-5")} />
-              </Link>
-            )}
-            {projectLink && (
-              <Link
-                target="_blank"
-                href={projectLink}
-                className={classNames(
-                  cardVariant === "dark" &&
-                    "text-white hover:text-primary-yellow",
-                  cardVariant === "light" && "text-black hover:text-white",
-                  cardVariant === "green" && "text-black hover:text-white",
-                  cardVariant === "yellow" && "text-black hover:text-white",
-                  "flex items-center text-sm font-semibold"
-                )}
-              >
-                View Project
-                <FiExternalLink className={classNames("ml-2 h-5 w-5")} />
-              </Link>
-            )}
-          </div>
         </div>
 
         <div
