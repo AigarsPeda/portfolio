@@ -6,7 +6,7 @@ export const PROJECTS = [
       "Tournament management platform to organize tournaments. Create teams, save scores and share results.",
     imageSrc: "/asset/wupzy/wupzy_logo.jpg",
     link: "https://wupzy.com",
-    aboutLink: "/wupzy",
+    aboutLink: "wupzy",
   },
   {
     id: 2,
