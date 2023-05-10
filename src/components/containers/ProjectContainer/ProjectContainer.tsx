@@ -17,9 +17,18 @@ const ProjectContainer: FC = () => {
           return (
             <div
               key={project.id}
-              className={classNames(i % 2 !== 0 ? "mb-5" : "mt-12", " mx-auto")}
+              className={classNames(
+                i % 2 !== 0 ? "mb-5" : "mb-5 md:mt-12 md:mb-0",
+                " mx-auto"
+              )}
             >
-              <ProjectCard cardVariant={getCardVariant(i)} />
+              <ProjectCard
+                projectLink={project.link}
+                projectTitle={project.title}
+                cardVariant={getCardVariant(i)}
+                projectImageSrc={project.imageSrc}
+                projectDescription={project.description}
+              />
             </div>
           );
         })}

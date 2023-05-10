@@ -14,13 +14,22 @@ const Home: NextPage = () => {
       </Head>
       <main>
         <GridLayout minWith="350px">
-          <div className="w-full bg-red-400 p-2">
-            <h1 className="text-xl font-semibold leading-[3.8rem]">
-              Hi! My name is Aigars.
-            </h1>
-            <p className="mt-4 text-xl">I am front-end developer.</p>
+          <div className="mt-10 ml-3 p-2 md:ml-14 md:mt-40">
+            <div>
+              <h1 className="text-6xl font-semibold leading-[3.8rem]">
+                Hi! My name is Aigars.
+              </h1>
+              <p className="mt-5 text-xl">
+                I am front-end developer with a solid understanding of back-end
+                technologies.
+              </p>
+              {/* <p className="mt-10 text-gray-600">
+                Here are some of my recent projects that demonstrate my skills
+                and expertise:
+              </p> */}
+            </div>
           </div>
-          <div className="">
+          <div className="p-2">
             <ProjectContainer />
           </div>
         </GridLayout>
