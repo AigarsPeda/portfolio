@@ -23,10 +23,10 @@ const Home: NextPage = () => {
                 I am front-end developer with a solid understanding of back-end
                 technologies.
               </p>
-              {/* <p className="mt-10 text-gray-600">
-                Here are some of my recent projects that demonstrate my skills
-                and expertise:
-              </p> */}
+              <p className="mt-20 text-gray-600">
+                Contact me if you have any questions or want to work together.
+              </p>
+              <p className="text-2xl">aigarspeda@gmail.com</p>
             </div>
           </div>
           <div className="p-2">
