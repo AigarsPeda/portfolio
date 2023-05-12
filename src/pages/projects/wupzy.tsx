@@ -63,7 +63,7 @@ const AboutProject: NextPage = () => {
           <div className="flex space-x-2 text-sm">
             <Link
               target="_blank"
-              href="www.wupzy.com"
+              href="https://wupzy.com"
               className="flex items-center text-gray-900 transition-all duration-200 hover:underline"
             >
               Website <FiExternalLink className={classNames("ml-2 h-4 w-4")} />

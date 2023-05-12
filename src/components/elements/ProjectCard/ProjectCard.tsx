@@ -73,10 +73,10 @@ const ProjectCard: FC<ProjectCardProps> = ({
 
   return (
     <div
-      className="flex justify-center"
       ref={inputRef}
-      onMouseLeave={removeListener}
       onMouseMove={rotateToMouse}
+      onMouseLeave={removeListener}
+      className="flex justify-center"
     >
       <div className={classNames("relative")}>
         <div
