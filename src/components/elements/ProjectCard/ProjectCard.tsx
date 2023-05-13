@@ -1,3 +1,4 @@
+import useIsMobile from "hooks/useIsMobile";
 import Image from "next/image";
 import Link from "next/link";
 import type { FC, MouseEvent } from "react";
@@ -22,9 +23,11 @@ const ProjectCard: FC<ProjectCardProps> = ({
   projectDescription,
   cardVariant = "dark",
 }) => {
+  const { isMobile } = useIsMobile();
   const inputRef = useRef<HTMLDivElement>(null);
+
   const rotateToMouse = (e: MouseEvent) => {
-    if (!inputRef.current) return;
+    if (!inputRef.current || isMobile) return;
 
     const bounds = inputRef.current?.getBoundingClientRect();
 
@@ -48,20 +51,6 @@ const ProjectCard: FC<ProjectCardProps> = ({
         ${Math.log(distance) * 2}deg
       )
     `;
-
-    // add z-index to the hovered card
-    // inputRef.current.style.zIndex = "10";
-
-    // console.log(center.y / 100);
-    // glowRef.current.style.backgroundImage = `
-    //   radial-gradient(
-    //     circle at
-    //     ${center.x * 2 + bounds.width / 2}px
-    //     ${center.y * 2 + bounds.height / 2}px,
-    //     #ffffff55,
-    //     #0000000f
-    //   )
-    // `;
   };
 
   const removeListener = () => {
@@ -167,11 +156,11 @@ const ProjectCard: FC<ProjectCardProps> = ({
 
         <div
           className={classNames(
+            cardVariant === "dark" && "h-[7rem] md2:h-[9rem]",
+            cardVariant === "light" && "h-[7rem] md2:h-[9rem]",
             cardVariant === "green" && "h-[6rem] bg-black md2:h-[8rem]",
             cardVariant === "yellow" && "h-[6rem] bg-black md2:h-[8rem]",
-            cardVariant === "dark" && "h-[7rem] border-black md2:h-[9rem]",
-            cardVariant === "light" && "h-[7rem] border-black md2:h-[9rem]",
-            "absolute left-[-0.4rem] -bottom-2 z-[-1] w-[18rem] rounded-[2rem] border-2 md:w-[13rem] md2:-bottom-4 md2:-left-4 md2:w-[18rem]"
+            "absolute left-[-0.4rem] -bottom-2 z-[-1] w-[18rem] rounded-[2rem] border-2 border-black md:w-[13rem] md2:-bottom-4 md2:-left-4 md2:w-[18rem]"
           )}
         ></div>
       </div>

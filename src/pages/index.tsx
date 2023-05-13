@@ -18,17 +18,17 @@ const Home: NextPage = () => {
         <GridLayout minWith="350px">
           <div className="mt-5 ml-3 p-2 md:ml-14 md:mt-40">
             <div>
-              <h1 className="text-6xl font-semibold leading-[3.8rem]">
+              <h1 className="text-6xl font-semibold leading-[3.8rem] md:text-5xl">
                 Hi! My name is Aigars.
               </h1>
-              <p className="mt-7 text-xl text-gray-800">
+              <p className="mt-7 text-gray-800 md:text-xl">
                 I am front-end developer with a solid understanding of back-end
                 technologies.
               </p>
-              <p className="mt-10 text-xl text-gray-800 md:mt-20">
+              <p className="mt-10 text-gray-800 md:mt-20 md:text-xl">
                 Contact me if you have any questions or want to work together.
               </p>
-              <p className="mt-3 text-2xl">aigarspeda@gmail.com</p>
+              <p className="mt-3 text-xl md:text-2xl">aigarspeda@gmail.com</p>
             </div>
           </div>
           <div className="p-2">
