@@ -82,6 +82,7 @@ const AboutProject: NextPage = () => {
           swipeable
           emulateTouch
           showStatus={false}
+          preventMovementUntilSwipeScrollTolerance={true}
           className="mt-10 rounded-md bg-gray-50"
           renderArrowPrev={(clickHandler, hasPrev) => {
             return (
