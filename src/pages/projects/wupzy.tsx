@@ -80,7 +80,7 @@ const AboutProject: NextPage = () => {
 
         <Carousel
           swipeable
-          emulateTouch
+          // emulateTouch
           showStatus={false}
           className="mt-10 rounded-md bg-gray-50"
           renderArrowPrev={(clickHandler, hasPrev) => {
