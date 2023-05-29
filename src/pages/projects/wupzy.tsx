@@ -3,9 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import classNames from "utils/classNames";
+import {
+  CarouselProvider,
+  Slider,
+  Slide,
+  ButtonBack,
+  ButtonNext,
+} from "pure-react-carousel";
+import "pure-react-carousel/dist/react-carousel.es.css";
 
 const AboutProject: NextPage = () => {
   return (
@@ -58,7 +64,7 @@ const AboutProject: NextPage = () => {
           </div>
         </div>
 
-        <div className="mt-10">
+        <div className="mt-10 mb-8">
           <p className="text-sm font-semibold">Links:</p>
           <div className="flex space-x-2 text-sm">
             <Link
@@ -78,112 +84,88 @@ const AboutProject: NextPage = () => {
           </div>
         </div>
 
-        <Carousel
-          swipeable
-          // emulateTouch
-          showStatus={false}
-          preventMovementUntilSwipeScrollTolerance={true}
-          className="mt-10 rounded-md bg-gray-50"
-          renderArrowPrev={(clickHandler, hasPrev) => {
-            return (
-              <div
-                className={classNames(
-                  hasPrev ? "absolute" : "hidden",
-                  "top-0 bottom-0 left-0 z-20 flex cursor-pointer items-center justify-center p-3 opacity-50 transition-all duration-150 hover:opacity-100"
-                )}
-                onClick={clickHandler}
-              >
-                <FaChevronLeft className="h-9 w-9" />
-              </div>
-            );
-          }}
-          renderArrowNext={(clickHandler, hasNext) => {
-            return (
-              <div
-                className={classNames(
-                  hasNext ? "absolute" : "hidden",
-                  "top-0 bottom-0 right-0 z-20 flex cursor-pointer items-center justify-center p-3 opacity-50 transition-all duration-150 hover:opacity-100"
-                )}
-                onClick={clickHandler}
-              >
-                <FaChevronRight className="h-9 w-9" />
-              </div>
-            );
-          }}
+        <CarouselProvider
+          dragEnabled
+          totalSlides={6}
+          className="relative"
+          naturalSlideWidth={350}
+          naturalSlideHeight={200}
         >
-          <div className="mx-auto mt-5 h-96 max-w-[24rem]">
-            <Image
-              width={350}
-              height={350}
-              alt="wupzy"
-              src="/asset/wupzy/wupzy_create.webp"
-              className="rounded-lg object-cover"
-            />
-          </div>
-          <div className="mx-auto mt-5 flex h-96 max-w-[34rem] items-center justify-center">
-            <Image
-              width={350}
-              height={350}
-              alt="wupzy"
-              src="/asset/wupzy/wupzy_desktop_view.webp"
-              className="rounded-lg object-cover"
-            />
-          </div>
-          <div className="mx-auto mt-5 max-w-[12rem]">
-            <Image
-              width={350}
-              height={350}
-              alt="wupzy"
-              src="/asset/wupzy/wupzy_new_games_a-1.webp"
-              className="rounded-lg object-cover"
-            />
-          </div>
-          <div className="mx-auto mt-5 max-w-[12rem]">
-            <Image
-              width={350}
-              height={350}
-              alt="wupzy"
-              src="/asset/wupzy/wupzy_new_games_a.webp"
-              className="rounded-lg object-cover"
-            />
-          </div>
-          <div className="mx-auto mt-5 flex h-96 max-w-[36rem] items-center justify-center">
-            <Image
-              width={450}
-              height={450}
-              alt="wupzy"
-              src="/asset/wupzy/wupzy_playoffs.webp"
-              className="rounded-lg object-cover"
-            />
-          </div>
-          <div className="mx-auto mt-5 flex h-96 max-w-[24rem] items-center justify-center">
-            <Image
-              width={350}
-              height={350}
-              alt="wupzy"
-              src="/asset/wupzy/wupzy_table.webp"
-              className="rounded-lg object-cover"
-            />
-          </div>
-          <div className="mx-auto mt-5 max-w-[12rem]">
-            <Image
-              width={350}
-              height={350}
-              alt="wupzy"
-              src="/asset/wupzy/wupzy_share_mob_link_a.webp"
-              className="rounded-lg object-cover"
-            />
-          </div>
-          <div className="mx-auto mt-5 flex h-96 max-w-[24rem] items-center justify-center">
-            <Image
-              width={350}
-              height={350}
-              alt="wupzy"
-              src="/asset/wupzy/wupzy_score_a.webp"
-              className="rounded-lg object-cover"
-            />
-          </div>
-        </Carousel>
+          <Slider className="">
+            <Slide index={0}>
+              <div className="mx-auto w-80">
+                <Image
+                  width={390}
+                  height={390}
+                  alt="wupzy"
+                  src="/asset/wupzy/wupzy_create.webp"
+                  className="rounded-lg object-cover"
+                />
+              </div>
+            </Slide>
+            <Slide index={1}>
+              <div className="mx-auto max-w-[34rem]">
+                <Image
+                  alt="wupzy"
+                  width={500}
+                  height={500}
+                  src="/asset/wupzy/wupzy_desktop_view.webp"
+                  className="rounded-lg object-cover"
+                />
+              </div>
+            </Slide>
+            <Slide index={2}>
+              <div className="mx-auto w-80">
+                <Image
+                  alt="wupzy"
+                  width={390}
+                  height={390}
+                  src="/asset/wupzy/wupzy_new_games_a.webp"
+                  className="rounded-lg object-cover"
+                />
+              </div>
+            </Slide>
+            <Slide index={3}>
+              <div className="flex h-full items-center justify-center px-10">
+                <Image
+                  alt="wupzy"
+                  width={390}
+                  height={390}
+                  src="/asset/wupzy/wupzy_score_a.webp"
+                  className="rounded-lg object-cover"
+                />
+              </div>
+            </Slide>
+            <Slide index={4}>
+              <div className="mx-auto w-80">
+                <Image
+                  alt="wupzy"
+                  width={390}
+                  height={390}
+                  src="/asset/wupzy/wupzy_share_mob_link_a.webp"
+                  className="rounded-lg object-cover"
+                />
+              </div>
+            </Slide>
+            <Slide index={5}>
+              <div className="flex h-full items-center justify-center px-10">
+                <Image
+                  width={450}
+                  height={250}
+                  alt="wupzy"
+                  src="/asset/wupzy/wupzy_table.webp"
+                  className="rounded-lg object-cover"
+                />
+              </div>
+            </Slide>
+          </Slider>
+          <ButtonBack className="absolute left-0 top-1/2 -translate-y-1/2 transform">
+            <FaChevronLeft className="h-8 w-8 text-gray-900" />
+          </ButtonBack>
+          <ButtonNext className="absolute right-0 top-1/2 -translate-y-1/2 transform">
+            <FaChevronRight className="h-8 w-8 text-gray-900" />
+          </ButtonNext>
+        </CarouselProvider>
       </div>
     </div>
   );
