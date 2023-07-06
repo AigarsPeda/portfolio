@@ -1,17 +1,17 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  ButtonBack,
+  ButtonNext,
+  CarouselProvider,
+  Slide,
+  Slider,
+} from "pure-react-carousel";
+import "pure-react-carousel/dist/react-carousel.es.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
 import classNames from "utils/classNames";
-import {
-  CarouselProvider,
-  Slider,
-  Slide,
-  ButtonBack,
-  ButtonNext,
-} from "pure-react-carousel";
-import "pure-react-carousel/dist/react-carousel.es.css";
 
 const AboutProject: NextPage = () => {
   return (
@@ -32,7 +32,7 @@ const AboutProject: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-10 max-w-2xl text-lg">
+      <div className="mx-auto mt-10 mb-20 max-w-2xl text-lg">
         <p>
           For a while now, I&apos;ve had an idea that I believe could greatly
           enhance our volleyball games. We frequently find ourselves in need of
@@ -86,74 +86,42 @@ const AboutProject: NextPage = () => {
 
         <CarouselProvider
           dragEnabled
-          totalSlides={6}
+          totalSlides={2}
           className="relative"
           naturalSlideWidth={350}
           naturalSlideHeight={200}
         >
           <Slider className="">
             <Slide index={0}>
-              <div className="mx-auto w-80">
-                <Image
-                  width={390}
-                  height={390}
-                  alt="wupzy"
-                  src="/asset/wupzy/wupzy_create.webp"
-                  className="rounded-lg object-cover"
-                />
-              </div>
-            </Slide>
-            <Slide index={1}>
-              <div className="mx-auto max-w-[34rem]">
+              <div className="mx-auto">
                 <Image
                   alt="wupzy"
                   width={500}
                   height={500}
-                  src="/asset/wupzy/wupzy_desktop_view.webp"
+                  src="/asset/wupzy/CleanShot 2023-07-06 at 08.23.59@2x.webp"
                   className="rounded-lg object-cover"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "fill",
+                    position: "relative",
+                  }}
                 />
               </div>
             </Slide>
-            <Slide index={2}>
-              <div className="mx-auto w-80">
+            <Slide index={1}>
+              <div className="mx-auto">
                 <Image
+                  width={500}
+                  height={500}
                   alt="wupzy"
-                  width={390}
-                  height={390}
-                  src="/asset/wupzy/wupzy_new_games_a.webp"
-                  className="rounded-lg object-cover"
-                />
-              </div>
-            </Slide>
-            <Slide index={3}>
-              <div className="flex h-full items-center justify-center px-10">
-                <Image
-                  alt="wupzy"
-                  width={390}
-                  height={390}
-                  src="/asset/wupzy/wupzy_score_a.webp"
-                  className="rounded-lg object-cover"
-                />
-              </div>
-            </Slide>
-            <Slide index={4}>
-              <div className="mx-auto w-80">
-                <Image
-                  alt="wupzy"
-                  width={390}
-                  height={390}
-                  src="/asset/wupzy/wupzy_share_mob_link_a.webp"
-                  className="rounded-lg object-cover"
-                />
-              </div>
-            </Slide>
-            <Slide index={5}>
-              <div className="flex h-full items-center justify-center px-10">
-                <Image
-                  width={450}
-                  height={250}
-                  alt="wupzy"
-                  src="/asset/wupzy/wupzy_table.webp"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "fill",
+                    position: "relative",
+                  }}
+                  src="/asset/wupzy/CleanShot 2023-07-06 at 08.10.13@2x.webp"
                   className="rounded-lg object-cover"
                 />
               </div>
