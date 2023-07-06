@@ -98,7 +98,7 @@ const AboutProject: NextPage = () => {
                   alt="wupzy"
                   width={500}
                   height={500}
-                  src="/asset/wupzy/CleanShot 2023-07-06 at 08.23.59@2x.webp"
+                  src="/asset/wupzy/CleanShot 2023-07-06 at 15.17.15@2x.webp"
                   className="rounded-lg object-cover"
                   style={{
                     width: "100%",
