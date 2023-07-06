@@ -86,7 +86,7 @@ const AboutProject: NextPage = () => {
 
         <CarouselProvider
           dragEnabled
-          totalSlides={2}
+          totalSlides={3}
           className="relative"
           naturalSlideWidth={350}
           naturalSlideHeight={200}
@@ -122,6 +122,23 @@ const AboutProject: NextPage = () => {
                     position: "relative",
                   }}
                   src="/asset/wupzy/CleanShot 2023-07-06 at 08.10.13@2x.webp"
+                  className="rounded-lg object-cover"
+                />
+              </div>
+            </Slide>
+            <Slide index={2}>
+              <div className="mx-auto">
+                <Image
+                  width={500}
+                  height={500}
+                  alt="wupzy"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "fill",
+                    position: "relative",
+                  }}
+                  src="/asset/wupzy/CleanShot 2023-07-06 at 08.24.34@2x.webp"
                   className="rounded-lg object-cover"
                 />
               </div>
