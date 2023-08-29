@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { type FC } from "react";
 import GridLayout from "~/components/layouts/GridLayout/GridLayout";
 
 const Projects: FC = () => {

@@ -11,7 +11,7 @@ import {
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
-import classNames from "utils/classNames";
+import classNames from "~/utils/classNames";
 
 const AboutProject: NextPage = () => {
   return (
@@ -32,7 +32,7 @@ const AboutProject: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-10 mb-20 max-w-2xl text-lg">
+      <div className="mx-auto mb-20 mt-10 max-w-2xl text-lg">
         <p>
           For a while now, I&apos;ve had an idea that I believe could greatly
           enhance our volleyball games. We frequently find ourselves in need of
@@ -64,7 +64,7 @@ const AboutProject: NextPage = () => {
           </div>
         </div>
 
-        <div className="mt-10 mb-8">
+        <div className="mb-8 mt-10">
           <p className="text-sm font-semibold">Links:</p>
           <div className="flex space-x-2 text-sm">
             <Link
