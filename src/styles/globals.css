@@ -4,7 +4,7 @@
   }
 
   html {
-    @apply h-full;
+    @apply h-full bg-primary-dark;
   }
 
   body {
@@ -17,6 +17,21 @@
 
   main {
     @apply h-full;
+  }
+
+  /* all text apply primary-light color */
+  p,
+  span,
+  a,
+  h1,
+  h2,
+  h3,
+  label,
+  button,
+  input,
+  textarea,
+  select {
+    @apply text-primary-light;
   }
 }
 

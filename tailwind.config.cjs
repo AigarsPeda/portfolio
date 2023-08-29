@@ -3,13 +3,17 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        primary: ["var(font-open-san)"],
+      },
       screens: {
         md2: "1120px",
       },
       colors: {
-        "primary-green": "#34ffaa",
-        "primary-gray": "#d9d9d9",
-        "primary-yellow": "#ffe86d",
+        "primary-dark": "#3c3e50",
+        "primary-light": "#f1f2f6",
+        "primary-accent": "#ffc962",
+        "primary-dark-light": "#4a4d5e",
       },
     },
   },

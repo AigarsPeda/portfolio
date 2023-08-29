@@ -1,7 +1,7 @@
-import ProjectCard from "components/elements/ProjectCard/ProjectCard";
-import { PROJECTS } from "hardcoded";
 import type { FC } from "react";
-import classNames from "utils/classNames";
+import ProjectCard from "~/components/elements/ProjectCard/ProjectCard";
+import { PROJECTS } from "~/hardcoded";
+import classNames from "~/utils/classNames";
 
 const CardVariant = ["dark", "green", "yellow", "light"] as const;
 
@@ -18,8 +18,8 @@ const ProjectContainer: FC = () => {
             <div
               key={project.id}
               className={classNames(
-                i % 2 !== 0 ? "z-2 mb-5" : "z-10 mb-5 md:mt-12 md:mb-0",
-                "mx-auto hover:z-[100]"
+                i % 2 !== 0 ? "z-2 mb-5" : "z-10 mb-5 md:mb-0 md:mt-12",
+                "mx-auto hover:z-[100]",
               )}
               style={{
                 perspective: "1500px",

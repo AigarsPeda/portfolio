@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
     "target": "es2017",
     "lib": [
       "dom",
@@ -20,7 +19,13 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "./src/*"
+      ]
+    }
   },
   "include": [
     "next-env.d.ts",
@@ -31,5 +36,5 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }

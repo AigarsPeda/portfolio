@@ -1,40 +1,37 @@
-import ProjectContainer from "components/containers/ProjectContainer/ProjectContainer";
-import GridLayout from "components/layouts/GridLayout/GridLayout";
 import { type NextPage } from "next";
 import Head from "next/head";
+import Projects from "~/components/projects/Projects";
 
 const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>AP</title>
+        <title>Aigars</title>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Aigars Peda portfolio" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <GridLayout minWith="350px">
-          <div className="mt-5 ml-3 p-2 md:ml-14 md:mt-40">
-            <div>
-              <h1 className="text-6xl font-semibold leading-[3.8rem] md:text-5xl">
-                Hi! My name is Aigars.
-              </h1>
-              <p className="mt-7 text-gray-800 md:text-xl">
-                I am front-end developer with a solid understanding of back-end
-                technologies.
-              </p>
-              <p className="mt-10 text-gray-800 md:mt-20 md:text-xl">
-                Contact me if you have any questions or want to work together.
-              </p>
-              <p className="mt-3 text-xl md:text-2xl">aigarspeda@gmail.com</p>
-            </div>
-          </div>
-          <div className="p-2">
-            <ProjectContainer />
-          </div>
-        </GridLayout>
+
+      <main className="mx-auto max-w-7xl px-11">
+        <div className="w-full pt-10 md:max-w-2xl md:pt-40">
+          {/* <p className="mb-3 text-2xl tracking-wider text-primary-light/50 md:text-3xl"></p> */}
+          <h1 className="mb-5 text-4xl md:mb-4 md:text-5xl">
+            Hey! My name is Aigars and I am front-end developer.
+          </h1>
+          <p className="tracking-wider text-primary-accent">
+            aigarspeda@gmail.com
+          </p>
+        </div>
+
+        <div className="mt-[10%]">
+          <h2 className="mb-5 text-3xl text-primary-light/50 md:mb-8 md:text-4xl">
+            Projects
+          </h2>
+
+          <Projects />
+        </div>
       </main>
     </>
   );

@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from "react";
-import classNames from "utils/classNames";
+import classNames from "~/utils/classNames";
 
 interface GridLayoutProps {
   children: JSX.Element | JSX.Element[] | ReactNode;
@@ -17,7 +17,7 @@ const GridLayout: FC<GridLayoutProps> = ({ minWith = "150px", children }) => {
         minWith === "350px" && "grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
         minWith === "400px" && "grid-cols-[repeat(auto-fit,minmax(400px,1fr))]",
         minWith === "600px" && "grid-cols-[repeat(auto-fit,minmax(600px,1fr))]",
-        "mb-5 h-full w-full gap-4 md:grid"
+        "mb-5 h-full w-full gap-4 md:grid",
       )}
     >
       {children}
