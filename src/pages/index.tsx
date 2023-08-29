@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Projects from "~/components/projects/Projects";
+import Mailto from "../components/Mailto/Mailto";
 
 const Home: NextPage = () => {
   return (
@@ -16,13 +17,15 @@ const Home: NextPage = () => {
 
       <main className="mx-auto max-w-7xl px-11">
         <div className="w-full pt-10 md:max-w-2xl md:pt-40">
-          {/* <p className="mb-3 text-2xl tracking-wider text-primary-light/50 md:text-3xl"></p> */}
           <h1 className="mb-5 text-4xl md:mb-4 md:text-5xl">
             Hey! My name is Aigars and I am front-end developer.
           </h1>
-          <p className="tracking-wider text-primary-accent">
-            aigarspeda@gmail.com
-          </p>
+
+          <Mailto body="From: aigarspeda.com" email="aigarspeda@gmail.com">
+            <p className="tracking-wider text-primary-accent">
+              aigarspeda@gmail.com
+            </p>
+          </Mailto>
         </div>
 
         <div className="mt-[10%]">
