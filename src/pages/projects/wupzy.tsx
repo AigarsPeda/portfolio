@@ -70,16 +70,22 @@ const AboutProject: NextPage = () => {
             <Link
               target="_blank"
               href="https://wupzy.com"
-              className="flex items-center text-gray-900 transition-all duration-200 hover:underline"
+              className="flex items-center text-primary-accent transition-all duration-200 hover:underline"
             >
-              Website <FiExternalLink className={classNames("ml-2 h-4 w-4")} />
+              Website{" "}
+              <FiExternalLink
+                className={classNames("ml-2 h-4 w-4 text-primary-accent")}
+              />
             </Link>
             <Link
               target="_blank"
               href="https://github.com/AigarsPeda/wupzy"
-              className="flex items-center text-gray-900 transition-all duration-200 hover:underline"
+              className="flex items-center text-primary-accent transition-all duration-200 hover:underline"
             >
-              Code <FiExternalLink className={classNames("ml-2 h-4 w-4")} />
+              Code{" "}
+              <FiExternalLink
+                className={classNames("ml-2 h-4 w-4 text-primary-accent")}
+              />
             </Link>
           </div>
         </div>
