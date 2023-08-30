@@ -37,7 +37,7 @@ const Home: NextPage = () => {
           </div>
 
           <div className="col-span-5 h-full w-full">
-            {windowSize.width <= 385 ? (
+            {windowSize.width <= 415 ? (
               <ProgrammerMob />
             ) : (
               <ProgrammerDesktop />
