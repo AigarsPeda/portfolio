@@ -1,8 +1,7 @@
-import Link from "next/link";
-import { type FC } from "react";
-import { ProjectType } from "~/types/project.types";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { type FC } from "react";
+import { type ProjectType } from "~/types/project.types";
 
 interface ProjectCardProps {
   project: ProjectType;
@@ -15,7 +14,11 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
     <button
       // href={`/projects/${project.aboutLink}`}
       className="group w-full max-w-xs rounded-md bg-primary-dark-light p-3 text-left shadow-md shadow-primary-dark-light transition-colors duration-300 ease-in-out hover:cursor-pointer hover:bg-primary-accent hover:text-primary-dark"
-      onClick={() => router.push(`/projects/${project.aboutLink}`)}
+      onClick={() => {
+        router
+          .push(`/projects/${project.aboutLink}`)
+          .catch((err) => console.error(err));
+      }}
     >
       <h2 className="mb-4 text-xl group-hover:text-primary-dark">
         {project.title}
