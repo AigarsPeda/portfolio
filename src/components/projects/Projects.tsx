@@ -6,7 +6,7 @@ import getUniqueId from "~/utils/getUniqueId";
 
 const Projects: FC = () => {
   return (
-    <GridLayout minWith="250px">
+    <GridLayout isGap minWith="250px">
       {PROJECTS.map((project) => (
         <ProjectCard key={getUniqueId()} project={project} />
       ))}

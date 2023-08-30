@@ -20,8 +20,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="mx-auto max-w-7xl items-center px-5 ">
-        <div className="mt-8 grid w-full md:h-96 md:grid-cols-10">
+      <main className="mx-auto max-w-7xl items-center px-8 pt-8">
+        <div className="grid w-full md:h-96 md:grid-cols-10">
           <div className="col-span-5 mb-5 flex h-full w-full items-center justify-center">
             <div className="w-full">
               <h1 className="mb-5 text-4xl md:mb-4 md:text-5xl">
@@ -37,7 +37,7 @@ const Home: NextPage = () => {
           </div>
 
           <div className="col-span-5 h-full w-full">
-            {windowSize.width <= 500 ? (
+            {windowSize.width <= 385 ? (
               <ProgrammerMob />
             ) : (
               <ProgrammerDesktop />
