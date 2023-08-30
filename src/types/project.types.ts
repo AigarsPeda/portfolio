@@ -1,8 +1,9 @@
 export type ProjectType = {
   id: number;
   title: string;
+  imagesAssets: string[];
   link: string | undefined;
-  imageSrc: string | undefined;
+  logo: string | undefined;
   aboutLink: string | undefined;
   description: string | undefined;
 };
