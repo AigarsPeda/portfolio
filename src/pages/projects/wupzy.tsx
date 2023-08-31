@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import "pure-react-carousel/dist/react-carousel.es.css";
 import { FiExternalLink } from "react-icons/fi";
 import { PROJECTS } from "~/hardcoded";
 import classNames from "~/utils/classNames";
