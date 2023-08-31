@@ -1,19 +1,14 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ButtonBack,
-  ButtonNext,
-  CarouselProvider,
-  Slide,
-  Slider,
-} from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
+import { PROJECTS } from "~/hardcoded";
 import classNames from "~/utils/classNames";
 
 const AboutProject: NextPage = () => {
+  const project = PROJECTS.find((project) => project.aboutLink === "wupzy");
+
   return (
     <div className="p-2">
       <div className="mt-14 flex w-full justify-center">
@@ -53,7 +48,9 @@ const AboutProject: NextPage = () => {
 
         <div className="mt-10">
           <p className="text-sm font-semibold">Technologies:</p>
-          <div className="flex space-x-2 text-sm">
+          <div className="flex flex-wrap gap-2 text-sm">
+            <p>React</p>
+            <p>TypeScript</p>
             <p>Next.js</p>
             <p>tRPC</p>
             <p>Prisma</p>
@@ -90,73 +87,23 @@ const AboutProject: NextPage = () => {
           </div>
         </div>
 
-        <CarouselProvider
-          dragEnabled
-          totalSlides={3}
-          className="relative"
-          naturalSlideWidth={350}
-          naturalSlideHeight={200}
-        >
-          <Slider className="">
-            <Slide index={0}>
-              <div className="mx-auto">
-                <Image
-                  alt="wupzy"
-                  width={500}
-                  height={500}
-                  src="/asset/wupzy/CleanShot 2023-07-06 at 15.17.15@2x.webp"
-                  className="rounded-lg object-cover"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "fill",
-                    position: "relative",
-                  }}
-                />
-              </div>
-            </Slide>
-            <Slide index={1}>
-              <div className="mx-auto">
-                <Image
-                  width={500}
-                  height={500}
-                  alt="wupzy"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "fill",
-                    position: "relative",
-                  }}
-                  src="/asset/wupzy/CleanShot 2023-07-06 at 08.10.13@2x.webp"
-                  className="rounded-lg object-cover"
-                />
-              </div>
-            </Slide>
-            <Slide index={2}>
-              <div className="mx-auto">
-                <Image
-                  width={500}
-                  height={500}
-                  alt="wupzy"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "fill",
-                    position: "relative",
-                  }}
-                  src="/asset/wupzy/CleanShot 2023-07-06 at 08.24.34@2x.webp"
-                  className="rounded-lg object-cover"
-                />
-              </div>
-            </Slide>
-          </Slider>
-          <ButtonBack className="absolute left-0 top-1/2 -translate-y-1/2 transform">
-            <FaChevronLeft className="h-8 w-8 text-gray-900" />
-          </ButtonBack>
-          <ButtonNext className="absolute right-0 top-1/2 -translate-y-1/2 transform">
-            <FaChevronRight className="h-8 w-8 text-gray-900" />
-          </ButtonNext>
-        </CarouselProvider>
+        <div className="flex flex-wrap gap-4">
+          {project?.imagesAssets.map((image, i) => (
+            <div key={i}>
+              <Image
+                alt="wupzy"
+                src={image}
+                width={220}
+                height={150}
+                className="max-h-64 rounded-lg object-cover md:max-h-32"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

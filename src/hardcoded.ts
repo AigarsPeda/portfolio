@@ -7,7 +7,12 @@ export const PROJECTS: ProjectType[] = [
     aboutLink: "wupzy",
     link: "https://wupzy.com",
     logo: "/asset/wupzy/wupzy_logo.jpg",
-    imagesAssets: ["/asset/wupzy/desktop.webp"],
+    imagesAssets: [
+      "/asset/wupzy/desktop.webp",
+      "/asset/wupzy/playoffs.webp",
+      "/asset/wupzy/qr_code.webp",
+      "/asset/wupzy/mob_3.webp",
+    ],
     description:
       "Tournament management platform to organize tournaments. Create teams, save scores and share results.",
   },
