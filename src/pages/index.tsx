@@ -46,7 +46,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="mx-auto max-w-7xl items-center px-8 pt-8 md:pt-16">
+      <main className="mx-auto max-w-7xl items-center px-8 pt-4 md:pt-16">
         <motion.div
           animate="show"
           initial="hidden"
@@ -88,7 +88,7 @@ const Home: NextPage = () => {
             duration: 1.5,
             type: "spring",
           }}
-          className="mt-[15%]"
+          className="mt-[12%]"
         >
           <h2 className="mb-5 text-3xl text-primary-light/50 md:mb-8 md:pt-0 md:text-4xl">
             Projects

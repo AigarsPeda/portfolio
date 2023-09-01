@@ -1,6 +1,6 @@
 import type { ProjectType } from "~/types/project.types";
 
-export const PROJECT_APPEARED_DELAY = 0.8;
+export const PROJECT_APPEARED_DELAY = 0.7;
 
 export const PROJECTS: ProjectType[] = [
   {

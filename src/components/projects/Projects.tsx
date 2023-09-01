@@ -20,7 +20,7 @@ const Projects: FC = () => {
               delay,
               velocity: 1,
               bounce: 0.2,
-              duration: 1.2,
+              duration: 1,
               type: "spring",
             }}
           >
