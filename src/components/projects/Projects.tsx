@@ -17,7 +17,7 @@ const Projects: FC = () => {
 
         return (
           <motion.div
-            className="mb-8"
+            className="mb-8 min-h-[250px] w-full"
             key={getUniqueId()}
             initial={{ opacity: 0, y: 200 }}
             whileInView={{ opacity: 1, y: 0 }}
