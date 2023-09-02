@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { Variants, motion } from "framer-motion";
 import { type FC } from "react";
 import GridLayout from "~/components/GridLayout/GridLayout";
 import ProjectCard from "~/components/ProjectCard/ProjectCard";
@@ -9,31 +9,51 @@ import getUniqueId from "~/utils/getUniqueId";
 const Projects: FC = () => {
   const { windowSize } = useWindowSize();
 
-  return (
-    <GridLayout isGap minWith="250px">
-      {PROJECTS.map((project, i) => {
-        const delay =
-          windowSize.width <= 500 ? i / 2 : PROJECT_APPEARED_DELAY + 0.5 * i;
+  const isOdd = (num: number) => num % 2 === 1;
 
-        return (
-          <motion.div
-            className="mb-8 w-full"
-            key={getUniqueId()}
-            initial={{ opacity: 0, y: 200 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              delay,
-              velocity: 1,
-              bounce: 0.2,
-              duration: 1,
-              type: "spring",
-            }}
-          >
-            <ProjectCard project={project} />
-          </motion.div>
-        );
-      })}
-    </GridLayout>
+  const animationVariants = (num: number): Variants => ({
+    offscreen: {
+      y: 300,
+      opacity: 0,
+    },
+    onscreen: {
+      y: 1,
+      opacity: 1,
+      // rotate: isOdd(num) ? 1 : -1,
+      transition: {
+        type: "spring",
+        bounce: 0.4,
+        duration: 0.8,
+        // delay: PROJECT_APPEARED_DELAY + 0.5 * num,
+        delay: num / 2,
+      },
+    },
+  });
+
+  return (
+    <motion.div
+      className="card-container"
+      initial="offscreen"
+      whileInView="onscreen"
+      viewport={{ once: true, amount: 0.8 }}
+    >
+      <GridLayout isGap minWith="250px">
+        {PROJECTS.map((project, i) => {
+          const delay =
+            windowSize.width <= 500 ? i / 2 : PROJECT_APPEARED_DELAY + 0.5 * i;
+
+          return (
+            <motion.div
+              key={getUniqueId()}
+              className="mb-8 w-full"
+              variants={animationVariants(i)}
+            >
+              <ProjectCard project={project} />
+            </motion.div>
+          );
+        })}
+      </GridLayout>
+    </motion.div>
   );
 };
 
