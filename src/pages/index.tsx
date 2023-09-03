@@ -29,7 +29,7 @@ const Home: NextPage = () => {
       transition: {
         velocity: 0.8,
         bounce: 0.2,
-        duration: 1.7,
+        duration: 0.8,
         type: "spring",
       },
     },
@@ -79,17 +79,7 @@ const Home: NextPage = () => {
           </motion.div>
         </motion.div>
 
-        <div
-          // initial={{ opacity: 0, y: 200 }}
-          // whileInView={{ opacity: 1, y: 0 }}
-          // transition={{
-          //   velocity: 1,
-          //   bounce: 0.1,
-          //   duration: 1.5,
-          //   type: "spring",
-          // }}
-          className="mt-[12%] "
-        >
+        <div className="mt-[12%] pb-8">
           <h2 className="mb-5 text-3xl text-primary-light/50 md:mb-8 md:pt-0 md:text-4xl">
             Projects
           </h2>
