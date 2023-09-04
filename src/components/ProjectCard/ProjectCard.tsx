@@ -29,7 +29,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
         <Image
           width={500}
           height={500}
-          priority={true}
+          // priority={true}
           alt="Picture wupzy dashboard"
           className="rounded grayscale group-hover:grayscale-0"
           src={project.imagesAssets[0]}
