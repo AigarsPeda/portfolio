@@ -28,8 +28,8 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
 
       {project.imagesAssets[0] && (
         <Image
-          width={500}
-          height={500}
+          width={250}
+          height={250}
           placeholder="blur"
           alt={project.title}
           src={project.imagesAssets[0]}
