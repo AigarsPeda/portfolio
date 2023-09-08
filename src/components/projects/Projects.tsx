@@ -1,4 +1,4 @@
-import { Variants, motion } from "framer-motion";
+import { type Variants, motion } from "framer-motion";
 import { type FC } from "react";
 import GridLayout from "~/components/GridLayout/GridLayout";
 import ProjectCard from "~/components/ProjectCard/ProjectCard";
