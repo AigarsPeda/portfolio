@@ -35,6 +35,44 @@
   }
 }
 
+/* Mobile */
+.image-gallery-content .image-gallery-slide .image-gallery-image {
+  padding: 0 10px !important;
+  max-height: calc(100vh - 6.5rem) !important;
+}
+
+/* Desktop */
+.image-gallery-icon {
+  padding: 0 0 !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 2px 1px #1a1a1a) !important;
+}
+
+.image-gallery-icon:hover {
+  color: #ffc962 !important;
+  box-shadow: none !important;
+}
+
+.image-gallery-svg {
+  width: 3.75rem !important;
+  height: 3.75rem !important;
+}
+
+.image-gallery-thumbnail-image {
+  object-fit: contain !important;
+  max-height: 4.375rem !important;
+}
+
+.image-gallery-thumbnails {
+  margin-top: 1.25rem !important;
+}
+
+@media (min-width: 640px) {
+  .image-gallery-content .image-gallery-slide .image-gallery-image {
+    max-height: calc(100vh - 25rem) !important;
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

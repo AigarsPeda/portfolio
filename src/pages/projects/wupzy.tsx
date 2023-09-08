@@ -1,15 +1,30 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { FiExternalLink } from "react-icons/fi";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import ImageModal from "~/components/ImageModal/ImageModal";
 import { PROJECTS } from "~/hardcoded";
 import classNames from "~/utils/classNames";
 
 const AboutProject: NextPage = () => {
+  const [isModalVisible, setIsModalVisible] = useState<number | undefined>(
+    undefined,
+  );
   const project = PROJECTS.find((project) => project.aboutLink === "wupzy");
 
   return (
     <div className="p-2">
+      <Link
+        href="/"
+        className="ml-2 mt-2 flex items-center text-primary-accent transition-all duration-200 hover:underline"
+      >
+        <IoMdArrowRoundBack
+          className={classNames("mr-2 h-4 w-4 text-primary-accent")}
+        />
+        Go back
+      </Link>
       <div className="mt-14 flex w-full justify-center">
         <div>
           <div className="relative m-2 mx-auto h-36 w-56 rounded-lg">
@@ -86,9 +101,9 @@ const AboutProject: NextPage = () => {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap justify-center gap-4 md:justify-between">
           {project?.imagesAssets.map((image, i) => (
-            <div key={i}>
+            <button key={i} onClick={() => setIsModalVisible(i)}>
               <Image
                 alt="wupzy"
                 src={image}
@@ -100,9 +115,21 @@ const AboutProject: NextPage = () => {
                   height: "100%",
                 }}
               />
-            </div>
+            </button>
           ))}
         </div>
+
+        <ImageModal
+          startImageIndex={isModalVisible || 0}
+          isModalVisible={isModalVisible !== undefined}
+          handleModalClose={() => setIsModalVisible(undefined)}
+          images={
+            project?.imagesAssets.map((image) => ({
+              original: image,
+              thumbnail: image,
+            })) || []
+          }
+        />
       </div>
     </div>
   );
