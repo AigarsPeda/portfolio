@@ -79,9 +79,9 @@ const Home: NextPage = () => {
           </motion.div>
         </motion.div>
 
-        <div className="mt-[12%] pb-8">
-          <h2 className="mb-5 text-3xl text-primary-light/50 md:mb-8 md:pt-0 md:text-4xl">
-            Projects
+        <div className="mt-[14%] pb-8">
+          <h2 className="mb-5 text-base text-primary-light/25 md:mb-8 md:pt-0">
+            PROJECTS
           </h2>
 
           <div className="min-h-[250px]">

@@ -7,6 +7,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import ImageModal from "~/components/ImageModal/ImageModal";
 import { PROJECTS } from "~/hardcoded";
 import classNames from "~/utils/classNames";
+import GridLayout from "../../components/GridLayout/GridLayout";
 
 const AboutProject: NextPage = () => {
   const [isModalVisible, setIsModalVisible] = useState<number | undefined>(
@@ -101,7 +102,7 @@ const AboutProject: NextPage = () => {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 md:justify-between">
+        <GridLayout isGap minWith="200px">
           {project?.imagesAssets.map((image, i) => (
             <button key={i} onClick={() => setIsModalVisible(i)}>
               <Image
@@ -109,7 +110,7 @@ const AboutProject: NextPage = () => {
                 src={image}
                 width={220}
                 height={150}
-                className="max-h-64 rounded-lg object-cover md:max-h-32"
+                className="max-h-64 rounded-lg object-contain md:max-h-40"
                 style={{
                   width: "100%",
                   height: "100%",
@@ -117,8 +118,7 @@ const AboutProject: NextPage = () => {
               />
             </button>
           ))}
-        </div>
-
+        </GridLayout>
         <ImageModal
           startImageIndex={isModalVisible || 0}
           isModalVisible={isModalVisible !== undefined}

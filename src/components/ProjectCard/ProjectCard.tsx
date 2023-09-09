@@ -12,7 +12,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
 
   return (
     <button
-      className="group max-w-md rounded-md bg-primary-dark-light p-3 text-left shadow-md shadow-primary-dark-light transition-colors duration-300 ease-in-out hover:cursor-pointer hover:bg-primary-accent hover:text-primary-dark"
+      className="group max-w-xs rounded-md bg-primary-dark-light p-3 text-left shadow-md shadow-primary-dark-light transition-colors duration-300 ease-in-out hover:cursor-pointer hover:bg-primary-accent hover:text-primary-dark"
       onClick={() => {
         router
           .push(`/projects/${project.aboutLink}`)
@@ -34,7 +34,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
           alt={project.title}
           src={project.imagesAssets[0]}
           blurDataURL={project.imagesAssets[0]}
-          className="rounded grayscale group-hover:grayscale-0"
+          className="rounded grayscale transition-all duration-300 ease-in-out group-hover:scale-[1.01] group-hover:grayscale-0"
           style={{
             width: "100%",
             position: "relative",

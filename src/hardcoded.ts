@@ -11,6 +11,7 @@ export const PROJECTS: ProjectType[] = [
     logo: "/asset/wupzy/wupzy_logo.jpg",
     imagesAssets: [
       "/asset/wupzy/desktop.webp",
+      "/asset/wupzy/new-tournament-form.webp",
       "/asset/wupzy/playoffs.webp",
       "/asset/wupzy/qr_code.webp",
       "/asset/wupzy/mob_3.webp",
