@@ -1,6 +1,5 @@
-import { type Variants, motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { type FC } from "react";
-import GridLayout from "~/components/GridLayout/GridLayout";
 import ProjectCard from "~/components/ProjectCard/ProjectCard";
 import { PROJECTS } from "~/hardcoded";
 import useWindowSize from "~/hooks/useWindowSize";

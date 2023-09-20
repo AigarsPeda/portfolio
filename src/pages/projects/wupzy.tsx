@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { FiExternalLink } from "react-icons/fi";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import GridLayout from "~/components/GridLayout/GridLayout";
 import ImageModal from "~/components/ImageModal/ImageModal";
 import { PROJECTS } from "~/hardcoded";
 import classNames from "~/utils/classNames";
-import GridLayout from "../../components/GridLayout/GridLayout";
 
 const AboutProject: NextPage = () => {
   const [isModalVisible, setIsModalVisible] = useState<number | undefined>(
