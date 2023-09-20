@@ -25,7 +25,7 @@ export const PROJECTS: ProjectType[] = [
     title: "Canvas",
     aboutLink: "canvas",
     link: "https://aigarspeda.github.io/designer/",
-    codeLink: "https://github.com/AigarsPeda?tab=repositories",
+    codeLink: "https://github.com/AigarsPeda/designer",
     logo: "/asset/canvas/canvas_logo.jpg",
     imagesAssets: [
       "/asset/canvas/canvas_start.webp",
