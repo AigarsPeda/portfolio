@@ -9,6 +9,7 @@ export const PROJECTS: ProjectType[] = [
     aboutLink: "wupzy",
     link: "https://wupzy.com",
     logo: "/asset/wupzy/wupzy_logo.jpg",
+    codeLink: "https://github.com/AigarsPeda/wupzy",
     imagesAssets: [
       "/asset/wupzy/desktop.webp",
       "/asset/wupzy/new-tournament-form.webp",
@@ -18,5 +19,20 @@ export const PROJECTS: ProjectType[] = [
     ],
     description:
       "Tournament management platform to organize tournaments. Create teams, save scores and share results.",
+  },
+  {
+    id: 2,
+    title: "Canvas",
+    aboutLink: "canvas",
+    link: "https://aigarspeda.github.io/designer/",
+    codeLink: "https://github.com/AigarsPeda?tab=repositories",
+    logo: "/asset/canvas/canvas_logo.jpg",
+    imagesAssets: [
+      "/asset/canvas/canvas_start.webp",
+      "/asset/canvas/canvas_main.webp",
+      "/asset/canvas/canvas_draw.webp",
+    ],
+    description:
+      "Simple drawing app. Draw with your mouse or touch screen. Save your drawings and share them with your friends.",
   },
 ];

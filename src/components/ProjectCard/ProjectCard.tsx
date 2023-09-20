@@ -38,7 +38,8 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
           style={{
             width: "100%",
             position: "relative",
-            objectFit: "scale-down",
+            objectFit: "cover",
+            minHeight: "230px",
           }}
         />
       )}

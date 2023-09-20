@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { FiExternalLink } from "react-icons/fi";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import GridLayout from "~/components/GridLayout/GridLayout";
 import ImageModal from "~/components/ImageModal/ImageModal";
 import { PROJECTS } from "~/hardcoded";
 import classNames from "~/utils/classNames";
-import GridLayout from "../../components/GridLayout/GridLayout";
 
 const AboutProject: NextPage = () => {
   const [isModalVisible, setIsModalVisible] = useState<number | undefined>(
     undefined,
   );
-  const project = PROJECTS.find((project) => project.aboutLink === "wupzy");
+  const project = PROJECTS.find((project) => project.aboutLink === "canvas");
 
   return (
     <div className="p-2">
@@ -31,8 +31,8 @@ const AboutProject: NextPage = () => {
           <div className="relative m-2 mx-auto h-36 w-56 rounded-lg">
             <Image
               fill
-              alt="wupzy"
-              src="/asset/wupzy/wupzy_logo.jpg"
+              alt="canvas"
+              src="/asset/canvas/canvas_logo.webp"
               className="rounded-lg object-cover"
               style={{
                 width: "100%",
@@ -44,35 +44,24 @@ const AboutProject: NextPage = () => {
       </div>
       <div className="mx-auto mb-20 mt-10 max-w-2xl text-lg">
         <p>
-          For a while now, I&apos;ve had an idea that I believe could greatly
-          enhance our volleyball games. We frequently find ourselves in need of
-          a method to keep track of scores, and although we usually resort to
-          using paper, there are occasions when we forget to bring any. However,
-          we always have our phones with us. This led me to envision the
-          creation of a user-friendly website dedicated to saving and managing
-          game scores, as well as displaying the results in a convenient and
-          accessible manner.
+          This is still a work in progress. I wanted to learn more about vue3
+          and canvas so I decided to make a website that allows you to draw on a
+          canvas and save your drawings. I am currently working on the website
+          and the backend and adding feature. The website is currently live, but
+          the backend is not yet finished.
         </p>
 
         <p className="mt-10">
-          I have used React and Next.js for the frontend development of my
-          website. For the backend, I implemented tRPC, Prisma, and MySQL. The
-          website is currently hosted on Vercel, while the database is hosted by
-          PlanetScale and payments is handled by Stripe.
+          I have used Vue3 and TypeScript for the frontend.
         </p>
 
         <div className="mt-10">
           <p className="text-sm font-semibold">Technologies:</p>
           <div className="flex flex-wrap gap-2 text-sm">
-            <p>React</p>
+            <p>Vue</p>
             <p>TypeScript</p>
-            <p>Next.js</p>
-            <p>tRPC</p>
-            <p>Prisma</p>
-            <p>MySQL</p>
-            <p>Stripe</p>
-            <p>Vercel</p>
-            <p>PlanetScale</p>
+            <p>Github page</p>
+            <p>Fabric.js</p>
           </div>
         </div>
 
@@ -106,7 +95,7 @@ const AboutProject: NextPage = () => {
           {project?.imagesAssets.map((image, i) => (
             <button key={i} onClick={() => setIsModalVisible(i)}>
               <Image
-                alt="wupzy"
+                alt="canvas"
                 src={image}
                 width={220}
                 height={150}

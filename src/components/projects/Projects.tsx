@@ -55,14 +55,15 @@ const Projects: FC = () => {
   };
 
   return (
-    <GridLayout isGap minWith="250px">
+    // <GridLayout isGap minWith="250px">
+    <div className="flex flex-col flex-wrap gap-10 md:flex-row">
       {PROJECTS.map((project, i) => {
         return (
           <motion.div
             key={getUniqueId()}
             initial="offscreen"
             whileInView="onscreen"
-            className="mb-8 w-full"
+            // className="mb-8 w-full"
             variants={animationVariants(i)}
             viewport={{ once: true, amount: 0.2 }}
           >
@@ -70,7 +71,8 @@ const Projects: FC = () => {
           </motion.div>
         );
       })}
-    </GridLayout>
+    </div>
+    // </GridLayout>
   );
 };
 
