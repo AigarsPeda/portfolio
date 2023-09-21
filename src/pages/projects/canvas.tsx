@@ -60,6 +60,7 @@ const AboutProject: NextPage = () => {
           <div className="flex flex-wrap gap-2 text-sm">
             <p>Vue</p>
             <p>TypeScript</p>
+            <p>Pinia</p>
             <p>Github page</p>
             <p>Fabric.js</p>
           </div>
