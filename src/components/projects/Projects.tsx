@@ -59,18 +59,29 @@ const Projects: FC = () => {
         return (
           <motion.div
             key={getUniqueId()}
-            initial="offscreen"
-            whileInView="onscreen"
-            variants={animationVariants(i)}
+            // initial="offscreen"
+            // whileInView="onscreen"
+            // variants={animationVariants(i)}
+            // viewport={{ once: true, amount: 0.2 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            // initial="hidden"
-            // whileInView="visible"
-            // viewport={{ once: true }}
-            // transition={{ duration: 0.3 }}
-            // variants={{
-            //   visible: { opacity: 1, scale: 1 },
-            //   hidden: { opacity: 0, scale: 0 },
-            // }}
+            transition={{ duration: 0.3 }}
+            variants={{
+              visible: {
+                y: 0,
+                x: 0,
+                opacity: 1,
+                // rotate: isOdd(num) ? 1 : -1,
+                transition: {
+                  bounce: 0.2,
+                  duration: 1.2,
+                  delay: i / 2,
+                  type: "spring",
+                },
+              },
+              hidden: { y: 200, opacity: 0 },
+            }}
           >
             <ProjectCard project={project} />
           </motion.div>
