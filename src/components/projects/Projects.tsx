@@ -3,12 +3,13 @@ import { type FC } from "react";
 import ProjectCard from "~/components/ProjectCard/ProjectCard";
 import { PROJECTS } from "~/hardcoded";
 import getUniqueId from "~/utils/getUniqueId";
+import useWindowSize from "~/hooks/useWindowSize";
 
 const Projects: FC = () => {
-  // const { windowSize } = useWindowSize();
+  const { windowSize } = useWindowSize();
 
   // const isOdd = (num: number) => num % 2 === 1;
-  // const isMobile = windowSize.width <= 500;
+  const isMobile = windowSize.width <= 500;
 
   // const animationVariants = (num: number): Variants => {
   //   if (isMobile) {
@@ -62,7 +63,7 @@ const Projects: FC = () => {
             // whileInView="onscreen"
             // variants={animationVariants(i)}
             // viewport={{ once: true, amount: 0.2 }}
-            initial="hidden"
+            initial={isMobile ? "offscreen" : "hidden"}
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ duration: 0.3 }}
