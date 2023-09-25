@@ -43,10 +43,10 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
         <Image
           width={400}
           height={400}
-          placeholder="blur"
+          // placeholder="blur"
           alt={project.title}
           src={project.imagesAssets[0]}
-          blurDataURL={project.imagesAssets[0]}
+          // blurDataURL={project.imagesAssets[0]}
           className="rounded grayscale transition-all duration-300 ease-in-out group-hover:scale-[1.01] group-hover:grayscale-0"
           style={{
             width: "100%",
