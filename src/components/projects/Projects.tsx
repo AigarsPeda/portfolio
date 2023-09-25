@@ -62,7 +62,15 @@ const Projects: FC = () => {
             initial="offscreen"
             whileInView="onscreen"
             variants={animationVariants(i)}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true }}
+            // initial="hidden"
+            // whileInView="visible"
+            // viewport={{ once: true }}
+            // transition={{ duration: 0.3 }}
+            // variants={{
+            //   visible: { opacity: 1, scale: 1 },
+            //   hidden: { opacity: 0, scale: 0 },
+            // }}
           >
             <ProjectCard project={project} />
           </motion.div>
