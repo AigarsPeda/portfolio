@@ -62,7 +62,6 @@ const Projects: FC = () => {
             key={getUniqueId()}
             initial="offscreen"
             whileInView="onscreen"
-            // className="mb-8 w-full"
             variants={animationVariants(i)}
             viewport={{ once: true, amount: 0.2 }}
           >

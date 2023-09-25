@@ -12,7 +12,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
 
   return (
     <button
-      className="group max-w-xs rounded-md bg-primary-dark-light p-3 text-left shadow-md shadow-primary-dark-light transition-colors duration-300 ease-in-out hover:cursor-pointer hover:bg-primary-accent hover:text-primary-dark"
+      className="group flex h-full max-w-xs flex-col justify-between rounded-md bg-primary-dark-light p-3 text-left shadow-md shadow-primary-dark-light transition-colors duration-300 ease-in-out hover:cursor-pointer hover:bg-primary-accent hover:text-primary-dark"
       onClick={() => {
         router
           .push(`/projects/${project.aboutLink}`)
@@ -25,6 +25,19 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
       <p className="mb-6 text-sm text-primary-light/70 group-hover:text-primary-dark">
         {project.description}
       </p>
+
+      {project?.technologies?.length > 0 && (
+        <div className="my-4 w-full gap-2">
+          <p className="mb-2 text-sm font-semibold">Technologies:</p>
+          <div className="flex flex-wrap gap-2 text-sm">
+            {project.technologies.map((tech, i) => (
+              <p key={i} className="text-primary-light/70">
+                {tech}
+              </p>
+            ))}
+          </div>
+        </div>
+      )}
 
       {project.imagesAssets[0] && (
         <Image

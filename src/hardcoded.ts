@@ -19,6 +19,17 @@ export const PROJECTS: ProjectType[] = [
     ],
     description:
       "Tournament management platform to organize tournaments. Create teams, save scores and share results.",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "tRPC",
+      "Prisma",
+      "MySQL",
+      "Stripe",
+      "Vercel",
+      "PlanetScale",
+    ],
   },
   {
     id: 2,
@@ -34,5 +45,6 @@ export const PROJECTS: ProjectType[] = [
     ],
     description:
       "Simple drawing app. Draw with your mouse or touch screen. Save your drawings and share them with your friends.",
+    technologies: ["Vue.js", "TypeScript", "Pinia", "Github page", "Fabric.js"],
   },
 ];

@@ -64,15 +64,7 @@ const AboutProject: NextPage = () => {
         <div className="mt-10">
           <p className="text-sm font-semibold">Technologies:</p>
           <div className="flex flex-wrap gap-2 text-sm">
-            <p>React</p>
-            <p>TypeScript</p>
-            <p>Next.js</p>
-            <p>tRPC</p>
-            <p>Prisma</p>
-            <p>MySQL</p>
-            <p>Stripe</p>
-            <p>Vercel</p>
-            <p>PlanetScale</p>
+            {project?.technologies.map((tech, i) => <p key={i}>{tech}</p>)}
           </div>
         </div>
 

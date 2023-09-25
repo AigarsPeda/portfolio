@@ -58,11 +58,7 @@ const AboutProject: NextPage = () => {
         <div className="mt-10">
           <p className="text-sm font-semibold">Technologies:</p>
           <div className="flex flex-wrap gap-2 text-sm">
-            <p>Vue</p>
-            <p>TypeScript</p>
-            <p>Pinia</p>
-            <p>Github page</p>
-            <p>Fabric.js</p>
+            {project?.technologies.map((tech, i) => <p key={i}>{tech}</p>)}
           </div>
         </div>
 
