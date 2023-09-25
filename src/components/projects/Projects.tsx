@@ -54,7 +54,6 @@ const Projects: FC = () => {
   };
 
   return (
-    // <GridLayout isGap minWith="250px">
     <div className="flex flex-col flex-wrap gap-10 md:flex-row">
       {PROJECTS.map((project, i) => {
         return (
@@ -70,7 +69,6 @@ const Projects: FC = () => {
         );
       })}
     </div>
-    // </GridLayout>
   );
 };
 
