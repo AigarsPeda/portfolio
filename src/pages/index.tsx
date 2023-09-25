@@ -79,12 +79,12 @@ const Home: NextPage = () => {
           </motion.div>
         </motion.div>
 
-        <div className="mt-[14%] pb-8">
+        <div className="mt-[14%] overflow-hidden pb-8">
           <h2 className="mb-5 text-base text-primary-light/25 md:mb-8 md:pt-0">
             PROJECTS
           </h2>
 
-          <div className="min-h-[250px]">
+          <div className="min-h-[250px] ">
             <Projects />
           </div>
         </div>
