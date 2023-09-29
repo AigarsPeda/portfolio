@@ -44,28 +44,28 @@ const AboutProject: NextPage = () => {
       </div>
       <div className="mx-auto mb-20 mt-10 max-w-2xl text-lg">
         <p>
-          In this project, I've embarked on a learning journey to deepen my
+          In this project, I&apos;ve embarked on a learning journey to deepen my
           understanding of Vue.js and canvas rendering. The key technologies and
-          tools I've employed include Vue.js, TypeScript, Pinia, GitHub Pages,
-          and Fabric.js.
+          tools I&apos;ve employed include Vue.js, TypeScript, Pinia, GitHub
+          Pages, and Fabric.js.
         </p>
 
         <p className="mt-10">
           One of the standout features of this project is the custom free
-          drawing mode I've developed. This mode enhances the user's drawing
-          experience by providing a smoother and more fluid interaction when
-          using a mouse or touch input. Furthermore, users have the freedom to
-          select an SVG background for both the canvas itself and individual
+          drawing mode I&apos;ve developed. This mode enhances the user&apos;s
+          drawing experience by providing a smoother and more fluid interaction
+          when using a mouse or touch input. Furthermore, users have the freedom
+          to select an SVG background for both the canvas itself and individual
           canvas objects. They can also explore a rich palette of colors to
           customize their creations and add text elements.
         </p>
 
         <p className="mt-10">
-          It's important to note that this project is still a work in progress.
-          I'm actively refining and expanding its capabilities to deliver an
-          even more compelling and feature-rich experience. Stay tuned for
-          updates and improvements as I continue to refine this exciting
-          project!
+          It&apos;s important to note that this project is still a work in
+          progress. I&apos;m actively refining and expanding its capabilities to
+          deliver an even more compelling and feature-rich experience. Stay
+          tuned for updates and improvements as I continue to refine this
+          exciting project!
         </p>
 
         <div className="mt-10">
