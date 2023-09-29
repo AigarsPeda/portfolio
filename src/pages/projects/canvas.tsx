@@ -44,15 +44,28 @@ const AboutProject: NextPage = () => {
       </div>
       <div className="mx-auto mb-20 mt-10 max-w-2xl text-lg">
         <p>
-          This is still a work in progress. I wanted to learn more about vue3
-          and canvas so I decided to make a website that allows you to draw on a
-          canvas and save your drawings. I am currently working on the website
-          and the backend and adding feature. The website is currently live, but
-          the backend is not yet finished.
+          In this project, I've embarked on a learning journey to deepen my
+          understanding of Vue.js and canvas rendering. The key technologies and
+          tools I've employed include Vue.js, TypeScript, Pinia, GitHub Pages,
+          and Fabric.js.
         </p>
 
         <p className="mt-10">
-          I have used Vue3 and TypeScript for the frontend.
+          One of the standout features of this project is the custom free
+          drawing mode I've developed. This mode enhances the user's drawing
+          experience by providing a smoother and more fluid interaction when
+          using a mouse or touch input. Furthermore, users have the freedom to
+          select an SVG background for both the canvas itself and individual
+          canvas objects. They can also explore a rich palette of colors to
+          customize their creations and add text elements.
+        </p>
+
+        <p className="mt-10">
+          It's important to note that this project is still a work in progress.
+          I'm actively refining and expanding its capabilities to deliver an
+          even more compelling and feature-rich experience. Stay tuned for
+          updates and improvements as I continue to refine this exciting
+          project!
         </p>
 
         <div className="mt-10">

@@ -55,8 +55,10 @@ const Home: NextPage = () => {
         >
           <div className="col-span-5 mb-5 flex h-full w-full items-center justify-center">
             <motion.div variants={item} className="w-full">
-              <h1 className="mb-5 text-4xl md:mb-4 md:text-5xl">
-                Hey! My name is Aigars and I am front-end developer.
+              <h1 className="mb-5 text-2xl md:mb-4 md:text-3xl">
+                Hey! My name is Aigars. I'm a front-end developer with a passion
+                for creating engaging web experiences, and I'm excited to share
+                some of my work with you.
               </h1>
 
               <Mailto body="From: aigarspeda.com" email="aigarspeda@gmail.com">
