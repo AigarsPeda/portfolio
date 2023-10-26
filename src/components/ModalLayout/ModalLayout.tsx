@@ -12,7 +12,7 @@ interface ModalLayoutProps {
   isPadding?: boolean;
   isFullScreen?: boolean;
   isModalVisible: boolean;
-  bgColor?: "white" | "gray";
+  bgColor?: "white" | "gray" | "transparent";
   handleCancelClick: () => void;
 }
 
@@ -53,10 +53,11 @@ const ModalLayout: FC<ModalLayoutProps> = ({
                 className={classNames(
                   bgColor === "white" && "bg-white",
                   bgColor === "gray" && "bg-gray-100",
-                  "flex h-full w-full flex-col justify-between rounded",
+                  bgColor === "transparent" && "bg-transparent",
+                  "flex flex-col justify-between rounded p-2",
                 )}
               >
-                <div className="flex items-center justify-between px-3 py-2 pb-2 text-left md:px-6 md:py-4">
+                <div className="flex items-center justify-between p-2 text-left">
                   <div className="truncate">{header && header}</div>
                   <div>
                     <button

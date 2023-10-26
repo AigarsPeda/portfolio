@@ -38,7 +38,7 @@
 /* Mobile */
 .image-gallery-content .image-gallery-slide .image-gallery-image {
   padding: 0 10px !important;
-  max-height: calc(100vh - 6.5rem) !important;
+  /* max-height: calc(100vh - 6.5rem) !important; */
 }
 
 /* Desktop */

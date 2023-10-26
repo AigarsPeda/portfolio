@@ -23,15 +23,15 @@ const ImageModal: FC<ImageModalProps> = ({
       isModalVisible={isModalVisible}
       handleCancelClick={handleModalClose}
     >
-      <div className="flex h-full flex-col items-center justify-center">
-        <ImageGallery
-          items={[...images]}
-          showPlayButton={false}
-          startIndex={startImageIndex}
-          showFullscreenButton={false}
-          // showThumbnails={false}
-        />
-      </div>
+      {/* <div className=""> */}
+      <ImageGallery
+        items={[...images]}
+        showPlayButton={false}
+        startIndex={startImageIndex}
+        showFullscreenButton={false}
+        // showThumbnails={false}
+      />
+      {/* </div> */}
     </ModalLayout>
   );
 };

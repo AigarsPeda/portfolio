@@ -40,8 +40,10 @@ export const PROJECTS: ProjectType[] = [
     logo: "/asset/canvas/canvas_logo.jpg",
     imagesAssets: [
       "/asset/canvas/canvas_start.webp",
-      "/asset/canvas/canvas_main.webp",
-      "/asset/canvas/canvas_draw.webp",
+      "/asset/canvas/canvas_main1.webp",
+      "/asset/canvas/canvas_square.webp",
+      "/asset/canvas/canvas_select.webp",
+      "/asset/canvas/canvas_export.webp",
     ],
     description:
       "Simple drawing app. Draw with your mouse or touch screen. Save your drawings and share them with your friends.",
