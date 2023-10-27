@@ -109,10 +109,11 @@ const AboutProject: NextPage = () => {
                 src={image}
                 width={220}
                 height={150}
-                className="max-h-64 rounded-lg object-contain md:max-h-40"
+                className="max-h-64 rounded-lg md:max-h-40"
                 style={{
                   width: "100%",
                   height: "100%",
+                  objectFit: "fill",
                 }}
               />
             </button>

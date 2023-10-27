@@ -41,20 +41,16 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
 
       {project.imagesAssets[0] && (
         <Image
+          priority
           width={400}
           height={430}
-          // placeholder="blur"
           alt={project.title}
-          priority
           src={project.imagesAssets[0]}
-          // blurDataURL={project.imagesAssets[0]}
-          className="w-full rounded object-cover grayscale transition-all duration-300 ease-in-out group-hover:scale-[1.01] group-hover:grayscale-0"
-          // style={{
-          //   width: "100%",
-          //   position: "relative",
-          //   objectFit: "cover",
-          //   minHeight: "230px",
-          // }}
+          style={{
+            objectFit: "fill",
+            // objectPosition: "center",
+          }}
+          className="h-[225px] w-full rounded object-cover grayscale transition-all duration-300 ease-in-out group-hover:scale-[1.01] group-hover:grayscale-0"
         />
       )}
     </button>
