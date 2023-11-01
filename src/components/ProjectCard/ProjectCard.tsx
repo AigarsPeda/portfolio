@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { type FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import { type ProjectType } from "~/types/project.types";
+import getImagesFromFolder from "~/utils/getImagesFromFolder";
 
 interface ProjectCardProps {
   project: ProjectType;
@@ -9,6 +10,15 @@ interface ProjectCardProps {
 
 const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
   const router = useRouter();
+  const [images, setImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      const imagePaths = await getImagesFromFolder(project.aboutLink);
+      setImages(imagePaths);
+    };
+    fetchImages();
+  }, []);
 
   return (
     <button
@@ -39,13 +49,13 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
         </div>
       )}
 
-      {project.imagesAssets[0] && (
+      {images[0] && (
         <Image
           priority
           width={400}
           height={430}
+          src={images[0]}
           alt={project.title}
-          src={project.imagesAssets[0]}
           style={{
             objectFit: "fill",
             // objectPosition: "center",

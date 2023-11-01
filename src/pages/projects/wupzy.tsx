@@ -1,19 +1,31 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiExternalLink } from "react-icons/fi";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import GridLayout from "~/components/GridLayout/GridLayout";
 import ImageModal from "~/components/ImageModal/ImageModal";
 import { PROJECTS } from "~/hardcoded";
 import classNames from "~/utils/classNames";
+import getImagesFromFolder from "~/utils/getImagesFromFolder";
 
 const AboutProject: NextPage = () => {
+  const [images, setImages] = useState<string[]>([]);
   const [isModalVisible, setIsModalVisible] = useState<number | undefined>(
     undefined,
   );
   const project = PROJECTS.find((project) => project.aboutLink === "wupzy");
+
+  useEffect(() => {
+    if (!project) return;
+
+    const fetchImages = async () => {
+      const imagePaths = await getImagesFromFolder(project.aboutLink);
+      setImages(imagePaths);
+    };
+    fetchImages();
+  }, [project]);
 
   return (
     <div className="p-2">
@@ -95,17 +107,18 @@ const AboutProject: NextPage = () => {
         </div>
 
         <GridLayout isGap minWith="200px">
-          {project?.imagesAssets.map((image, i) => (
+          {images.map((image, i) => (
             <button key={i} onClick={() => setIsModalVisible(i)}>
               <Image
-                alt="wupzy"
+                alt="canvas"
                 src={image}
                 width={220}
                 height={150}
-                className="max-h-64 rounded-lg object-contain md:max-h-40"
+                className="max-h-64 rounded-lg md:max-h-40"
                 style={{
                   width: "100%",
                   height: "100%",
+                  objectFit: "cover",
                 }}
               />
             </button>
@@ -116,7 +129,7 @@ const AboutProject: NextPage = () => {
           isModalVisible={isModalVisible !== undefined}
           handleModalClose={() => setIsModalVisible(undefined)}
           images={
-            project?.imagesAssets.map((image) => ({
+            images.map((image) => ({
               original: image,
               thumbnail: image,
             })) || []
