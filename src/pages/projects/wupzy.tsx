@@ -20,12 +20,12 @@ const AboutProject: NextPage = () => {
   useEffect(() => {
     if (!project) return;
 
-    const fetchImages = async () => {
-      const imagePaths = await getImagesFromFolder(project.aboutLink);
+    const fetchImages = async (): Promise<void> => {
+      const imagePaths = await getImagesFromFolder<string[]>(project.aboutLink);
       setImages(imagePaths);
     };
-    fetchImages();
-  }, [project]);
+    fetchImages().catch((err) => console.error(err));
+  }, [project, project?.aboutLink]);
 
   return (
     <div className="p-2">

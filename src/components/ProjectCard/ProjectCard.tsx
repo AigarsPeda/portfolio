@@ -14,11 +14,11 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
 
   useEffect(() => {
     const fetchImages = async () => {
-      const imagePaths = await getImagesFromFolder(project.aboutLink);
+      const imagePaths = await getImagesFromFolder<string[]>(project.aboutLink);
       setImages(imagePaths);
     };
-    fetchImages();
-  }, []);
+    fetchImages().catch((err) => console.error(err));
+  }, [project.aboutLink]);
 
   return (
     <button

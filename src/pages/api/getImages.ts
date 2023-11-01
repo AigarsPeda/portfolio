@@ -2,7 +2,7 @@ import fs from "fs";
 import type { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const getImages = (req: NextApiRequest, res: NextApiResponse) => {
   const folderName = req.query.folderName as string;
 
   const folderPath = path.join(process.cwd(), "public", "asset", folderName);
@@ -21,8 +21,10 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 
     // Return the image paths as JSON
     res.status(200).json({ imagePaths });
-  } catch (error: any) {
-    console.error(`Error reading folder ${folderName}: ${error.message}`);
+  } catch (_error) {
+    console.error(`Error reading folder ${folderName}`);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export default getImages;
