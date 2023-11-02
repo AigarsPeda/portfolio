@@ -48,21 +48,24 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
           </div>
         </div>
       )}
-
-      {images[0] && (
-        <Image
-          priority
-          width={400}
-          height={430}
-          src={images[0]}
-          alt={project.title}
-          style={{
-            objectFit: "fill",
-            // objectPosition: "center",
-          }}
-          className="h-[225px] w-full rounded object-cover grayscale transition-all duration-300 ease-in-out group-hover:scale-[1.01] group-hover:grayscale-0"
-        />
-      )}
+      <div className="h-[225px]">
+        {images[0] && (
+          <Image
+            priority
+            width={400}
+            height={430}
+            src={images[0]}
+            placeholder="blur"
+            blurDataURL="/asset/blur.jpg"
+            alt={project.title}
+            style={{
+              objectFit: "fill",
+              // objectPosition: "center",
+            }}
+            className="h-[225px] w-full rounded object-cover grayscale transition-all duration-300 ease-in-out group-hover:scale-[1.01] group-hover:grayscale-0"
+          />
+        )}
+      </div>
     </button>
   );
 };
