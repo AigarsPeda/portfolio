@@ -2,11 +2,10 @@ import { motion } from "framer-motion";
 import { type FC } from "react";
 import ProjectCard from "~/components/ProjectCard/ProjectCard";
 import { PROJECTS } from "~/hardcoded";
-import useWindowSize from "~/hooks/useWindowSize";
 
 const Projects: FC = () => {
-  const { windowSize } = useWindowSize();
-  const isMobile = windowSize.width <= 500;
+  // const { windowSize } = useWindowSize();
+  // const isMobile = windowSize.width <= 500;
 
   return (
     <div className="flex flex-col flex-wrap gap-10 md:flex-row">
