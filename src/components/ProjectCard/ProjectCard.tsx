@@ -48,15 +48,15 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
           </div>
         </div>
       )}
-      <div className="h-[225px] w-full">
-        <div className="relative m-2 mx-auto h-full w-full rounded-lg p-2">
+      <div className="h-[223px] w-full">
+        <div className="relative mx-auto h-full w-full rounded-lg">
           <Image
             fill
             alt="wupzy"
             placeholder="blur"
             blurDataURL="/asset/blur.jpg"
             src={images[0] || "/asset/blur.jpg"}
-            className="rounded-lg object-cover grayscale group-hover:grayscale-0"
+            className="rounded-md object-cover grayscale group-hover:grayscale-0"
             style={{
               width: "100%",
               height: "100%",
