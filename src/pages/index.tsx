@@ -22,7 +22,7 @@ const Home: NextPage = () => {
   };
 
   const item: Variants = {
-    hidden: { opacity: 0, scale: 0.6 },
+    hidden: { opacity: 0, scale: 0.8 },
     show: {
       scale: 1,
       opacity: 1,
@@ -86,7 +86,7 @@ const Home: NextPage = () => {
             PROJECTS
           </h2>
 
-          <div className="min-h-[250px] ">
+          <div className="min-h-[250px]">
             <Projects />
           </div>
         </div>

@@ -15,7 +15,7 @@ const Projects: FC = () => {
         return (
           <motion.div
             key={getUniqueId()}
-            initial={isMobile ? "offscreen" : "hidden"}
+            initial={"hidden"}
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ duration: 0.3 }}

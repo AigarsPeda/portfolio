@@ -51,7 +51,6 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
       <div className="h-[225px]">
         {images[0] && (
           <Image
-            priority
             width={400}
             height={430}
             src={images[0]}
