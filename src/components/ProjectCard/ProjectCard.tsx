@@ -48,22 +48,21 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
           </div>
         </div>
       )}
-      <div className="h-[225px]">
-        {images[0] && (
+      <div className="h-[225px] w-full">
+        <div className="relative m-2 mx-auto h-full w-full rounded-lg p-2">
           <Image
-            width={400}
-            height={430}
-            src={images[0]}
+            fill
+            alt="wupzy"
             placeholder="blur"
             blurDataURL="/asset/blur.jpg"
-            alt={project.title}
+            src={images[0] || "/asset/blur.jpg"}
+            className="rounded-lg object-cover grayscale group-hover:grayscale-0"
             style={{
-              objectFit: "fill",
-              // objectPosition: "center",
+              width: "100%",
+              height: "100%",
             }}
-            className="h-[225px] w-full rounded object-cover grayscale transition-all duration-300 ease-in-out group-hover:scale-[1.01] group-hover:grayscale-0"
           />
-        )}
+        </div>
       </div>
     </button>
   );
