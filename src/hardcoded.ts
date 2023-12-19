@@ -12,14 +12,6 @@ export const PROJECTS: ProjectType[] = [
     link: "https://wupzy.com",
     logo: "/asset/wupzy/wupzy_logo.jpg",
     codeLink: "https://github.com/AigarsPeda/wupzy",
-    // imagesAssets: [
-    //   "/asset/wupzy/desktop_1.webp",
-    //   "/asset/wupzy/new-tournament-form.webp",
-    //   "/asset/wupzy/setting_dropdown.webp",
-    //   "/asset/wupzy/playoffs.webp",
-    //   "/asset/wupzy/qr_code.webp",
-    //   "/asset/wupzy/mob_3.webp",
-    // ],
     description:
       "Tournament management platform to organize tournaments. Create teams, save scores and share results.",
     technologies: [
@@ -41,14 +33,19 @@ export const PROJECTS: ProjectType[] = [
     link: "https://aigarspeda.github.io/designer/",
     codeLink: "https://github.com/AigarsPeda/designer",
     logo: "/asset/canvas/canvas_main.webp",
-    // imagesAssets: [
-    //   "/asset/canvas/canvas_main.webp",
-    //   "/asset/canvas/canvas_square.webp",
-    //   "/asset/canvas/canvas_select.webp",
-    //   "/asset/canvas/canvas_export.webp",
-    // ],
     description:
       "Simple drawing app. Draw with your mouse or touch screen. Save your drawings and share them with your friends.",
     technologies: ["Vue.js", "TypeScript", "Pinia", "Github page", "Fabric.js"],
+  },
+  {
+    id: 3,
+    title: "Kids learning app",
+    aboutLink: "kids_learning_app",
+    link: "",
+    codeLink: "https://github.com/AigarsPeda/kids_learning_app",
+    logo: "/asset/kids_learning_app/kids_learning_app_1.webp",
+    description:
+      "Kids learning app. Learn math by solving simple math problems.",
+    technologies: ["React native", "TypeScript", "Expo"],
   },
 ];
