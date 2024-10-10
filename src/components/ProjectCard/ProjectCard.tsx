@@ -22,17 +22,15 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
 
   return (
     <button
-      className="group flex max-w-xs flex-col justify-between rounded-md bg-primary-dark-light p-3 text-left shadow-md shadow-primary-dark-light transition-colors duration-300 ease-in-out hover:cursor-pointer hover:bg-primary-accent hover:text-primary-dark"
+      className="group flex max-w-xs flex-col justify-between rounded-md bg-primary-dark-light p-3 text-left shadow-md shadow-primary-dark-light transition-colors duration-300 ease-in-out hover:cursor-pointer hover:bg-gray-900"
       onClick={() => {
         router
           .push(`/projects/${project.aboutLink}`)
           .catch((err) => console.error(err));
       }}
     >
-      <h2 className="mb-4 text-xl group-hover:text-primary-dark">
-        {project.title}
-      </h2>
-      <p className="min-h-[6rem] text-sm text-primary-light/70 group-hover:text-primary-dark">
+      <h2 className="mb-4 text-xl ">{project.title}</h2>
+      <p className="min-h-[6rem] text-sm text-primary-light/70 ">
         {project.description}
       </p>
 
