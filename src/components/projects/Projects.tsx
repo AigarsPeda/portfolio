@@ -24,7 +24,7 @@ const Projects: FC = () => {
   };
 
   return (
-    <div className="flex flex-col flex-wrap gap-10 md:flex-row">
+    <div className="mx-auto flex flex-col flex-wrap justify-center gap-10 md:flex-row">
       {PROJECTS.map((project, i) => {
         return (
           <motion.div

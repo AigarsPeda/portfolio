@@ -46,7 +46,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="mx-auto max-w-7xl items-center px-8 pt-4 md:pt-16">
+      <main className="mx-auto max-w-6xl items-center px-8 pt-4 md:pt-16">
         <motion.div
           animate="show"
           initial="hidden"
@@ -77,14 +77,8 @@ const Home: NextPage = () => {
           </motion.div>
         </motion.div>
 
-        <div className="mt-[14%] overflow-hidden pb-8">
-          <h2 className="mb-5 text-base text-primary-light/25 md:mb-8 md:pt-0">
-            PROJECTS
-          </h2>
-
-          <div className="min-h-[250px]">
-            <Projects />
-          </div>
+        <div className="mt-[20%]">
+          <Projects />
         </div>
       </main>
     </>
