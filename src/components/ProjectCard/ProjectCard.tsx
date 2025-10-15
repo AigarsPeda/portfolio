@@ -22,7 +22,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
 
   return (
     <button
-      className="group flex flex-col justify-between rounded-md bg-primary-dark-light p-3 text-left shadow-md shadow-primary-dark-light transition-colors duration-300 ease-in-out hover:cursor-pointer hover:bg-gray-900 md:max-w-[21rem]"
+      className="group flex flex-col justify-between rounded-md bg-gray-900 p-3 text-left shadow-md shadow-primary-dark-light transition-colors duration-300 ease-in-out hover:cursor-pointer hover:bg-gray-900/75 md:max-w-[21rem]"
       onClick={() => {
         router
           .push(`/projects/${project.aboutLink}`)

@@ -2,13 +2,13 @@ import { motion, type Variants } from "framer-motion";
 import { type NextPage } from "next";
 import Head from "next/head";
 import Mailto from "~/components/Mailto/Mailto";
-import ProgrammerDesktop from "~/components/programmer/ProgrammerDesktop";
-import ProgrammerMob from "~/components/programmer/ProgrammerMob";
+// import ProgrammerDesktop from "~/components/programmer/ProgrammerDesktop";
+// import ProgrammerMob from "~/components/programmer/ProgrammerMob";
 import Projects from "~/components/projects/Projects";
-import useWindowSize from "~/hooks/useWindowSize";
+// import useWindowSize from "~/hooks/useWindowSize";
 
 const Home: NextPage = () => {
-  const { windowSize } = useWindowSize();
+  // const { windowSize } = useWindowSize();
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -65,7 +65,7 @@ const Home: NextPage = () => {
             </motion.div>
           </div>
 
-          <motion.div
+          {/* <motion.div
             variants={item}
             className="col-span-5 h-full w-full max-w-lg md:ml-10"
           >
@@ -74,10 +74,10 @@ const Home: NextPage = () => {
             ) : (
               <ProgrammerDesktop />
             )}
-          </motion.div>
+          </motion.div> */}
         </motion.div>
 
-        <div className="mt-[20%]">
+        <div className="mt-10">
           <Projects />
         </div>
       </main>
