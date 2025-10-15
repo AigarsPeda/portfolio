@@ -38,7 +38,7 @@ const ModalLayout: FC<ModalLayoutProps> = ({
           id="menu"
           className={classNames(
             isAnimation ? "opacity-100" : "opacity-0",
-            "sticky-0 fixed inset-0 z-[900] flex h-full w-full items-center justify-center bg-gray-900 bg-opacity-80 transition-all duration-300 ease-in-out",
+            "sticky-0 fixed inset-0 z-900 flex h-full w-full items-center justify-center bg-gray-900 bg-opacity-80 transition-all duration-300 ease-in-out",
           )}
         >
           <div className="relative h-full w-full">
@@ -54,7 +54,7 @@ const ModalLayout: FC<ModalLayoutProps> = ({
                   bgColor === "white" && "bg-white",
                   bgColor === "gray" && "bg-gray-100",
                   bgColor === "transparent" && "bg-transparent",
-                  "flex flex-col justify-between rounded p-2",
+                  "flex flex-col justify-between rounded-sm p-2",
                 )}
               >
                 <div className="flex items-center justify-between p-2 text-left">

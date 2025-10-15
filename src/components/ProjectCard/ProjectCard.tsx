@@ -22,7 +22,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
 
   return (
     <button
-      className="group flex flex-col justify-between rounded-md bg-gray-900 p-3 text-left shadow-md shadow-primary-dark-light transition-colors duration-300 ease-in-out hover:cursor-pointer hover:bg-gray-900/75 md:max-w-[21rem]"
+      className="group flex flex-col justify-between rounded-md bg-gray-900 p-3 text-left shadow-md shadow-primary-dark-light transition-colors duration-300 ease-in-out hover:cursor-pointer hover:bg-gray-900/75 md:max-w-84"
       onClick={() => {
         router
           .push(`/projects/${project.aboutLink}`)
@@ -30,14 +30,14 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
       }}
     >
       <h2 className="mb-4 text-xl ">{project.title}</h2>
-      <p className="min-h-[6rem] text-sm text-primary-light/70 ">
+      <p className="min-h-24 text-sm text-primary-light/70 ">
         {project.description}
       </p>
 
       {project?.technologies?.length > 0 && (
         <div className="my-4 gap-2">
           <p className="mb-2 text-sm font-semibold">Technologies:</p>
-          <div className="flex min-h-[3rem] flex-wrap gap-2 text-sm">
+          <div className="flex min-h-12 flex-wrap gap-2 text-sm">
             {project.technologies.map((tech, i) => (
               <p key={i} className="text-primary-light/70">
                 {tech}
