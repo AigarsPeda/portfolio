@@ -21,8 +21,8 @@ const getImages = (req: NextApiRequest, res: NextApiResponse) => {
 
     // Return the image paths as JSON
     res.status(200).json({ imagePaths });
-  } catch (_error) {
-    console.error(`Error reading folder ${folderName}`);
+  } catch (error) {
+    console.error(`Error reading folder ${folderName}:`, error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

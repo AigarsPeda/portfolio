@@ -25,7 +25,7 @@ const ModalLayout: FC<ModalLayoutProps> = ({
   handleCancelClick,
   bgColor = "white",
 }) => {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null!);
   const { shouldRender, isAnimation } = useDelayUnmount(isModalVisible, 100);
   useOnClickOutside<HTMLDivElement>(modalRef, () => {
     handleCancelClick();
