@@ -12,8 +12,8 @@ interface ModalLayoutProps {
   isPadding?: boolean;
   isFullScreen?: boolean;
   isModalVisible: boolean;
-  bgColor?: "white" | "gray" | "transparent";
   handleCancelClick: () => void;
+  bgColor?: "white" | "gray" | "transparent";
 }
 
 const ModalLayout: FC<ModalLayoutProps> = ({
@@ -38,7 +38,7 @@ const ModalLayout: FC<ModalLayoutProps> = ({
           id="menu"
           className={classNames(
             isAnimation ? "opacity-100" : "opacity-0",
-            "sticky-0 bg-opacity-80 fixed inset-0 z-900 flex h-full w-full items-center justify-center bg-gray-900 transition-all duration-300 ease-in-out",
+            "sticky-0 bg-opacity-80 fixed inset-0 z-900 flex h-full w-full items-center justify-center bg-gray-900/70 transition-all duration-300 ease-in-out",
           )}
         >
           <div className="relative h-full w-full">
