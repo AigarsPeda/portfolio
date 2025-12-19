@@ -38,14 +38,16 @@ const ModalLayout: FC<ModalLayoutProps> = ({
           id="menu"
           className={classNames(
             isAnimation ? "opacity-100" : "opacity-0",
-            "sticky-0 fixed inset-0 z-900 flex h-full w-full items-center justify-center bg-gray-900 bg-opacity-80 transition-all duration-300 ease-in-out",
+            "sticky-0 bg-opacity-80 fixed inset-0 z-900 flex h-full w-full items-center justify-center bg-gray-900 transition-all duration-300 ease-in-out",
           )}
         >
           <div className="relative h-full w-full">
             <div
               className={classNames(
                 !isFullScreen && "p-3 md:p-10",
-                "absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 transform",
+                isFullScreen
+                  ? "absolute top-1/2 left-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 transform"
+                  : "absolute top-1/2 left-1/2 w-full max-w-3xl -translate-x-1/2 -translate-y-1/2 transform",
               )}
             >
               <div
@@ -54,7 +56,8 @@ const ModalLayout: FC<ModalLayoutProps> = ({
                   bgColor === "white" && "bg-white",
                   bgColor === "gray" && "bg-gray-100",
                   bgColor === "transparent" && "bg-transparent",
-                  "flex flex-col justify-between rounded-sm p-2",
+                  isFullScreen ? "h-full w-full" : "h-[80vh] w-full",
+                  "flex flex-col rounded-sm p-2",
                 )}
               >
                 <div className="flex items-center justify-between p-2 text-left">
@@ -64,7 +67,7 @@ const ModalLayout: FC<ModalLayoutProps> = ({
                       className="cursor-pointer"
                       onClick={handleCancelClick}
                     >
-                      <IoClose className="right-2 top-2 h-8 w-9 text-gray-800 hover:text-gray-500" />
+                      <IoClose className="top-2 right-2 h-8 w-9 text-gray-800 hover:text-gray-500" />
                     </button>
                   </div>
                 </div>
