@@ -33,10 +33,10 @@ const AboutProject: NextPage = () => {
     <div className="p-2">
       <Link
         href="/"
-        className="ml-2 mt-2 flex items-center text-primary-accent transition-all duration-200 hover:underline"
+        className="text-primary-accent mt-2 ml-2 flex items-center transition-all duration-200 hover:underline"
       >
         <IoMdArrowRoundBack
-          className={classNames("mr-2 h-4 w-4 text-primary-accent")}
+          className={classNames("text-primary-accent mr-2 h-4 w-4")}
         />
         Go back
       </Link>
@@ -45,10 +45,10 @@ const AboutProject: NextPage = () => {
           <div className="relative m-2 mx-auto h-36 w-56 rounded-lg">
             <Image
               fill
-              alt="wupzy"
+              alt="kids learning app"
               className="rounded-lg object-cover"
               src={
-                images[0] || "/asset/kids_learning_app/kids_learning_app_0.webp"
+                images[0] || "/asset/kids_learning_app/kids_learning_app_0.jpg"
               }
               style={{
                 width: "100%",
@@ -58,7 +58,7 @@ const AboutProject: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto mb-20 mt-10 max-w-2xl text-lg">
+      <div className="mx-auto mt-10 mb-20 max-w-2xl text-lg">
         <p>
           This app is a learning platform for kids. It is a react native app and
           will be available on both iOS and Android. The app is currently in
@@ -76,22 +76,24 @@ const AboutProject: NextPage = () => {
         <div className="mt-10">
           <p className="text-sm font-semibold">Technologies:</p>
           <div className="flex flex-wrap gap-2 text-sm">
-            {project?.technologies.map((tech, i) => <p key={i}>{tech}</p>)}
+            {project?.technologies.map((tech, i) => (
+              <p key={i}>{tech}</p>
+            ))}
           </div>
         </div>
 
-        <div className="mb-8 mt-10">
+        <div className="mt-10 mb-8">
           <p className="text-sm font-semibold">Links:</p>
           <div className="flex space-x-2 text-sm">
             {project?.link && (
               <Link
                 target="_blank"
                 href={project?.link || "#"}
-                className="flex items-center text-primary-accent transition-all duration-200 hover:underline"
+                className="text-primary-accent flex items-center transition-all duration-200 hover:underline"
               >
                 Website{" "}
                 <FiExternalLink
-                  className={classNames("ml-2 h-4 w-4 text-primary-accent")}
+                  className={classNames("text-primary-accent ml-2 h-4 w-4")}
                 />
               </Link>
             )}
@@ -99,11 +101,11 @@ const AboutProject: NextPage = () => {
               <Link
                 target="_blank"
                 href={project?.codeLink || "#"}
-                className="flex items-center text-primary-accent transition-all duration-200 hover:underline"
+                className="text-primary-accent flex items-center transition-all duration-200 hover:underline"
               >
                 Code{" "}
                 <FiExternalLink
-                  className={classNames("ml-2 h-4 w-4 text-primary-accent")}
+                  className={classNames("text-primary-accent ml-2 h-4 w-4")}
                 />
               </Link>
             )}

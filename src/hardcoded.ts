@@ -42,8 +42,8 @@ export const PROJECTS: ProjectType[] = [
     title: "Kids learning app",
     aboutLink: "kids_learning_app",
     link: "",
-    codeLink: "https://github.com/AigarsPeda/kids_learning_app",
-    logo: "/asset/kids_learning_app/kids_learning_app_1.webp",
+    codeLink: "https://github.com/AigarsPeda/brain-trainer-app",
+    logo: "/asset/kids_learning_app/kids_learning_app_0.jpg",
     description:
       "Kids learning app. Learn math by solving simple math problems.",
     technologies: ["React native", "TypeScript", "Expo"],
