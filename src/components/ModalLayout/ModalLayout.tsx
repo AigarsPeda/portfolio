@@ -54,7 +54,7 @@ const ModalLayout: FC<ModalLayoutProps> = ({
                 ref={modalRef}
                 className={classNames(
                   bgColor === "white" && "bg-white",
-                  bgColor === "gray" && "bg-gray-100",
+                  bgColor === "gray" && "bg-[#121227]",
                   bgColor === "transparent" && "bg-transparent",
                   isFullScreen ? "h-full w-full" : "h-[80vh] w-full",
                   "flex flex-col rounded-sm p-2",
