@@ -28,10 +28,11 @@
 
   html {
     @apply h-full bg-primary-dark;
+    scroll-behavior: smooth;
   }
 
   body {
-    @apply h-full;
+    @apply h-full antialiased;
   }
 
   div#__next {
@@ -56,42 +57,178 @@
   select {
     @apply text-primary-light;
   }
+
+  /* Custom selection color */
+  ::selection {
+    background-color: rgba(255, 201, 98, 0.3);
+    color: #f1f2f6;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #3c3e50;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #4a4d5e;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffc962;
+  }
 }
 
-/* Mobile */
-@layer base {
-  .image-gallery-content .image-gallery-slide .image-gallery-image {
-    padding: 0 10px !important;
-    /* max-height: calc(100vh - 6.5rem) !important; */
+/* Utility classes for line clamping */
+@layer utilities {
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
+}
+
+/* React Image Gallery - Custom Styling */
+@layer base {
+  /* Remove default padding from slides */
+  .image-gallery-content .image-gallery-slide .image-gallery-image {
+    padding: 0 !important;
+  }
+
+  /* Navigation arrows */
   .image-gallery-icon {
-    padding: 0 0 !important;
+    padding: 0 !important;
     box-shadow: none !important;
-    filter: drop-shadow(0 2px 1px #1a1a1a) !important;
+    filter: none !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .image-gallery-left-nav,
+  .image-gallery-right-nav {
+    padding: 0 !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(60, 62, 80, 0.8) !important;
+    border: 1px solid rgba(241, 242, 246, 0.2) !important;
+    border-radius: 9999px !important;
+    backdrop-filter: blur(8px) !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .image-gallery-left-nav:hover,
+  .image-gallery-right-nav:hover {
+    background: rgba(60, 62, 80, 1) !important;
+    border-color: rgba(255, 201, 98, 0.5) !important;
+    transform: scale(1.05) !important;
+  }
+
+  .image-gallery-left-nav {
+    left: 1rem !important;
+  }
+
+  .image-gallery-right-nav {
+    right: 1rem !important;
+  }
+
+  @media (min-width: 768px) {
+    .image-gallery-left-nav,
+    .image-gallery-right-nav {
+      width: 3.5rem !important;
+      height: 3.5rem !important;
+    }
+
+    .image-gallery-left-nav {
+      left: 0 !important;
+    }
+
+    .image-gallery-right-nav {
+      right: 0 !important;
+    }
   }
 
   .image-gallery-icon:hover {
     color: #ffc962 !important;
-    box-shadow: none !important;
   }
 
   .image-gallery-svg {
-    width: 3.75rem !important;
-    height: 3.75rem !important;
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    stroke-width: 1.5 !important;
   }
 
-  .image-gallery-thumbnail-image {
-    object-fit: contain !important;
-    max-height: 4.375rem !important;
+  @media (min-width: 768px) {
+    .image-gallery-svg {
+      width: 2rem !important;
+      height: 2rem !important;
+    }
+  }
+
+  /* Thumbnails container */
+  .image-gallery-thumbnails-wrapper {
+    margin-top: 1.5rem !important;
   }
 
   .image-gallery-thumbnails {
-    margin-top: 1.25rem !important;
+    padding: 0.5rem !important;
+    background: rgba(60, 62, 80, 0.5) !important;
+    border: 1px solid rgba(241, 242, 246, 0.1) !important;
+    border-radius: 1rem !important;
+    backdrop-filter: blur(8px) !important;
   }
 
-  @media (min-width: 640px) {
-    .image-gallery-content .image-gallery-slide .image-gallery-image {
-      max-height: calc(100vh - 25rem) !important;
-    }
+  .image-gallery-thumbnails .image-gallery-thumbnails-container {
+    gap: 0.5rem !important;
+  }
+
+  /* Individual thumbnails */
+  .image-gallery-thumbnail {
+    width: 5rem !important;
+    height: 3.5rem !important;
+    border: 2px solid transparent !important;
+    border-radius: 0.5rem !important;
+    overflow: hidden !important;
+    opacity: 0.5 !important;
+    transition: all 0.3s ease !important;
+    background: transparent !important;
+  }
+
+  .image-gallery-thumbnail:hover {
+    opacity: 0.8 !important;
+    border-color: rgba(241, 242, 246, 0.3) !important;
+  }
+
+  .image-gallery-thumbnail.active {
+    opacity: 1 !important;
+    border-color: #ffc962 !important;
+  }
+
+  .image-gallery-thumbnail-image {
+    object-fit: cover !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0.375rem !important;
+  }
+
+  .image-gallery-thumbnail-inner {
+    height: 100% !important;
+  }
+
+  /* Slide transitions */
+  .image-gallery-slide {
+    transition: transform 0.3s ease-out !important;
+  }
+
+  /* Index counter (bullets) - hide them */
+  .image-gallery-bullets {
+    display: none !important;
   }
 }
