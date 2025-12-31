@@ -39,7 +39,7 @@ const ImageModal: FC<ImageModalProps> = ({
       {/* Close button */}
       <button
         onClick={handleModalClose}
-        className="border-primary-light/20 bg-primary-dark/80 text-primary-light/70 hover:border-primary-accent/50 hover:bg-primary-dark hover:text-primary-accent absolute top-4 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full border backdrop-blur-sm transition-all duration-300"
+        className="border-primary-light/20 bg-primary-dark/80 text-primary-light/70 hover:border-primary-accent/50 hover:bg-primary-dark hover:text-primary-accent absolute top-4 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full border backdrop-blur-sm transition-colors duration-300"
       >
         <IoClose className="h-6 w-6" />
       </button>
