@@ -37,13 +37,13 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Aigars Peda</title>
+        <title>Aigars</title>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="description"
-          content="Aigars Peda - Full Stack Developer specializing in React, TypeScript, and Next.js"
+          content="Aigars - Full Stack Developer specializing in React, TypeScript, and Next.js"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
