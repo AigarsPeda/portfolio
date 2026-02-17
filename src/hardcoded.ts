@@ -13,7 +13,7 @@ export const PROJECTS: ProjectType[] = [
     logo: "/asset/wupzy/wupzy_logo.jpg",
     codeLink: "https://github.com/AigarsPeda/wupzy",
     description:
-      "Tournament management platform to organize tournaments. Create teams, save scores and share results.",
+      "Organize volleyball tournaments, track scores in real time, and share results with your team — all from your phone.",
     technologies: [
       "React",
       "TypeScript",
@@ -34,7 +34,7 @@ export const PROJECTS: ProjectType[] = [
     codeLink: "https://github.com/AigarsPeda/designer",
     logo: "/asset/canvas/canvas_main.webp",
     description:
-      "Simple drawing app. Draw with your mouse or touch screen. Save your drawings and share them with your friends.",
+      "A browser-based drawing tool with free-form sketching, SVG backgrounds, and a full color palette. Works on desktop and touch screens.",
     technologies: ["Vue.js", "TypeScript", "Pinia", "Github page", "Fabric.js"],
   },
   {
@@ -45,7 +45,7 @@ export const PROJECTS: ProjectType[] = [
     codeLink: "https://github.com/AigarsPeda/brain-trainer-app",
     logo: "/asset/kids_learning_app/kids_learning_app_6.jpg",
     description:
-      "Kids learning app. Learn math by solving simple math problems.",
+      "A mobile app that helps kids practice math through bite-sized challenges. Built with React Native and Expo for iOS and Android.",
     technologies: ["React native", "TypeScript", "Expo"],
   },
 ];

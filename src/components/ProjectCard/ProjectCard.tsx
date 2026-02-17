@@ -22,7 +22,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
 
   return (
     <button
-      className="group border-primary-light/10 from-primary-dark-light/50 to-primary-dark hover:border-primary-accent/30 hover:shadow-primary-accent/5 relative flex h-full w-full flex-col overflow-hidden rounded-xl border bg-linear-to-b p-3 text-left transition-all duration-500 ease-out hover:cursor-pointer hover:shadow-lg md:max-w-96"
+      className="group border-primary-light/10 from-primary-dark-light/50 to-primary-dark hover:border-primary-accent/30 hover:shadow-primary-accent/10 relative flex h-full w-full flex-col overflow-hidden rounded-xl border bg-linear-to-b p-3 text-left transition-all duration-500 ease-out hover:cursor-pointer hover:shadow-xl md:max-w-96"
       onClick={() => {
         router
           .push(`/projects/${project.aboutLink}`)
@@ -83,7 +83,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
 
         {/* View Project indicator */}
         <div className="text-primary-accent mt-4 flex items-center gap-2 text-sm font-medium opacity-0 transition-all duration-300 group-hover:opacity-100">
-          <span>View Project</span>
+          <span>See details</span>
           <svg
             className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
             fill="none"

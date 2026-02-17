@@ -129,27 +129,10 @@ const AboutProject: NextPage = () => {
           </h2>
           <div className="text-primary-light/80 space-y-6 text-lg leading-relaxed">
             <p>
-              In this project, I&apos;ve embarked on a learning journey to
-              deepen my understanding of Vue.js and canvas rendering. The key
-              technologies and tools I&apos;ve employed include Vue.js,
-              TypeScript, Pinia, GitHub Pages, and Fabric.js.
+              I built Canvas to explore Vue.js and browser-based rendering with Fabric.js. The app features a custom free-drawing mode that produces smoother strokes than the default canvas API, working equally well with mouse and touch input.
             </p>
             <p>
-              One of the standout features of this project is the custom free
-              drawing mode I&apos;ve developed. This mode enhances the
-              user&apos;s drawing experience by providing a smoother and more
-              fluid interaction when using a mouse or touch input. Furthermore,
-              users have the freedom to select an SVG background for both the
-              canvas itself and individual canvas objects. They can also explore
-              a rich palette of colors to customize their creations and add text
-              elements.
-            </p>
-            <p>
-              It&apos;s important to note that this project is still a work in
-              progress. I&apos;m actively refining and expanding its
-              capabilities to deliver an even more compelling and feature-rich
-              experience. Stay tuned for updates and improvements as I continue
-              to refine this exciting project!
+              Users can pick SVG backgrounds for the canvas or individual objects, choose from a full color palette, and add text elements. State management runs through Pinia, and the app is hosted on GitHub Pages. The project is still evolving — I&apos;m adding new tools and refining the drawing experience.
             </p>
           </div>
         </motion.div>

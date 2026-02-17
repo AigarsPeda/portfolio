@@ -129,20 +129,10 @@ const AboutProject: NextPage = () => {
           </h2>
           <div className="text-primary-light/80 space-y-6 text-lg leading-relaxed">
             <p>
-              For a while now, I&apos;ve had an idea that I believe could
-              greatly enhance our volleyball games. We frequently find ourselves
-              in need of a method to keep track of scores, and although we
-              usually resort to using paper, there are occasions when we forget
-              to bring any. However, we always have our phones with us. This led
-              me to envision the creation of a user-friendly website dedicated
-              to saving and managing game scores, as well as displaying the
-              results in a convenient and accessible manner.
+              Our volleyball group needed a way to track tournament scores without relying on scraps of paper that get lost between games. Since everyone already has a phone in their pocket, I built Wupzy — a web app where you create a tournament, add teams, record scores as you play, and share the standings with a link.
             </p>
             <p>
-              I have used React and Next.js for the frontend development of my
-              website. For the backend, I implemented tRPC, Prisma, and MySQL.
-              The website is currently hosted on Vercel, while the database is
-              hosted by PlanetScale and payments is handled by Stripe.
+              The frontend runs on React and Next.js. The backend uses tRPC for type-safe APIs, Prisma as the ORM, and MySQL on PlanetScale for the database. Payments go through Stripe, and the whole thing is deployed on Vercel.
             </p>
           </div>
         </motion.div>

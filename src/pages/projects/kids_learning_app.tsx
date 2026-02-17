@@ -135,18 +135,10 @@ const AboutProject: NextPage = () => {
           </h2>
           <div className="text-primary-light/80 space-y-6 text-lg leading-relaxed">
             <p>
-              This app is a learning platform for kids. It is a react native app
-              and will be available on both iOS and Android. The app is
-              currently in development and is not yet available on the app
-              store.
+              A mobile app designed to make math practice fun for kids. It generates bite-sized arithmetic challenges and tracks progress, keeping children engaged through quick, rewarding rounds.
             </p>
             <p>
-              I have used Expo to create this app. Expo is a framework and a
-              platform for universal React applications. It is a set of tools
-              and services built around React Native and native platforms that
-              help you develop, build, deploy, and quickly iterate on iOS,
-              Android, and web apps from the same JavaScript/TypeScript
-              codebase.
+              Built with React Native and Expo, the app runs on both iOS and Android from a single TypeScript codebase. It&apos;s currently in active development and not yet on the app stores.
             </p>
           </div>
         </motion.div>
