@@ -1,161 +1,106 @@
 "use client";
 
-import { useRef, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useRef, useMemo, useEffect, useCallback } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
-// Rotating wireframe cube
-function WireframeCube({
-  position,
-  scale = 1,
-  speed = 0.3,
-}: {
-  position: [number, number, number];
-  scale?: number;
-  speed?: number;
-}) {
-  const meshRef = useRef<THREE.Mesh>(null);
+// Shared mouse state (avoids re-renders)
+const mouse = { x: 0, y: 0 };
 
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * speed;
-      meshRef.current.rotation.y = state.clock.elapsedTime * speed * 0.8;
-    }
-  });
-
-  return (
-    <mesh ref={meshRef} position={position} scale={scale}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshBasicMaterial color="#ffc962" wireframe opacity={0.3} transparent />
-    </mesh>
-  );
-}
-
-// Rotating wireframe octahedron
-function WireframeOctahedron({
+// Wireframe shape with floating + mouse parallax
+function FloatingWireframe({
   position,
   scale = 1,
   speed = 0.2,
+  geometry,
+  color = "#ffc962",
+  opacity = 0.25,
+  parallaxFactor = 0.3,
+  floatAmplitude = 0.4,
+  floatSpeed = 0.8,
 }: {
   position: [number, number, number];
   scale?: number;
   speed?: number;
+  geometry: "box" | "octahedron" | "icosahedron";
+  color?: string;
+  opacity?: number;
+  parallaxFactor?: number;
+  floatAmplitude?: number;
+  floatSpeed?: number;
 }) {
   const meshRef = useRef<THREE.Mesh>(null);
+  const basePos = useMemo(() => new THREE.Vector3(...position), [position]);
 
   useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * speed;
-      meshRef.current.rotation.z = state.clock.elapsedTime * speed * 0.6;
-    }
+    if (!meshRef.current) return;
+    const t = state.clock.elapsedTime;
+
+    // Rotation
+    meshRef.current.rotation.x = t * speed;
+    meshRef.current.rotation.y = t * speed * 0.7;
+
+    // Floating bob
+    meshRef.current.position.y =
+      basePos.y + Math.sin(t * floatSpeed + basePos.x) * floatAmplitude;
+    meshRef.current.position.x =
+      basePos.x +
+      Math.sin(t * floatSpeed * 0.6 + basePos.y) * floatAmplitude * 0.3;
+
+    // Mouse parallax — shapes closer to camera move more
+    const depth = Math.abs(basePos.z);
+    const pFactor = parallaxFactor * (1 / (depth * 0.15 + 1));
+    meshRef.current.position.x += mouse.x * pFactor;
+    meshRef.current.position.y += mouse.y * pFactor;
   });
 
   return (
     <mesh ref={meshRef} position={position} scale={scale}>
-      <octahedronGeometry args={[1, 0]} />
-      <meshBasicMaterial color="#f97316" wireframe opacity={0.25} transparent />
+      {geometry === "box" && <boxGeometry args={[1, 1, 1]} />}
+      {geometry === "octahedron" && <octahedronGeometry args={[1, 0]} />}
+      {geometry === "icosahedron" && <icosahedronGeometry args={[1, 0]} />}
+      <meshBasicMaterial
+        color={color}
+        wireframe
+        opacity={opacity}
+        transparent
+      />
     </mesh>
   );
 }
 
-// Rotating wireframe icosahedron
-function WireframeIcosahedron({
-  position,
-  scale = 1,
-  speed = 0.15,
-}: {
-  position: [number, number, number];
-  scale?: number;
-  speed?: number;
-}) {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y = state.clock.elapsedTime * speed;
-      meshRef.current.rotation.z = state.clock.elapsedTime * speed * 0.5;
-    }
-  });
-
-  return (
-    <mesh ref={meshRef} position={position} scale={scale}>
-      <icosahedronGeometry args={[1, 0]} />
-      <meshBasicMaterial color="#ffc962" wireframe opacity={0.2} transparent />
-    </mesh>
-  );
-}
-
-// Floating ring
-function WireframeRing({
-  position,
-  scale = 1,
-  speed = 0.25,
-}: {
-  position: [number, number, number];
-  scale?: number;
-  speed?: number;
-}) {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x =
-        Math.PI / 2 + Math.sin(state.clock.elapsedTime * 0.5) * 0.2;
-      meshRef.current.rotation.z = state.clock.elapsedTime * speed;
-    }
-  });
-
-  return (
-    <mesh ref={meshRef} position={position} scale={scale}>
-      <torusGeometry args={[1, 0.02, 16, 64]} />
-      <meshBasicMaterial color="#f97316" opacity={0.35} transparent />
-    </mesh>
-  );
-}
-
-// Enhanced Particles with dynamic movement
-function Particles({ count = 100 }: { count?: number }) {
+// Particles with soft glow and movement
+function Particles({ count = 80 }: { count?: number }) {
   const points = useRef<THREE.Points>(null);
 
-  // Store original positions and velocities
-  const { positions, velocities, sizes } = useMemo(() => {
+  const { positions, velocities } = useMemo(() => {
     const positions = new Float32Array(count * 3);
     const velocities = new Float32Array(count * 3);
-    const sizes = new Float32Array(count);
 
     for (let i = 0; i < count; i++) {
-      // Spread particles in a wider area
-      positions[i * 3] = (Math.random() - 0.5) * 35;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 35;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 15 - 3;
+      positions[i * 3] = (Math.random() - 0.5) * 40;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 40;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 20 - 5;
 
-      // Random velocities for floating effect
-      velocities[i * 3] = (Math.random() - 0.5) * 0.01;
-      velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.01;
-      velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.005;
-
-      // Varied sizes for depth effect
-      sizes[i] = Math.random() * 0.08 + 0.02;
+      velocities[i * 3] = (Math.random() - 0.5) * 0.008;
+      velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.008;
+      velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.003;
     }
-    return { positions, velocities, sizes };
+    return { positions, velocities };
   }, [count]);
 
-  // Create colors for gradient effect
   const colors = useMemo(() => {
     const colors = new Float32Array(count * 3);
-    const color1 = new THREE.Color("#ffc962"); // Golden
-    const color2 = new THREE.Color("#f97316"); // Orange
-    const color3 = new THREE.Color("#ff6b6b"); // Coral
+    const golden = new THREE.Color("#ffc962");
+    const orange = new THREE.Color("#f97316");
+    const warm = new THREE.Color("#ffaa44");
 
     for (let i = 0; i < count; i++) {
       const t = Math.random();
-      let color: THREE.Color;
-
-      if (t < 0.5) {
-        color = color1.clone().lerp(color2, t * 2);
-      } else {
-        color = color2.clone().lerp(color3, (t - 0.5) * 2);
-      }
+      const color =
+        t < 0.4
+          ? golden.clone().lerp(warm, t / 0.4)
+          : warm.clone().lerp(orange, (t - 0.4) / 0.6);
 
       colors[i * 3] = color.r;
       colors[i * 3 + 1] = color.g;
@@ -165,34 +110,38 @@ function Particles({ count = 100 }: { count?: number }) {
   }, [count]);
 
   useFrame((state) => {
-    if (points.current) {
-      const positionAttr = points.current.geometry.attributes.position;
-      if (!positionAttr || !velocities) return;
-      const posArray = positionAttr.array as Float32Array;
+    if (!points.current) return;
+    const positionAttr = points.current.geometry.attributes.position;
+    if (!positionAttr) return;
+    const posArray = positionAttr.array as Float32Array;
+    const t = state.clock.elapsedTime;
 
-      for (let i = 0; i < count; i++) {
-        // Floating movement
-        posArray[i * 3] = posArray[i * 3]! + velocities[i * 3]!;
-        posArray[i * 3 + 1] = posArray[i * 3 + 1]! + velocities[i * 3 + 1]!;
-        posArray[i * 3 + 2] = posArray[i * 3 + 2]! + velocities[i * 3 + 2]!;
+    for (let i = 0; i < count; i++) {
+      const ix = i * 3;
+      const iy = i * 3 + 1;
+      const iz = i * 3 + 2;
 
-        // Add wave motion
-        posArray[i * 3 + 1] =
-          posArray[i * 3 + 1]! +
-          Math.sin(state.clock.elapsedTime + i * 0.1) * 0.002;
+      posArray[ix] = posArray[ix]! + velocities[ix]!;
+      posArray[iy] = posArray[iy]! + velocities[iy]!;
+      posArray[iz] = posArray[iz]! + velocities[iz]!;
 
-        // Wrap around boundaries
-        if (posArray[i * 3]! > 18) posArray[i * 3] = -18;
-        if (posArray[i * 3]! < -18) posArray[i * 3] = 18;
-        if (posArray[i * 3 + 1]! > 18) posArray[i * 3 + 1] = -18;
-        if (posArray[i * 3 + 1]! < -18) posArray[i * 3 + 1] = 18;
-      }
+      // Gentle wave
+      posArray[iy] =
+        posArray[iy]! + Math.sin(t * 0.5 + i * 0.15) * 0.001;
 
-      positionAttr.needsUpdate = true;
-
-      // Slow rotation of entire particle system
-      points.current.rotation.z = state.clock.elapsedTime * 0.02;
+      // Wrap
+      if (posArray[ix]! > 20) posArray[ix] = -20;
+      if (posArray[ix]! < -20) posArray[ix] = 20;
+      if (posArray[iy]! > 20) posArray[iy] = -20;
+      if (posArray[iy]! < -20) posArray[iy] = 20;
     }
+
+    positionAttr.needsUpdate = true;
+
+    // Mouse parallax on whole particle system
+    points.current.position.x = mouse.x * 0.15;
+    points.current.position.y = mouse.y * 0.15;
+    points.current.rotation.z = t * 0.015;
   });
 
   return (
@@ -202,10 +151,10 @@ function Particles({ count = 100 }: { count?: number }) {
         <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.1}
+        size={0.08}
         vertexColors
         transparent
-        opacity={0.85}
+        opacity={0.7}
         sizeAttenuation
         blending={THREE.AdditiveBlending}
       />
@@ -213,27 +162,98 @@ function Particles({ count = 100 }: { count?: number }) {
   );
 }
 
-// Scene component
+// Mouse tracker component (runs inside Canvas)
+function MouseTracker() {
+  const { size } = useThree();
+
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      // Normalize to -1..1
+      mouse.x = (e.clientX / size.width - 0.5) * 2;
+      mouse.y = -(e.clientY / size.height - 0.5) * 2;
+    },
+    [size.width, size.height],
+  );
+
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [handleMouseMove]);
+
+  return null;
+}
+
 function Scene() {
   return (
     <>
-      {/* Geometric shapes scattered around */}
-      <WireframeCube position={[6, 3, -8]} scale={2} speed={0.2} />
-      <WireframeCube position={[-7, -2, -10]} scale={1.5} speed={0.15} />
+      <MouseTracker />
 
-      <WireframeOctahedron position={[-5, 4, -6]} scale={1.8} speed={0.18} />
-      <WireframeOctahedron position={[8, -3, -12]} scale={2.5} speed={0.1} />
+      {/* Cubes */}
+      <FloatingWireframe
+        position={[7, 3, -9]}
+        scale={2}
+        speed={0.15}
+        geometry="box"
+        color="#ffc962"
+        opacity={0.2}
+        floatAmplitude={0.5}
+      />
+      <FloatingWireframe
+        position={[-6, -3, -11]}
+        scale={1.4}
+        speed={0.12}
+        geometry="box"
+        color="#ffc962"
+        opacity={0.15}
+        floatAmplitude={0.3}
+      />
 
-      <WireframeIcosahedron position={[4, -4, -7]} scale={1.5} speed={0.12} />
-      <WireframeIcosahedron position={[-8, 1, -9]} scale={2} speed={0.08} />
+      {/* Octahedrons */}
+      <FloatingWireframe
+        position={[-5, 4.5, -7]}
+        scale={1.8}
+        speed={0.18}
+        geometry="octahedron"
+        color="#f97316"
+        opacity={0.2}
+        floatAmplitude={0.6}
+      />
+      <FloatingWireframe
+        position={[8, -3.5, -13]}
+        scale={2.5}
+        speed={0.08}
+        geometry="octahedron"
+        color="#f97316"
+        opacity={0.12}
+        floatAmplitude={0.35}
+      />
+
+      {/* Icosahedrons */}
+      <FloatingWireframe
+        position={[3.5, -4.5, -8]}
+        scale={1.6}
+        speed={0.1}
+        geometry="icosahedron"
+        color="#ffc962"
+        opacity={0.18}
+        floatAmplitude={0.45}
+      />
+      <FloatingWireframe
+        position={[-8.5, 1.5, -10]}
+        scale={2.2}
+        speed={0.07}
+        geometry="icosahedron"
+        color="#ffaa44"
+        opacity={0.14}
+        floatAmplitude={0.5}
+      />
 
       {/* Particles */}
-      <Particles count={120} />
+      <Particles count={90} />
     </>
   );
 }
 
-// Main component
 export default function ThreeScene() {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10">
