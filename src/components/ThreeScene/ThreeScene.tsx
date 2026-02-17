@@ -4,144 +4,138 @@ import { useRef, useMemo, useEffect, useCallback } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
-// Shared mouse state (avoids re-renders)
-const mouse = { x: 0, y: 0 };
+// --- Config ---
+const PARTICLE_COUNT = 220;
+const INTERACT_RADIUS = 2.5;
+const PUSH_STRENGTH = 0.05;
+const PUSH_DAMPING = 0.88;
+const BOUNDS_X = 16;
+const BOUNDS_Y = 13;
 
-// Wireframe shape with floating + mouse parallax
-function FloatingWireframe({
-  position,
-  scale = 1,
-  speed = 0.2,
-  geometry,
-  color = "#ffc962",
-  opacity = 0.25,
-  parallaxFactor = 0.3,
-  floatAmplitude = 0.4,
-  floatSpeed = 0.8,
-}: {
-  position: [number, number, number];
-  scale?: number;
-  speed?: number;
-  geometry: "box" | "octahedron" | "icosahedron";
-  color?: string;
-  opacity?: number;
-  parallaxFactor?: number;
-  floatAmplitude?: number;
-  floatSpeed?: number;
-}) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const basePos = useMemo(() => new THREE.Vector3(...position), [position]);
+// Mouse in world-ish coordinates
+const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
 
-  useFrame((state) => {
-    if (!meshRef.current) return;
-    const t = state.clock.elapsedTime;
+function MouseTracker() {
+  const { size, camera } = useThree();
 
-    // Rotation
-    meshRef.current.rotation.x = t * speed;
-    meshRef.current.rotation.y = t * speed * 0.7;
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      // Convert screen coords to world coords at the average particle depth (z ≈ -5)
+      const ndcX = (e.clientX / size.width) * 2 - 1;
+      const ndcY = -(e.clientY / size.height) * 2 + 1;
+      const vec = new THREE.Vector3(ndcX, ndcY, 0.5);
+      vec.unproject(camera);
+      vec.sub(camera.position).normalize();
+      // Project ray to z = -5 (average particle depth) instead of z = 0
+      const targetZ = -5;
+      const distance = (targetZ - camera.position.z) / vec.z;
+      const worldPos = camera.position
+        .clone()
+        .add(vec.multiplyScalar(distance));
+      mouse.targetX = worldPos.x;
+      mouse.targetY = worldPos.y;
+    },
+    [size.width, size.height, camera],
+  );
 
-    // Floating bob
-    meshRef.current.position.y =
-      basePos.y + Math.sin(t * floatSpeed + basePos.x) * floatAmplitude;
-    meshRef.current.position.x =
-      basePos.x +
-      Math.sin(t * floatSpeed * 0.6 + basePos.y) * floatAmplitude * 0.3;
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [handleMouseMove]);
 
-    // Mouse parallax — shapes closer to camera move more
-    const depth = Math.abs(basePos.z);
-    const pFactor = parallaxFactor * (1 / (depth * 0.15 + 1));
-    meshRef.current.position.x += mouse.x * pFactor;
-    meshRef.current.position.y += mouse.y * pFactor;
+  useFrame(() => {
+    mouse.x += (mouse.targetX - mouse.x) * 0.08;
+    mouse.y += (mouse.targetY - mouse.y) * 0.08;
   });
 
-  return (
-    <mesh ref={meshRef} position={position} scale={scale}>
-      {geometry === "box" && <boxGeometry args={[1, 1, 1]} />}
-      {geometry === "octahedron" && <octahedronGeometry args={[1, 0]} />}
-      {geometry === "icosahedron" && <icosahedronGeometry args={[1, 0]} />}
-      <meshBasicMaterial
-        color={color}
-        wireframe
-        opacity={opacity}
-        transparent
-      />
-    </mesh>
-  );
+  return null;
 }
 
-// Particles with soft glow and movement
-function Particles({ count = 80 }: { count?: number }) {
+function Particles({ count = 150 }: { count?: number }) {
   const points = useRef<THREE.Points>(null);
 
-  const { positions, velocities } = useMemo(() => {
+  const { positions, driftVelocities, pushVelocities } = useMemo(() => {
     const positions = new Float32Array(count * 3);
-    const velocities = new Float32Array(count * 3);
+    const driftVelocities = new Float32Array(count * 2); // constant drift per particle (x, y)
+    const pushVelocities = new Float32Array(count * 2); // mouse push (x, y)
 
     for (let i = 0; i < count; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 40;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 40;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 20 - 5;
+      positions[i * 3] = (Math.random() - 0.5) * BOUNDS_X * 2;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * BOUNDS_Y * 2;
+      positions[i * 3 + 2] = Math.random() * -8 - 1;
 
-      velocities[i * 3] = (Math.random() - 0.5) * 0.008;
-      velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.008;
-      velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.003;
+      // Each particle drifts in a random direction at a slow, steady speed
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 0.006 + 0.002;
+      driftVelocities[i * 2] = Math.cos(angle) * speed;
+      driftVelocities[i * 2 + 1] = Math.sin(angle) * speed;
+
+      pushVelocities[i * 2] = 0;
+      pushVelocities[i * 2 + 1] = 0;
     }
-    return { positions, velocities };
+    return { positions, driftVelocities, pushVelocities };
   }, [count]);
 
   const colors = useMemo(() => {
     const colors = new Float32Array(count * 3);
     const golden = new THREE.Color("#ffc962");
+    const warm = new THREE.Color("#ffb347");
     const orange = new THREE.Color("#f97316");
-    const warm = new THREE.Color("#ffaa44");
 
     for (let i = 0; i < count; i++) {
       const t = Math.random();
       const color =
-        t < 0.4
-          ? golden.clone().lerp(warm, t / 0.4)
-          : warm.clone().lerp(orange, (t - 0.4) / 0.6);
+        t < 0.6
+          ? golden.clone().lerp(warm, t / 0.6)
+          : warm.clone().lerp(orange, (t - 0.6) / 0.4);
 
-      colors[i * 3] = color.r;
-      colors[i * 3 + 1] = color.g;
-      colors[i * 3 + 2] = color.b;
+      const brightness = Math.random() * 0.5 + 0.5;
+      colors[i * 3] = color.r * brightness;
+      colors[i * 3 + 1] = color.g * brightness;
+      colors[i * 3 + 2] = color.b * brightness;
     }
     return colors;
   }, [count]);
 
-  useFrame((state) => {
+  useFrame(() => {
     if (!points.current) return;
-    const positionAttr = points.current.geometry.attributes.position;
-    if (!positionAttr) return;
-    const posArray = positionAttr.array as Float32Array;
-    const t = state.clock.elapsedTime;
+    const posAttr = points.current.geometry.attributes.position;
+    if (!posAttr) return;
+    const pos = posAttr.array as Float32Array;
 
     for (let i = 0; i < count; i++) {
       const ix = i * 3;
       const iy = i * 3 + 1;
-      const iz = i * 3 + 2;
+      const pvx = i * 2;
+      const pvy = i * 2 + 1;
 
-      posArray[ix] = posArray[ix]! + velocities[ix]!;
-      posArray[iy] = posArray[iy]! + velocities[iy]!;
-      posArray[iz] = posArray[iz]! + velocities[iz]!;
+      // Mouse repulsion
+      const dx = pos[ix]! - mouse.x;
+      const dy = pos[iy]! - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
 
-      // Gentle wave
-      posArray[iy] =
-        posArray[iy]! + Math.sin(t * 0.5 + i * 0.15) * 0.001;
+      if (dist < INTERACT_RADIUS && dist > 0.01) {
+        const force = (1 - dist / INTERACT_RADIUS) * PUSH_STRENGTH;
+        pushVelocities[pvx] = pushVelocities[pvx]! + (dx / dist) * force;
+        pushVelocities[pvy] = pushVelocities[pvy]! + (dy / dist) * force;
+      }
 
-      // Wrap
-      if (posArray[ix]! > 20) posArray[ix] = -20;
-      if (posArray[ix]! < -20) posArray[ix] = 20;
-      if (posArray[iy]! > 20) posArray[iy] = -20;
-      if (posArray[iy]! < -20) posArray[iy] = 20;
+      // Dampen push velocity so particles settle back quickly
+      pushVelocities[pvx] = pushVelocities[pvx]! * PUSH_DAMPING;
+      pushVelocities[pvy] = pushVelocities[pvy]! * PUSH_DAMPING;
+
+      // Move: constant drift + mouse push
+      pos[ix] = pos[ix]! + driftVelocities[pvx]! + pushVelocities[pvx]!;
+      pos[iy] = pos[iy]! + driftVelocities[pvy]! + pushVelocities[pvy]!;
+
+      // Wrap around edges
+      if (pos[ix]! > BOUNDS_X) pos[ix] = -BOUNDS_X;
+      if (pos[ix]! < -BOUNDS_X) pos[ix] = BOUNDS_X;
+      if (pos[iy]! > BOUNDS_Y) pos[iy] = -BOUNDS_Y;
+      if (pos[iy]! < -BOUNDS_Y) pos[iy] = BOUNDS_Y;
     }
 
-    positionAttr.needsUpdate = true;
-
-    // Mouse parallax on whole particle system
-    points.current.position.x = mouse.x * 0.15;
-    points.current.position.y = mouse.y * 0.15;
-    points.current.rotation.z = t * 0.015;
+    posAttr.needsUpdate = true;
   });
 
   return (
@@ -151,10 +145,10 @@ function Particles({ count = 80 }: { count?: number }) {
         <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.08}
+        size={0.09}
         vertexColors
         transparent
-        opacity={0.7}
+        opacity={0.85}
         sizeAttenuation
         blending={THREE.AdditiveBlending}
       />
@@ -162,94 +156,11 @@ function Particles({ count = 80 }: { count?: number }) {
   );
 }
 
-// Mouse tracker component (runs inside Canvas)
-function MouseTracker() {
-  const { size } = useThree();
-
-  const handleMouseMove = useCallback(
-    (e: MouseEvent) => {
-      // Normalize to -1..1
-      mouse.x = (e.clientX / size.width - 0.5) * 2;
-      mouse.y = -(e.clientY / size.height - 0.5) * 2;
-    },
-    [size.width, size.height],
-  );
-
-  useEffect(() => {
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [handleMouseMove]);
-
-  return null;
-}
-
 function Scene() {
   return (
     <>
       <MouseTracker />
-
-      {/* Cubes */}
-      <FloatingWireframe
-        position={[7, 3, -9]}
-        scale={2}
-        speed={0.15}
-        geometry="box"
-        color="#ffc962"
-        opacity={0.2}
-        floatAmplitude={0.5}
-      />
-      <FloatingWireframe
-        position={[-6, -3, -11]}
-        scale={1.4}
-        speed={0.12}
-        geometry="box"
-        color="#ffc962"
-        opacity={0.15}
-        floatAmplitude={0.3}
-      />
-
-      {/* Octahedrons */}
-      <FloatingWireframe
-        position={[-5, 4.5, -7]}
-        scale={1.8}
-        speed={0.18}
-        geometry="octahedron"
-        color="#f97316"
-        opacity={0.2}
-        floatAmplitude={0.6}
-      />
-      <FloatingWireframe
-        position={[8, -3.5, -13]}
-        scale={2.5}
-        speed={0.08}
-        geometry="octahedron"
-        color="#f97316"
-        opacity={0.12}
-        floatAmplitude={0.35}
-      />
-
-      {/* Icosahedrons */}
-      <FloatingWireframe
-        position={[3.5, -4.5, -8]}
-        scale={1.6}
-        speed={0.1}
-        geometry="icosahedron"
-        color="#ffc962"
-        opacity={0.18}
-        floatAmplitude={0.45}
-      />
-      <FloatingWireframe
-        position={[-8.5, 1.5, -10]}
-        scale={2.2}
-        speed={0.07}
-        geometry="icosahedron"
-        color="#ffaa44"
-        opacity={0.14}
-        floatAmplitude={0.5}
-      />
-
-      {/* Particles */}
-      <Particles count={90} />
+      <Particles count={PARTICLE_COUNT} />
     </>
   );
 }
