@@ -6,7 +6,14 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import { useRouter } from "next/router";
-import { useEffect, useLayoutEffect, useState, type ReactNode } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
+import { cancelSectionScroll } from "~/utils/sectionScroll";
 
 type TransitionData = { title: string; scrollY: number };
 
@@ -20,10 +27,12 @@ function TransitionPage({
   const isPresent = useIsPresent();
   const reducedMotion = useReducedMotion();
   const { title, scrollY } = usePresenceData() as TransitionData;
+  const entryPath = useRef(path);
 
   // Next may try to scroll before AnimatePresence mounts the destination page.
   useLayoutEffect(() => {
-    const hash = new URL(path, window.location.origin).hash;
+    // Only position a newly mounted page. Same-page links animate their scroll.
+    const hash = new URL(entryPath.current, window.location.origin).hash;
     if (hash) {
       document
         .getElementById(decodeURIComponent(hash.slice(1)))
@@ -31,7 +40,7 @@ function TransitionPage({
           behavior: "instant",
         });
     }
-  }, [path]);
+  }, []);
 
   return (
     <motion.div
@@ -91,7 +100,10 @@ export default function PageTransition({
   const routeKey = router.asPath.split(/[?#]/)[0];
 
   useEffect(() => {
-    const rememberScroll = () => setScrollY(window.scrollY);
+    const rememberScroll = () => {
+      cancelSectionScroll();
+      setScrollY(window.scrollY);
+    };
     router.events.on("routeChangeStart", rememberScroll);
     return () => router.events.off("routeChangeStart", rememberScroll);
   }, [router.events]);

@@ -1,5 +1,6 @@
 import { useCopy } from "~/i18n";
 import { FiArrowUpRight } from "react-icons/fi";
+import SectionLink from "~/components/SectionLink/SectionLink";
 
 export default function SiteFooter() {
   const copy = useCopy();
@@ -36,7 +37,7 @@ export default function SiteFooter() {
         </div>
         <div className="footer-bottom">
           <p>© {new Date().getFullYear()} Aigars Peda</p>
-          <a href="#top">{copy.backToTop}</a>
+          <SectionLink href="#top">{copy.backToTop}</SectionLink>
         </div>
       </div>
     </footer>

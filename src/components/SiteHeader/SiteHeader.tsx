@@ -2,6 +2,7 @@ import Link from "next/link";
 import LanguageSwitch from "~/components/LanguageSwitch/LanguageSwitch";
 import { useCopy } from "~/i18n";
 import ThemeToggle from "~/components/ThemeToggle/ThemeToggle";
+import SectionLink from "~/components/SectionLink/SectionLink";
 
 export default function SiteHeader() {
   const copy = useCopy();
@@ -18,9 +19,9 @@ export default function SiteHeader() {
           <span>Aigars Peda</span>
         </Link>
         <nav className="site-nav" aria-label={copy.navigation}>
-          <Link href="/#projects">{copy.work}</Link>
-          <Link href="/#about">{copy.about}</Link>
-          <Link href="/#contact">{copy.contact}</Link>
+          <SectionLink href="/#projects">{copy.work}</SectionLink>
+          <SectionLink href="/#about">{copy.about}</SectionLink>
+          <SectionLink href="/#contact">{copy.contact}</SectionLink>
         </nav>
         <div className="header-controls">
           <LanguageSwitch />

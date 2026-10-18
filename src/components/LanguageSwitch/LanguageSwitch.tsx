@@ -1,20 +1,32 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSyncExternalStore } from "react";
 import { useCopy } from "~/i18n";
 import {
   animateInterfaceChange,
   waitForLocaleCommit,
 } from "~/utils/interfaceTransition";
 
+const subscribeToHydration = () => () => {};
+const clientSnapshot = () => true;
+const serverSnapshot = () => false;
+
 export default function LanguageSwitch() {
   const router = useRouter();
+  const hydrated = useSyncExternalStore(
+    subscribeToHydration,
+    clientSnapshot,
+    serverSnapshot,
+  );
   const copy = useCopy();
   const targetLocale = router.locale === "lv" ? "en" : "lv";
+  // Fragments exist only in the browser, after the initial server render.
+  const href = hydrated ? router.asPath : router.asPath.split(/[?#]/)[0]!;
 
   return (
     <Link
       className="language-switch"
-      href={router.asPath}
+      href={href}
       locale={targetLocale}
       scroll={false}
       lang={targetLocale}

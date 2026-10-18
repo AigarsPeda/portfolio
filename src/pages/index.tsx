@@ -4,6 +4,7 @@ import { FiArrowDownRight } from "react-icons/fi";
 import Projects from "~/components/projects/Projects";
 import SiteFooter from "~/components/SiteFooter/SiteFooter";
 import SiteHeader from "~/components/SiteHeader/SiteHeader";
+import SectionLink from "~/components/SectionLink/SectionLink";
 
 export default function Home() {
   const copy = useCopy();
@@ -24,10 +25,10 @@ export default function Home() {
               {copy.heroLine2}
               <span className="accent-period">.</span>
             </h1>
-            <a className="circle-link fill-button" href="#projects">
+            <SectionLink className="circle-link fill-button" href="#projects">
               <FiArrowDownRight aria-hidden="true" />
               <span>{copy.explore}</span>
-            </a>
+            </SectionLink>
           </div>
         </section>
         <section
