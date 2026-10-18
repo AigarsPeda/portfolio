@@ -7,6 +7,7 @@ import { useSyncExternalStore } from "react";
 import PageTransition from "~/components/PageTransition/PageTransition";
 import ProjectCursor from "~/components/ProjectCursor/ProjectCursor";
 import type { ProjectType } from "~/types/project.types";
+import { useRouter } from "next/router";
 
 const manrope = Manrope({
   display: "swap",
@@ -19,6 +20,7 @@ const isPublicHost = () =>
   !["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname);
 
 const MyApp: AppType = ({ Component, pageProps }) => {
+  const router = useRouter();
   const analyticsEnabled = useSyncExternalStore(
     subscribeToHostname,
     isPublicHost,
@@ -26,7 +28,10 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   );
 
   return (
-    <div className={manrope.className}>
+    <div
+      className={manrope.className}
+      data-interface-locale={router.locale ?? "en"}
+    >
       <Head>
         <link
           rel="icon"

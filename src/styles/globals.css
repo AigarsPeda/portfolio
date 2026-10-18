@@ -38,6 +38,22 @@ body {
   color: var(--text);
   -webkit-font-smoothing: antialiased;
 }
+:root[data-interface-transition]::view-transition {
+  pointer-events: none;
+}
+:root[data-interface-transition="theme"]::view-transition-group(root),
+:root[data-interface-transition="theme"]::view-transition-old(root),
+:root[data-interface-transition="theme"]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+:root[data-interface-transition="theme"]::view-transition-old(root) {
+  z-index: 1;
+}
+:root[data-interface-transition="theme"]::view-transition-new(root) {
+  z-index: 2;
+}
+
 a {
   color: inherit;
   text-decoration: none;
