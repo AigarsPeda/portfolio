@@ -21,6 +21,7 @@ export default function ProjectCard({
       <Link
         href={`/projects/${project.aboutLink}`}
         aria-labelledby={`project-title-${project.id}`}
+        data-cursor-label="View project"
       >
         <ProjectPreview project={project} priority={featured} />
         <div className="project-heading">

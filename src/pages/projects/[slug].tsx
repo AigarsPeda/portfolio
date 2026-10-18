@@ -206,6 +206,7 @@ export default function ProjectDetails({
           <Link
             href={`/projects/${nextProject.aboutLink}`}
             className="next-project"
+            data-cursor-label="Next project"
           >
             <span className="next-project-label">
               <TextFill text={nextProject.title} />

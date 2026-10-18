@@ -5,6 +5,7 @@ import "~/styles/globals.css";
 import { Manrope } from "next/font/google";
 import { useSyncExternalStore } from "react";
 import PageTransition from "~/components/PageTransition/PageTransition";
+import ProjectCursor from "~/components/ProjectCursor/ProjectCursor";
 import type { ProjectType } from "~/types/project.types";
 
 const manrope = Manrope({
@@ -27,7 +28,11 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <div className={manrope.className}>
       <Head>
-        <link rel="icon" href="/favicon.ico?v=ap" sizes="16x16 32x32 48x48 64x64" />
+        <link
+          rel="icon"
+          href="/favicon.ico?v=ap"
+          sizes="16x16 32x32 48x48 64x64"
+        />
         <link
           rel="icon"
           type="image/png"
@@ -42,11 +47,13 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       </Head>
       <PageTransition
         title={
-          (pageProps as { project?: ProjectType }).project?.title ?? "Aigars Peda"
+          (pageProps as { project?: ProjectType }).project?.title ??
+          "Aigars Peda"
         }
       >
         <Component {...pageProps} />
       </PageTransition>
+      <ProjectCursor />
       {analyticsEnabled && <Analytics />}
     </div>
   );
