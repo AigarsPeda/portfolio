@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/react";
 import "~/styles/globals.css";
 import { Manrope } from "next/font/google";
 import { useSyncExternalStore } from "react";
+import PageTransition from "~/components/PageTransition/PageTransition";
+import type { ProjectType } from "~/types/project.types";
 
 const manrope = Manrope({
   display: "swap",
@@ -38,7 +40,13 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           href="/apple-touch-icon.png?v=ap"
         />
       </Head>
-      <Component {...pageProps} />
+      <PageTransition
+        title={
+          (pageProps as { project?: ProjectType }).project?.title ?? "Aigars Peda"
+        }
+      >
+        <Component {...pageProps} />
+      </PageTransition>
       {analyticsEnabled && <Analytics />}
     </div>
   );
