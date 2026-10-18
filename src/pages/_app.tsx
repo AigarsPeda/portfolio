@@ -3,22 +3,24 @@ import Head from "next/head";
 import { Analytics } from "@vercel/analytics/react";
 import "~/styles/globals.css";
 import { Manrope } from "next/font/google";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 const manrope = Manrope({
   display: "swap",
   subsets: ["latin", "latin-ext"],
 });
 
-const MyApp: AppType = ({ Component, pageProps }) => {
-  const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
+// The hostname stays fixed until the next page load.
+const subscribeToHostname = () => () => {};
+const isPublicHost = () =>
+  !["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname);
 
-  useEffect(() => {
-    // Vercel's collection endpoint is unavailable in a local production preview.
-    setAnalyticsEnabled(
-      !["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname),
-    );
-  }, []);
+const MyApp: AppType = ({ Component, pageProps }) => {
+  const analyticsEnabled = useSyncExternalStore(
+    subscribeToHostname,
+    isPublicHost,
+    () => false,
+  );
 
   return (
     <div className={manrope.className}>

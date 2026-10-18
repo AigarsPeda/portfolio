@@ -4,12 +4,12 @@ const useDelayUnmount = (isMounted: boolean, delayTime: number) => {
   const [isAnimation, setIsAnimation] = useState(false);
   const [shouldRender, setShouldRender] = useState(false);
 
+  if (isMounted && !shouldRender) {
+    setShouldRender(true);
+  }
+
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
-
-    if (isMounted && !shouldRender) {
-      setShouldRender(true);
-    }
 
     if (!isMounted && shouldRender) {
       timeoutId = setTimeout(() => setIsAnimation(false), delayTime);

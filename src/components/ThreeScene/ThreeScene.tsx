@@ -125,14 +125,14 @@ function Particles({ count = 150 }: { count?: number }) {
       pushVelocities[pvy] = pushVelocities[pvy]! * PUSH_DAMPING;
 
       // Move: constant drift + mouse push
-      pos[ix] = pos[ix]! + driftVelocities[pvx]! + pushVelocities[pvx]!;
-      pos[iy] = pos[iy]! + driftVelocities[pvy]! + pushVelocities[pvy]!;
+      pos[ix] = pos[ix]! + driftVelocities[pvx]! + pushVelocities[pvx];
+      pos[iy] = pos[iy]! + driftVelocities[pvy]! + pushVelocities[pvy];
 
       // Wrap around edges
-      if (pos[ix]! > BOUNDS_X) pos[ix] = -BOUNDS_X;
-      if (pos[ix]! < -BOUNDS_X) pos[ix] = BOUNDS_X;
-      if (pos[iy]! > BOUNDS_Y) pos[iy] = -BOUNDS_Y;
-      if (pos[iy]! < -BOUNDS_Y) pos[iy] = BOUNDS_Y;
+      if (pos[ix] > BOUNDS_X) pos[ix] = -BOUNDS_X;
+      if (pos[ix] < -BOUNDS_X) pos[ix] = BOUNDS_X;
+      if (pos[iy] > BOUNDS_Y) pos[iy] = -BOUNDS_Y;
+      if (pos[iy] < -BOUNDS_Y) pos[iy] = BOUNDS_Y;
     }
 
     posAttr.needsUpdate = true;
