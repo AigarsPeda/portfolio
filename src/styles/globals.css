@@ -228,6 +228,7 @@ a {
   isolation: isolate;
   overflow: hidden;
   border: 1px solid var(--accent);
+  clip-path: circle(50%);
 }
 .fill-button::before {
   content: "";
@@ -246,12 +247,27 @@ a {
 .fill-button > * {
   position: relative;
   z-index: 1;
-  color: var(--accent);
-  mix-blend-mode: difference;
+  color: var(--accent-ink);
+  transition: color 220ms ease;
 }
-.fill-button:hover::before,
-.fill-button:focus-visible::before {
+.fill-button:focus-visible {
+  outline-offset: -5px;
+}
+.fill-button:focus-visible::before,
+.fill-button:active::before {
   transform: translateY(0);
+}
+.fill-button:focus-visible > *,
+.fill-button:active > * {
+  color: var(--accent);
+}
+@media (hover: hover) and (pointer: fine) {
+  .fill-button:hover::before {
+    transform: translateY(0);
+  }
+  .fill-button:hover > * {
+    color: var(--accent);
+  }
 }
 .work-section {
   padding-bottom: 112px;
