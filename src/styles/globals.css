@@ -359,11 +359,6 @@ a {
   inherits: true;
   initial-value: 0;
 }
-@property --text-wave-phase {
-  syntax: "<angle>";
-  inherits: true;
-  initial-value: 0deg;
-}
 .project-card,
 .next-project {
   --project-fill-progress: 0;
@@ -374,13 +369,13 @@ a {
 .next-project:hover,
 .next-project:focus-visible {
   --project-fill-progress: 1;
-  animation: text-fill-wave var(--project-fill-duration) linear;
 }
 .text-fill-overlay {
   position: absolute;
   inset: 0;
   color: var(--accent);
   pointer-events: none;
+  --text-wave-phase: calc(var(--project-fill-progress) * 360deg);
   --text-fill-amount: var(--project-fill-progress);
   --text-fill-start: calc(var(--text-ink-bottom, 1em) + 0.08em);
   --text-fill-end: calc(var(--text-ink-top, 0.2em) - 0.08em);
@@ -413,11 +408,6 @@ a {
   --text-fill-travel: clamp(0, (var(--project-fill-progress) - 0.36) / 0.55, 1);
   /* Match the circle's growing visible area, not just its vertical travel. */
   --text-fill-amount: calc(var(--text-fill-travel) * (0.5 + 0.5 * var(--text-fill-travel)));
-}
-@keyframes text-fill-wave {
-  to {
-    --text-wave-phase: 360deg;
-  }
 }
 .project-arrow {
   width: 40px;
