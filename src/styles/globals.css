@@ -354,22 +354,37 @@ a {
   position: relative;
   display: inline-block;
 }
-@property --text-fill-level {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 112%;
+@property --project-fill-progress {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
 }
 @property --text-wave-phase {
   syntax: "<angle>";
-  inherits: false;
+  inherits: true;
   initial-value: 0deg;
+}
+.project-card,
+.next-project {
+  --project-fill-progress: 0;
+  transition: --project-fill-progress var(--project-fill-duration) var(--project-fill-easing);
+}
+.project-card:hover,
+.project-card:focus-within,
+.next-project:hover,
+.next-project:focus-visible {
+  --project-fill-progress: 1;
+  animation: text-fill-wave var(--project-fill-duration) linear;
 }
 .text-fill-overlay {
   position: absolute;
   inset: 0;
   color: var(--accent);
   pointer-events: none;
-  --text-fill-level: 112%;
+  --text-fill-amount: var(--project-fill-progress);
+  --text-fill-start: calc(var(--text-ink-bottom, 1em) + 0.08em);
+  --text-fill-end: calc(var(--text-ink-top, 0.2em) - 0.08em);
+  --text-fill-level: calc(var(--text-fill-start) + (var(--text-fill-end) - var(--text-fill-start)) * var(--text-fill-amount));
   /* Move only the clipping edge; both copies of the letters stay aligned. */
   clip-path: polygon(
     0 calc(var(--text-fill-level) + sin(var(--text-wave-phase)) * 0.08em),
@@ -392,14 +407,12 @@ a {
     100% 100%,
     0 100%
   );
-  transition: --text-fill-level var(--project-fill-duration) var(--project-fill-easing);
 }
-.project-card:hover .text-fill-overlay,
-.project-card:focus-within .text-fill-overlay,
-.next-project:hover .text-fill-overlay,
-.next-project:focus-visible .text-fill-overlay {
-  --text-fill-level: -12%;
-  animation: text-fill-wave var(--project-fill-duration) linear;
+.project-card .text-fill-overlay {
+  /* The oval arrow fill is hidden until 36% of its travel and full at 91%. */
+  --text-fill-travel: clamp(0, (var(--project-fill-progress) - 0.36) / 0.55, 1);
+  /* Match the circle's growing visible area, not just its vertical travel. */
+  --text-fill-amount: calc(var(--text-fill-travel) * (0.5 + 0.5 * var(--text-fill-travel)));
 }
 @keyframes text-fill-wave {
   to {
@@ -427,12 +440,10 @@ a {
   height: 100%;
   display: grid;
   place-items: center;
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb, var(--line), var(--accent) calc(var(--project-fill-progress) * 100%));
   border-radius: 50%;
-  transition:
-    transform 650ms cubic-bezier(0.22, 1.15, 0.36, 1),
-    color 200ms ease,
-    border-color 200ms ease;
+  color: color-mix(in srgb, var(--text), var(--accent-ink) calc(var(--project-fill-progress) * 100%));
+  transition: transform 650ms cubic-bezier(0.22, 1.15, 0.36, 1);
 }
 .project-arrow-button::before {
   content: "";
@@ -444,8 +455,7 @@ a {
   height: 180%;
   border-radius: 50%;
   background: var(--accent);
-  transform: translateY(100%);
-  transition: transform var(--project-fill-duration) var(--project-fill-easing);
+  transform: translateY(calc((1 - var(--project-fill-progress)) * 100%));
 }
 .project-arrow svg {
   width: 20px;
@@ -476,15 +486,6 @@ a {
 }
 .project-card--featured .project-summary p {
   font-size: 17px;
-}
-.project-card:hover .project-arrow-button,
-.project-card:focus-within .project-arrow-button {
-  color: var(--accent-ink);
-  border-color: var(--accent);
-}
-.project-card:hover .project-arrow-button::before,
-.project-card:focus-within .project-arrow-button::before {
-  transform: translateY(0);
 }
 @media (hover: hover) {
   .project-card:hover .preview-image {
