@@ -1,4 +1,5 @@
-/** @type {import("prettier").Config} */
+/** @type {import("prettier").Config & import("prettier-plugin-tailwindcss").PluginOptions} */
 module.exports = {
-  plugins: [require.resolve("prettier-plugin-tailwindcss")],
+  plugins: ["prettier-plugin-tailwindcss"],
+  tailwindStylesheet: "./src/styles/globals.css",
 };

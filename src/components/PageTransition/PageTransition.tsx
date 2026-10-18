@@ -25,9 +25,11 @@ function TransitionPage({
   useLayoutEffect(() => {
     const hash = new URL(path, window.location.origin).hash;
     if (hash) {
-      document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView({
-        behavior: "instant",
-      });
+      document
+        .getElementById(decodeURIComponent(hash.slice(1)))
+        ?.scrollIntoView({
+          behavior: "instant",
+        });
     }
   }, [path]);
 
