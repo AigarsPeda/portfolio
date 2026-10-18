@@ -292,7 +292,7 @@ a {
   letter-spacing: -0.065em;
 }
 .accent-period {
-  color: var(--accent-text);
+  color: var(--accent);
 }
 .circle-link {
   justify-self: end;
