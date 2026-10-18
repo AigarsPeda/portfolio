@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import type {
   GetStaticPaths,
   GetStaticProps,
@@ -10,43 +9,61 @@ import Link from "next/link";
 import { useState } from "react";
 import {
   FiArrowLeft,
-  FiExternalLink,
+  FiArrowUpRight,
   FiGithub,
   FiMaximize2,
 } from "react-icons/fi";
 import ImageModal from "~/components/ImageModal/ImageModal";
+import ProjectPreview from "~/components/ProjectPreview/ProjectPreview";
+import SiteFooter from "~/components/SiteFooter/SiteFooter";
+import SiteHeader from "~/components/SiteHeader/SiteHeader";
+import TextFill from "~/components/TextFill/TextFill";
 import { PROJECTS } from "~/hardcoded";
 import type { ProjectType } from "~/types/project.types";
+import { moveMagnetic, resetMagnetic } from "~/utils/magnetic";
+
+type PageProps = {
+  project: ProjectType;
+  nextProject: Pick<ProjectType, "title" | "aboutLink">;
+};
 
 export const getStaticPaths: GetStaticPaths = () => ({
-  paths: PROJECTS.filter((project) => project.details).map((project) => ({
-    params: { slug: project.aboutLink },
-  })),
+  paths: PROJECTS.map((project) => ({ params: { slug: project.aboutLink } })),
   fallback: false,
 });
 
-export const getStaticProps: GetStaticProps<{ project: ProjectType }> = ({
-  params,
-}) => {
-  const project = PROJECTS.find(
-    (project) => project.aboutLink === params?.slug && project.details,
+export const getStaticProps: GetStaticProps<PageProps> = ({ params }) => {
+  const index = PROJECTS.findIndex(
+    (project) => project.aboutLink === params?.slug,
   );
-
-  if (!project) return { notFound: true };
-  return { props: { project } };
+  const project = PROJECTS[index];
+  const nextProject = PROJECTS[(index + 1) % PROJECTS.length];
+  if (!project || !nextProject) return { notFound: true };
+  return {
+    props: {
+      project,
+      nextProject: {
+        title: nextProject.title,
+        aboutLink: nextProject.aboutLink,
+      },
+    },
+  };
 };
 
 export default function ProjectDetails({
   project,
+  nextProject,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [selectedImage, setSelectedImage] = useState<number>();
-  const screenshots = project.screenshots ?? [];
+  const screenshots = (project.screenshots ?? []).filter(
+    (image) => image.src !== project.coverImage,
+  );
   const isMobileApp = project.aboutLink === "math-mews";
 
   return (
-    <div className="min-h-screen">
+    <div id="top">
       <Head>
-        <title>{project.title} | Aigars Peda</title>
+        <title>{`${project.title} | Aigars Peda`}</title>
         <meta name="description" content={project.description} />
         <meta property="og:title" content={`${project.title} | Aigars Peda`} />
         <meta property="og:description" content={project.description} />
@@ -54,161 +71,172 @@ export default function ProjectDetails({
           property="og:image"
           content={`https://www.aigarspeda.com${project.coverImage}`}
         />
+        <link
+          rel="canonical"
+          href={`https://www.aigarspeda.com/projects/${project.aboutLink}`}
+        />
       </Head>
-
-      <header className="border-primary-light/10 bg-primary-dark/80 sticky top-0 z-50 border-b backdrop-blur-md">
-        <div className="mx-auto max-w-5xl px-6 py-4">
-          <Link
-            href="/#projects"
-            className="text-primary-light/70 hover:text-primary-accent inline-flex items-center gap-2 text-sm font-medium transition-colors"
-          >
-            <FiArrowLeft aria-hidden="true" className="h-4 w-4" />
-            Back to projects
+      <SiteHeader />
+      <main id="main-content" className="case-page">
+        <div className="case-intro page-width">
+          <Link href="/#projects" className="back-link">
+            <FiArrowLeft aria-hidden="true" /> Back to projects
           </Link>
-        </div>
-      </header>
-
-      <main className="mx-auto max-w-5xl px-6 py-12 md:py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="text-primary-accent mb-3 text-sm font-medium">
-            {project.category}
-          </p>
-          <h1 className="mb-5 text-4xl font-bold tracking-tight md:text-5xl">
-            {project.title}
-          </h1>
-          <p className="text-primary-light/70 max-w-3xl text-lg leading-relaxed">
-            {project.description}
-          </p>
-
+          <h1 className="case-title">{project.title}</h1>
+          <p className="case-description">{project.description}</p>
+          <dl className="project-facts">
+            <div>
+              <dt>My role</dt>
+              <dd>{project.role}</dd>
+            </div>
+            <div>
+              <dt>Platform</dt>
+              <dd>{project.platform}</dd>
+            </div>
+            <div>
+              <dt>Project</dt>
+              <dd>{project.category}</dd>
+            </div>
+          </dl>
           {(project.link || project.codeLink) && (
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="case-actions">
               {project.link && (
                 <a
                   href={project.link}
+                  className="action-link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-primary-accent text-primary-dark hover:bg-primary-accent/90 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors"
                 >
-                  <FiExternalLink aria-hidden="true" className="h-4 w-4" />
-                  Visit website
+                  Visit website <FiArrowUpRight aria-hidden="true" />
                 </a>
               )}
               {project.codeLink && (
                 <a
                   href={project.codeLink}
+                  className="text-link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border-primary-light/20 text-primary-light/80 hover:bg-primary-light/5 inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-colors"
                 >
-                  <FiGithub aria-hidden="true" className="h-4 w-4" />
-                  View code
+                  <FiGithub aria-hidden="true" /> View code
                 </a>
               )}
             </div>
           )}
-
-          <div
-            className={`border-primary-light/10 relative mt-10 overflow-hidden rounded-xl border ${isMobileApp ? "aspect-[8/5]" : "aspect-video"}`}
-          >
-            <Image
-              src={project.coverImage}
-              alt={`${project.title} project overview`}
-              fill
-              priority
-              unoptimized={isMobileApp}
-              sizes="(min-width: 1024px) 976px, 100vw"
-              className="object-cover"
-            />
+        </div>
+        <div className="case-hero page-width">
+          <ProjectPreview project={project} priority />
+        </div>
+        <section
+          className="case-story page-width"
+          aria-labelledby="about-heading"
+        >
+          <h2 id="about-heading">The project</h2>
+          <div className="story-copy">
+            {project.details?.map((section) => (
+              <div key={section.heading}>
+                <h3>{section.heading}</h3>
+                <p>{section.text}</p>
+              </div>
+            ))}
           </div>
-        </motion.div>
-
-        <section aria-labelledby="technologies-heading" className="my-12">
-          <h2
-            id="technologies-heading"
-            className="text-primary-light/50 mb-4 text-sm font-semibold tracking-wider uppercase"
-          >
-            Technologies used
-          </h2>
-          <ul className="flex flex-wrap gap-2">
-            {project.technologies.map((tech) => (
-              <li
-                key={tech}
-                className="bg-primary-light/5 text-primary-light/80 rounded-full px-4 py-2 text-sm font-medium"
-              >
-                {tech}
-              </li>
+        </section>
+        <section
+          className="tech-section page-width"
+          aria-labelledby="technologies-heading"
+        >
+          <h2 id="technologies-heading">Built with</h2>
+          <ul className="technology-list">
+            {project.technologies.map((technology) => (
+              <li key={technology}>{technology}</li>
             ))}
           </ul>
         </section>
-
-        <section aria-labelledby="about-heading" className="mb-14">
-          <h2
-            id="about-heading"
-            className="text-primary-light/50 mb-6 text-sm font-semibold tracking-wider uppercase"
+        <section
+          className="case-gallery page-width"
+          aria-labelledby="screenshots-heading"
+        >
+          <h2 id="screenshots-heading">In detail</h2>
+          <div
+            className={
+              screenshots.length % 2
+                ? "gallery-grid gallery-grid--odd"
+                : "gallery-grid"
+            }
           >
-            About the project
-          </h2>
-          <div className="text-primary-light/80 max-w-3xl space-y-5 text-lg leading-relaxed">
-            {project.details?.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-        </section>
-
-        <section aria-labelledby="screenshots-heading">
-          <h2
-            id="screenshots-heading"
-            className="text-primary-light/50 mb-6 text-sm font-semibold tracking-wider uppercase"
-          >
-            Screenshots
-          </h2>
-          <div className="grid gap-6 md:grid-cols-2">
             {screenshots.map((screenshot, index) => (
               <figure key={screenshot.src}>
                 <button
                   type="button"
                   onClick={() => setSelectedImage(index)}
                   aria-label={`Enlarge image: ${screenshot.caption}`}
-                  className={`group border-primary-light/10 hover:border-primary-accent/50 focus-visible:outline-primary-accent relative block w-full overflow-hidden rounded-xl border transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 ${isMobileApp ? "aspect-[4/5] bg-[#fff5e9]" : "bg-primary-dark-light/30 aspect-video"}`}
+                  className={
+                    isMobileApp
+                      ? "gallery-media gallery-media--phone"
+                      : screenshot.layout === "portrait"
+                        ? "gallery-media gallery-media--portrait"
+                        : "gallery-media"
+                  }
                 >
                   <Image
                     src={screenshot.src}
                     alt={screenshot.alt}
                     fill
-                    sizes="(min-width: 1024px) 476px, (min-width: 768px) 50vw, 100vw"
+                    unoptimized
+                    sizes="(min-width: 768px) 50vw, 100vw"
                     className={
                       isMobileApp
-                        ? "phone-screenshot-mask object-contain p-4"
-                        : "object-cover"
+                        ? "gallery-image phone-screenshot-mask"
+                        : "gallery-image"
                     }
                   />
-                  <span className="bg-primary-dark/80 absolute right-3 bottom-3 rounded-full p-2.5">
-                    <FiMaximize2 aria-hidden="true" className="h-4 w-4" />
+                  <span className="enlarge-icon">
+                    <FiMaximize2 aria-hidden="true" />
                   </span>
                 </button>
-                <figcaption className="text-primary-light/60 mt-3 text-sm leading-relaxed">
-                  {screenshot.caption}
-                </figcaption>
+                <figcaption>{screenshot.caption}</figcaption>
               </figure>
             ))}
           </div>
         </section>
-
+        <section
+          className="next-project-section page-width"
+          aria-label="Next project"
+        >
+          <p>Next project</p>
+          <Link
+            href={`/projects/${nextProject.aboutLink}`}
+            className="next-project"
+          >
+            <span className="next-project-label">
+              <TextFill text={nextProject.title} />
+            </span>
+            <span
+              className="next-project-icon magnetic-target"
+              data-magnetic-strength="6"
+              onPointerMove={moveMagnetic}
+              onPointerLeave={resetMagnetic}
+              onPointerCancel={resetMagnetic}
+              aria-hidden="true"
+            >
+              <span className="magnetic-content">
+                <FiArrowUpRight />
+              </span>
+            </span>
+          </Link>
+        </section>
         <ImageModal
           imageClassName={isMobileApp ? "phone-screenshot-mask" : undefined}
           startImageIndex={selectedImage ?? 0}
           isModalVisible={selectedImage !== undefined}
           handleModalClose={() => setSelectedImage(undefined)}
-          images={screenshots.map((screenshot) => ({
-            original: screenshot.src,
-            thumbnail: screenshot.src,
+          images={screenshots.map((image) => ({
+            original: image.src,
+            thumbnail: image.src,
+            alt: image.alt,
           }))}
         />
       </main>
+      <SiteFooter />
     </div>
   );
 }

@@ -10,10 +10,13 @@ export type ProjectType = {
   description: string | undefined;
   coverImage: string;
   category?: string;
-  details?: string[];
+  role: string;
+  platform: string;
+  details?: { heading: string; text: string }[];
   screenshots?: {
     src: string;
     alt: string;
     caption: string;
+    layout?: "portrait";
   }[];
 };

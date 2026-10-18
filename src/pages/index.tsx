@@ -1,183 +1,100 @@
-import { motion, type Variants } from "framer-motion";
-import { type NextPage } from "next";
-import dynamic from "next/dynamic";
 import Head from "next/head";
-import Mailto from "~/components/Mailto/Mailto";
+import { FiArrowDownRight } from "react-icons/fi";
 import Projects from "~/components/projects/Projects";
+import SiteFooter from "~/components/SiteFooter/SiteFooter";
+import SiteHeader from "~/components/SiteHeader/SiteHeader";
 
-// Dynamically import ThreeScene to avoid SSR issues
-const ThreeScene = dynamic(() => import("~/components/ThreeScene/ThreeScene"), {
-  ssr: false,
-});
-
-const SKILLS = [
-  "React",
-  "TypeScript",
-  "Next.js",
-  "Node.js",
-  "tRPC",
-  "Prisma",
-  "Vue.js",
-  "React Native",
-  // "Three.js",
-  "Tailwind CSS",
-];
-
-const Home: NextPage = () => {
-  const container: Variants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.1,
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const item: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    show: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  };
-
+export default function Home() {
   return (
-    <>
+    <div id="top">
       <Head>
-        <title>Aigars Peda — Full Stack Developer</title>
-        <meta charSet="UTF-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Aigars Peda | Full-stack developer</title>
         <meta
           name="description"
-          content="Full Stack Developer building web and mobile apps with React, TypeScript, and Next.js. See my latest projects and get in touch."
+          content="I'm Aigars, a full-stack developer building websites and mobile apps. Explore my work with React, React Native, Next.js, and WordPress."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          property="og:title"
+          content="Aigars Peda | Websites & mobile apps"
+        />
+        <meta
+          property="og:description"
+          content="A selection of websites, mobile apps, and tools I've built."
+        />
+        <link rel="canonical" href="https://www.aigarspeda.com/" />
       </Head>
-
-      {/* 3D Background - Fixed across all sections */}
-      <ThreeScene />
-
-      <main className="relative z-10 mx-auto min-h-screen max-w-6xl px-6 py-8 md:px-8 md:py-12">
-        {/* Hero Section */}
-        <motion.section
-          animate="show"
-          initial="hidden"
-          variants={container}
-          className="mb-10 md:mb-16"
-        >
-          {/* Main heading */}
-          <motion.h1
-            variants={item}
-            className="mb-4 text-4xl leading-tight font-bold tracking-tight md:text-5xl lg:text-6xl"
-          >
-            Hey, I&apos;m{" "}
-            <span className="from-primary-accent bg-linear-to-r to-orange-400 bg-clip-text text-transparent">
-              Aigars
-            </span>
-          </motion.h1>
-
-          {/* Subtitle */}
-          {/* <motion.p
-            variants={item}
-            className="text-primary-light/50 mb-8 text-base md:text-lg"
-          >
-            Full Stack Developer
-          </motion.p> */}
-
-          {/* CTA Buttons */}
-          <motion.div
-            variants={item}
-            className="flex flex-wrap items-center gap-3"
-          >
-            <Mailto body="From: aigarspeda.com" email="aigarspeda@gmail.com">
-              <span className="group bg-primary-accent hover:bg-primary-accent/90 text-primary-dark inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-all duration-300 hover:scale-105">
-                <svg
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-                Say hello
-              </span>
-            </Mailto>
-
-            <a
-              href="https://github.com/AigarsPeda"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border-primary-light/20 bg-primary-dark/50 text-primary-light hover:border-primary-light/40 hover:bg-primary-dark/70 inline-flex items-center gap-2 rounded-lg border px-5 py-2.5 text-sm font-semibold backdrop-blur-sm transition-all duration-300 hover:scale-105"
-            >
-              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-              </svg>
-              View GitHub
+      <SiteHeader />
+      <main id="main-content">
+        <section className="hero page-width" aria-labelledby="hero-heading">
+          <div className="hero-layout">
+            <h1 id="hero-heading" className="hero-heading">
+              I build websites
+              <br />
+              and mobile apps<span className="accent-period">.</span>
+            </h1>
+            <a className="circle-link fill-button" href="#projects">
+              <FiArrowDownRight aria-hidden="true" />
+              <span>Explore work</span>
             </a>
-          </motion.div>
-        </motion.section>
-
-        {/* Projects Section */}
-        <section id="projects" className="mb-24 scroll-mt-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mb-8"
-          >
-            <h2 className="mb-2 text-2xl font-bold md:text-3xl">Projects</h2>
-            <p className="text-primary-light/50 text-sm md:text-base">
-              Websites, apps, and tools I&apos;ve built
-            </p>
-          </motion.div>
-
+          </div>
+        </section>
+        <section
+          id="projects"
+          className="work-section page-width"
+          aria-labelledby="work-heading"
+        >
+          <div className="section-heading">
+            <h2 id="work-heading">Selected work</h2>
+          </div>
           <Projects />
         </section>
-
-        {/* Skills Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          className="mb-24 pb-10"
+        <section
+          id="about"
+          className="about-section page-width"
+          aria-labelledby="about-heading"
         >
-          <h2 className="mb-2 text-2xl font-bold md:text-3xl">
-            Tech I Work With
-          </h2>
-          <p className="text-primary-light/50 mb-6 text-sm md:text-base">
-            My go-to stack for building production apps
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {SKILLS.map((skill, i) => (
-              <motion.span
-                key={skill}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.05 * i }}
-                className="border-primary-light/10 bg-primary-dark-light/40 text-primary-light/80 hover:border-primary-accent/30 hover:text-primary-accent rounded-lg border px-4 py-2 text-sm font-medium backdrop-blur-sm transition-colors duration-300"
-              >
-                {skill}
-              </motion.span>
-            ))}
+          <div className="about-intro">
+            <h2 id="about-heading">
+              A little
+              <br />
+              about me.
+            </h2>
+            <div className="about-copy">
+              <p className="about-lead">
+                I&apos;m a full-stack developer who enjoys building things
+                people can use.
+              </p>
+              <p>
+                I&apos;m currently working with LVM Geo on OpenLayers map
+                layers and an inventory application with web and mobile
+                versions.
+              </p>
+              <p>
+                My work includes business websites, a volleyball tournament app,
+                a drawing tool, and a math game with a virtual cat. I work
+                across the interface, application logic, and backend.
+              </p>
+              <div className="capabilities">
+                <div>
+                  <h3>Web & backend</h3>
+                  <p>
+                    React, Next.js, Vue, OpenLayers, WordPress, PHP, tRPC,
+                    Prisma, MySQL
+                  </p>
+                </div>
+                <div>
+                  <h3>Mobile</h3>
+                  <p>
+                    React Native, Expo, TypeScript, Supabase, native 3D
+                    rendering
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-        </motion.section>
+        </section>
       </main>
-    </>
+      <SiteFooter />
+    </div>
   );
-};
-
-export default Home;
+}

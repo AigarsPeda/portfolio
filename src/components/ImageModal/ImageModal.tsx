@@ -1,94 +1,128 @@
-import { type FC } from "react";
-import { IoClose } from "react-icons/io5";
-import ImageGallery from "react-image-gallery";
-import "react-image-gallery/styles/css/image-gallery.css";
-import useDelayUnmount from "~/hooks/useDelayUnmount";
-import useWindowSize from "~/hooks/useWindowSize";
+import { useEffect, useRef, useState } from "react";
+import { FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
 
 interface ImageModalProps {
   isModalVisible: boolean;
   startImageIndex: number;
   handleModalClose: () => void;
-  images: { original: string; thumbnail: string }[];
+  images: { original: string; thumbnail: string; alt?: string }[];
   imageClassName?: string;
 }
 
-const ImageModal: FC<ImageModalProps> = ({
+export default function ImageModal({
   images,
   isModalVisible,
   startImageIndex,
   handleModalClose,
   imageClassName = "",
-}) => {
-  const { windowSize } = useWindowSize();
-  const isMobile = windowSize.width < 768;
-  const { shouldRender, isAnimation } = useDelayUnmount(isModalVisible, 200);
+}: ImageModalProps) {
+  const dialog = useRef<HTMLDialogElement>(null);
+  const [index, setIndex] = useState(startImageIndex);
 
-  if (!shouldRender) return null;
+  useEffect(() => {
+    const element = dialog.current;
+    if (!element || !isModalVisible) return;
+    setIndex(startImageIndex);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    element.showModal();
+    return () => {
+      element.close();
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isModalVisible, startImageIndex]);
+
+  const move = (direction: number) =>
+    setIndex(
+      (current) => (current + direction + images.length) % images.length,
+    );
+  const image = images[index];
 
   return (
-    <div
-      className={`fixed inset-0 z-900 transition-all duration-300 ${
-        isAnimation ? "opacity-100" : "opacity-0"
-      }`}
+    <dialog
+      ref={dialog}
+      className="image-dialog"
+      aria-label="Project screenshots"
+      onCancel={handleModalClose}
+      onKeyDown={(event) => {
+        if (images.length < 2) return;
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          move(-1);
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          move(1);
+        }
+      }}
     >
-      {/* Backdrop */}
-      <div
-        className="bg-primary-dark/98 absolute inset-0 backdrop-blur-md"
-        onClick={handleModalClose}
-      />
-
-      {/* Close button */}
-      <button
-        aria-label="Close image gallery"
-        onClick={handleModalClose}
-        className="border-primary-light/20 bg-primary-dark/80 text-primary-light/70 hover:border-primary-accent/50 hover:bg-primary-dark hover:text-primary-accent absolute top-4 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full border backdrop-blur-sm transition-colors duration-300"
-      >
-        <IoClose className="h-6 w-6" />
-      </button>
-
-      {/* Gallery container */}
-      <div className="relative z-10 flex h-full w-full items-center justify-center px-2 py-16 md:px-16 md:py-20">
-        <div className="h-full w-full max-w-6xl">
-          <ImageGallery
-            items={[...images]}
-            showPlayButton={false}
-            startIndex={startImageIndex}
-            showFullscreenButton={false}
-            thumbnailPosition="bottom"
-            showThumbnails={!isMobile}
-            slideDuration={300}
-            slideInterval={3000}
-            renderItem={(item) => (
-              <div
-                className="flex items-center justify-center px-4 md:px-12"
-                style={{
-                  height: !isMobile
-                    ? "calc(85vh - 180px)"
-                    : "calc(85vh - 80px)",
-                }}
-              >
-                <img
-                  src={item.original}
-                  alt=""
-                  className={`max-h-full max-w-full rounded-lg object-contain shadow-2xl ${imageClassName}`}
-                />
-              </div>
-            )}
-            renderThumbInner={(item) => (
-              <div className="relative h-16 w-full overflow-hidden rounded-md">
-                <img
-                  src={item.thumbnail}
-                  alt=""
-                  className={`h-full w-full ${imageClassName ? `object-contain ${imageClassName}` : "object-cover"}`}
-                />
-              </div>
-            )}
-          />
-        </div>
+      <div className="gallery-toolbar">
+        <p aria-live="polite">
+          {index + 1} / {images.length}
+        </p>
+        <button
+          className="icon-button"
+          type="button"
+          onClick={handleModalClose}
+          aria-label="Close image gallery"
+        >
+          <FiX aria-hidden="true" />
+        </button>
       </div>
-    </div>
+      <div
+        className="gallery-stage"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) handleModalClose();
+        }}
+      >
+        {images.length > 1 && (
+          <button
+            type="button"
+            className="icon-button gallery-previous"
+            aria-label="Previous screenshot"
+            onClick={() => move(-1)}
+          >
+            <FiChevronLeft aria-hidden="true" />
+          </button>
+        )}
+        {image && (
+          <img
+            src={image.original}
+            alt={image.alt ?? `Project screenshot ${index + 1}`}
+            className={`gallery-full-image ${imageClassName}`}
+          />
+        )}
+        {images.length > 1 && (
+          <button
+            type="button"
+            className="icon-button gallery-next"
+            aria-label="Next screenshot"
+            onClick={() => move(1)}
+          >
+            <FiChevronRight aria-hidden="true" />
+          </button>
+        )}
+      </div>
+      {images.length > 1 && (
+        <div className="gallery-thumbnails">
+          {images.map((item, itemIndex) => (
+            <button
+              key={item.original}
+              className={
+                itemIndex === index
+                  ? "gallery-thumbnail is-active"
+                  : "gallery-thumbnail"
+              }
+              type="button"
+              aria-label={`View screenshot ${itemIndex + 1}`}
+              aria-pressed={itemIndex === index}
+              onClick={() => setIndex(itemIndex)}
+            >
+              <img src={item.thumbnail} alt="" className={imageClassName} />
+            </button>
+          ))}
+        </div>
+      )}
+    </dialog>
   );
-};
-
-export default ImageModal;
+}
