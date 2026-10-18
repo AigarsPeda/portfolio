@@ -1,33 +1,17 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { useEffect, useState, type FC } from "react";
+import Link from "next/link";
+import { type FC } from "react";
 import { type ProjectType } from "~/types/project.types";
-import getImagesFromFolder from "~/utils/getImagesFromFolder";
 
 interface ProjectCardProps {
   project: ProjectType;
 }
 
 const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
-  const router = useRouter();
-  const [images, setImages] = useState<string[]>([]);
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      const imagePaths = await getImagesFromFolder<string[]>(project.aboutLink);
-      setImages(imagePaths);
-    };
-    fetchImages().catch((err) => console.error(err));
-  }, [project.aboutLink]);
-
   return (
-    <button
+    <Link
+      href={`/projects/${project.aboutLink}`}
       className="group border-primary-light/10 from-primary-dark-light/50 to-primary-dark hover:border-primary-accent/30 hover:shadow-primary-accent/10 relative flex h-full w-full flex-col overflow-hidden rounded-xl border bg-linear-to-b p-3 text-left transition-all duration-500 ease-out hover:cursor-pointer hover:shadow-xl md:max-w-96"
-      onClick={() => {
-        router
-          .push(`/projects/${project.aboutLink}`)
-          .catch((err) => console.error(err));
-      }}
     >
       {/* Hover gradient overlay */}
       <div className="from-primary-accent/5 pointer-events-none absolute inset-0 bg-linear-to-t to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -39,7 +23,8 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
           alt={project.title}
           placeholder="blur"
           blurDataURL="/asset/blur.jpg"
-          src={images[0] || "/asset/blur.jpg"}
+          src={project.coverImage}
+          sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
           className="object-cover transition-all duration-700 ease-out group-hover:scale-105"
           style={{
             width: "100%",
@@ -99,7 +84,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
           </svg>
         </div>
       </div>
-    </button>
+    </Link>
   );
 };
 

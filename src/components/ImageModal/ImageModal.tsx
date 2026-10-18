@@ -10,6 +10,7 @@ interface ImageModalProps {
   startImageIndex: number;
   handleModalClose: () => void;
   images: { original: string; thumbnail: string }[];
+  imageClassName?: string;
 }
 
 const ImageModal: FC<ImageModalProps> = ({
@@ -17,6 +18,7 @@ const ImageModal: FC<ImageModalProps> = ({
   isModalVisible,
   startImageIndex,
   handleModalClose,
+  imageClassName = "",
 }) => {
   const { windowSize } = useWindowSize();
   const isMobile = windowSize.width < 768;
@@ -38,6 +40,7 @@ const ImageModal: FC<ImageModalProps> = ({
 
       {/* Close button */}
       <button
+        aria-label="Close image gallery"
         onClick={handleModalClose}
         className="border-primary-light/20 bg-primary-dark/80 text-primary-light/70 hover:border-primary-accent/50 hover:bg-primary-dark hover:text-primary-accent absolute top-4 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full border backdrop-blur-sm transition-colors duration-300"
       >
@@ -68,7 +71,7 @@ const ImageModal: FC<ImageModalProps> = ({
                 <img
                   src={item.original}
                   alt=""
-                  className="max-h-full max-w-full rounded-lg object-contain shadow-2xl"
+                  className={`max-h-full max-w-full rounded-lg object-contain shadow-2xl ${imageClassName}`}
                 />
               </div>
             )}
@@ -77,7 +80,7 @@ const ImageModal: FC<ImageModalProps> = ({
                 <img
                   src={item.thumbnail}
                   alt=""
-                  className="h-full w-full object-cover"
+                  className={`h-full w-full ${imageClassName ? `object-contain ${imageClassName}` : "object-cover"}`}
                 />
               </div>
             )}

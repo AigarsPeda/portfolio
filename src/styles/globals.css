@@ -1,5 +1,14 @@
 @import 'tailwindcss';
 
+.phone-screenshot-mask {
+  mask-image: url('/asset/math_mews/phone-mask.svg');
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-origin: content-box;
+  mask-clip: content-box;
+}
+
 /* Desktop */
 @config '../../tailwind.config.cjs';
 

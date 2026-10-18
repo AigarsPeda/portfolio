@@ -8,4 +8,12 @@ export type ProjectType = {
   link: string | undefined;
   logo: string | undefined;
   description: string | undefined;
+  coverImage: string;
+  category?: string;
+  details?: string[];
+  screenshots?: {
+    src: string;
+    alt: string;
+    caption: string;
+  }[];
 };

@@ -9,6 +9,15 @@
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: "/projects/kids_learning_app",
+        destination: "/projects/math-mews",
+        permanent: true,
+      },
+    ];
+  },
 
   /**
    * If you have the "experimental: { appDir: true }" setting enabled, then you

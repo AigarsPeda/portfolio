@@ -130,7 +130,7 @@ const Home: NextPage = () => {
         </motion.section>
 
         {/* Projects Section */}
-        <section className="mb-24">
+        <section id="projects" className="mb-24 scroll-mt-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -139,7 +139,7 @@ const Home: NextPage = () => {
           >
             <h2 className="mb-2 text-2xl font-bold md:text-3xl">Projects</h2>
             <p className="text-primary-light/50 text-sm md:text-base">
-              A few things I&apos;ve shipped from idea to production
+              Websites, apps, and tools I&apos;ve built
             </p>
           </motion.div>
 
