@@ -132,38 +132,29 @@ export async function animateInterfaceChange(
       change = createLanguageReveal(update);
       activeChange = change;
     } else {
+      const point = origin ?? { x: innerWidth / 2, y: innerHeight / 2 };
+      const radius = Math.hypot(
+        Math.max(point.x, innerWidth - point.x),
+        Math.max(point.y, innerHeight - point.y),
+      );
+      root.style.setProperty("--theme-reveal-x", `${point.x}px`);
+      root.style.setProperty("--theme-reveal-y", `${point.y}px`);
+      root.style.setProperty("--theme-reveal-radius", `${radius}px`);
+
+      // CSS masks the new snapshot from its first paint, before ready resolves.
       const transition = document.startViewTransition(update);
       change = transition;
       activeChange = change;
-      try {
-        await transition.ready;
-        if (origin) {
-          const radius = Math.hypot(
-            Math.max(origin.x, innerWidth - origin.x),
-            Math.max(origin.y, innerHeight - origin.y),
-          );
-          root.animate(
-            {
-              clipPath: [
-                `circle(0px at ${origin.x}px ${origin.y}px)`,
-                `circle(${radius}px at ${origin.x}px ${origin.y}px)`,
-              ],
-            },
-            {
-              duration: 800,
-              easing: "cubic-bezier(0.76, 0, 0.24, 1)",
-              pseudoElement: "::view-transition-new(root)",
-            },
-          );
-        }
-      } catch {
-        // Skipped snapshots must not prevent the theme from changing.
-      }
+      // A skipped snapshot must not prevent the theme from changing.
+      void transition.ready.catch(() => {});
     }
     await change.finished;
   } finally {
     if (activeChange === change) {
       delete root.dataset.interfaceTransition;
+      root.style.removeProperty("--theme-reveal-x");
+      root.style.removeProperty("--theme-reveal-y");
+      root.style.removeProperty("--theme-reveal-radius");
       activeChange = undefined;
     }
   }
