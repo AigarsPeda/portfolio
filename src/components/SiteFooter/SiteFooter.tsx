@@ -1,22 +1,24 @@
+import { useCopy } from "~/i18n";
 import { FiArrowUpRight } from "react-icons/fi";
 
 export default function SiteFooter() {
+  const copy = useCopy();
   return (
     <footer id="contact" className="site-footer">
       <div className="page-width">
         <div className="contact-heading">
           <h2>
-            Have a project
+            {copy.footerLine1}
             <br />
-            in mind?
+            {copy.footerLine2}
           </h2>
           <a
             className="contact-circle fill-button"
             href="mailto:aigarspeda@gmail.com"
-            aria-label="Let's talk, email Aigars about a project"
+            aria-label={copy.emailLabel}
           >
             <FiArrowUpRight aria-hidden="true" />
-            <span>Let&apos;s talk</span>
+            <span>{copy.letsTalk}</span>
           </a>
         </div>
         <div className="contact-links">
@@ -34,7 +36,7 @@ export default function SiteFooter() {
         </div>
         <div className="footer-bottom">
           <p>© {new Date().getFullYear()} Aigars Peda</p>
-          <a href="#top">Back to top ↑</a>
+          <a href="#top">{copy.backToTop}</a>
         </div>
       </div>
     </footer>

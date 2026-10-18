@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useCopy } from "~/i18n";
 import { FiArrowUpRight } from "react-icons/fi";
 import ProjectPreview from "~/components/ProjectPreview/ProjectPreview";
 import TextFill from "~/components/TextFill/TextFill";
@@ -12,6 +13,7 @@ export default function ProjectCard({
   project: ProjectType;
   featured?: boolean;
 }) {
+  const copy = useCopy();
   return (
     <article
       className={
@@ -21,7 +23,7 @@ export default function ProjectCard({
       <Link
         href={`/projects/${project.aboutLink}`}
         aria-labelledby={`project-title-${project.id}`}
-        data-cursor-label="View project"
+        data-cursor-label={copy.viewProject}
       >
         <ProjectPreview project={project} priority={featured} />
         <div className="project-heading">

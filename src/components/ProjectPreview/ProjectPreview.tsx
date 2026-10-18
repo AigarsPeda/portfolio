@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useCopy } from "~/i18n";
 import type { ProjectType } from "~/types/project.types";
 
 export default function ProjectPreview({
@@ -8,6 +9,7 @@ export default function ProjectPreview({
   project: ProjectType;
   priority?: boolean;
 }) {
+  const copy = useCopy();
   const isMobile = project.aboutLink === "math-mews";
 
   if (isMobile) {
@@ -47,7 +49,7 @@ export default function ProjectPreview({
         />
         <Image
           src={project.coverImage}
-          alt={`${project.title} project preview`}
+          alt={`${project.title} ${copy.preview}`}
           fill
           unoptimized
           loading={priority ? "eager" : "lazy"}

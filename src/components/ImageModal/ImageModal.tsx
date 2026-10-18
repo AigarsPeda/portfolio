@@ -1,3 +1,4 @@
+import { useCopy } from "~/i18n";
 import { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
 
@@ -16,6 +17,7 @@ export default function ImageModal({
   handleModalClose,
   imageClassName = "",
 }: ImageModalProps) {
+  const copy = useCopy();
   const dialog = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState(startImageIndex);
 
@@ -42,7 +44,7 @@ export default function ImageModal({
     <dialog
       ref={dialog}
       className="image-dialog"
-      aria-label="Project screenshots"
+      aria-label={copy.screenshots}
       onCancel={handleModalClose}
       onKeyDown={(event) => {
         if (images.length < 2) return;
@@ -64,7 +66,7 @@ export default function ImageModal({
           className="icon-button"
           type="button"
           onClick={handleModalClose}
-          aria-label="Close image gallery"
+          aria-label={copy.closeGallery}
         >
           <FiX aria-hidden="true" />
         </button>
@@ -79,7 +81,7 @@ export default function ImageModal({
           <button
             type="button"
             className="icon-button gallery-previous"
-            aria-label="Previous screenshot"
+            aria-label={copy.previousScreenshot}
             onClick={() => move(-1)}
           >
             <FiChevronLeft aria-hidden="true" />
@@ -88,7 +90,7 @@ export default function ImageModal({
         {image && (
           <img
             src={image.original}
-            alt={image.alt ?? `Project screenshot ${index + 1}`}
+            alt={image.alt ?? `${copy.screenshot} ${index + 1}`}
             className={`gallery-full-image ${imageClassName}`}
           />
         )}
@@ -96,7 +98,7 @@ export default function ImageModal({
           <button
             type="button"
             className="icon-button gallery-next"
-            aria-label="Next screenshot"
+            aria-label={copy.nextScreenshot}
             onClick={() => move(1)}
           >
             <FiChevronRight aria-hidden="true" />
@@ -114,7 +116,7 @@ export default function ImageModal({
                   : "gallery-thumbnail"
               }
               type="button"
-              aria-label={`View screenshot ${itemIndex + 1}`}
+              aria-label={`${copy.viewScreenshot} ${itemIndex + 1}`}
               aria-pressed={itemIndex === index}
               onClick={() => setIndex(itemIndex)}
             >

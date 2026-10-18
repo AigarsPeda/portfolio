@@ -188,6 +188,23 @@ a {
   gap: 36px;
   font-size: 14px;
 }
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.language-switch {
+  display: grid;
+  place-items: center;
+  min-width: 28px;
+  min-height: 44px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: color 220ms ease;
+}
+.language-switch:hover {
+  color: var(--accent-text);
+}
 .site-nav a {
   padding-block: 12px;
   position: relative;
@@ -1036,11 +1053,18 @@ a {
   }
   .site-header {
     height: 76px;
-    gap: 16px;
+    gap: 10px;
   }
   .site-nav {
-    gap: 20px;
-    font-size: 13px;
+    gap: 10px;
+    font-size: 12px;
+  }
+  .header-controls {
+    gap: 6px;
+  }
+  .header-controls .icon-button {
+    width: 36px;
+    height: 36px;
   }
   .wordmark {
     font-size: 14px;
@@ -1245,10 +1269,10 @@ a {
     display: none;
   }
   .site-header {
-    gap: 12px;
+    gap: 10px;
   }
   .site-nav {
-    gap: 18px;
+    gap: 10px;
   }
   .project-facts {
     grid-template-columns: 1fr;

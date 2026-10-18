@@ -3,7 +3,9 @@ import type {
   GetStaticProps,
   InferGetStaticPropsType,
 } from "next";
-import Head from "next/head";
+import LocalizedSeo from "~/components/LocalizedSeo/LocalizedSeo";
+import { useCopy } from "~/i18n";
+import { getProjects } from "~/i18n/projects";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -27,17 +29,26 @@ type PageProps = {
   nextProject: Pick<ProjectType, "title" | "aboutLink">;
 };
 
-export const getStaticPaths: GetStaticPaths = () => ({
-  paths: PROJECTS.map((project) => ({ params: { slug: project.aboutLink } })),
+export const getStaticPaths: GetStaticPaths = ({ locales }) => ({
+  paths: (locales ?? ["en"]).flatMap((locale) =>
+    PROJECTS.map((project) => ({
+      params: { slug: project.aboutLink },
+      locale,
+    })),
+  ),
   fallback: false,
 });
 
-export const getStaticProps: GetStaticProps<PageProps> = ({ params }) => {
-  const index = PROJECTS.findIndex(
+export const getStaticProps: GetStaticProps<PageProps> = ({
+  params,
+  locale,
+}) => {
+  const projects = getProjects(locale);
+  const index = projects.findIndex(
     (project) => project.aboutLink === params?.slug,
   );
-  const project = PROJECTS[index];
-  const nextProject = PROJECTS[(index + 1) % PROJECTS.length];
+  const project = projects[index];
+  const nextProject = projects[(index + 1) % projects.length];
   if (!project || !nextProject) return { notFound: true };
   return {
     props: {
@@ -54,6 +65,7 @@ export default function ProjectDetails({
   project,
   nextProject,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const copy = useCopy();
   const [selectedImage, setSelectedImage] = useState<number>();
   const screenshots = (project.screenshots ?? []).filter(
     (image) => image.src !== project.coverImage,
@@ -62,39 +74,31 @@ export default function ProjectDetails({
 
   return (
     <div id="top">
-      <Head>
-        <title>{`${project.title} | Aigars Peda`}</title>
-        <meta name="description" content={project.description} />
-        <meta property="og:title" content={`${project.title} | Aigars Peda`} />
-        <meta property="og:description" content={project.description} />
-        <meta
-          property="og:image"
-          content={`https://www.aigarspeda.com${project.coverImage}`}
-        />
-        <link
-          rel="canonical"
-          href={`https://www.aigarspeda.com/projects/${project.aboutLink}`}
-        />
-      </Head>
+      <LocalizedSeo
+        path={`/projects/${project.aboutLink}`}
+        title={`${project.title} | Aigars Peda`}
+        description={project.description}
+        image={project.coverImage}
+      />
       <SiteHeader />
       <main id="main-content" className="case-page">
         <div className="case-intro page-width">
           <Link href="/#projects" className="back-link">
-            <FiArrowLeft aria-hidden="true" /> Back to projects
+            <FiArrowLeft aria-hidden="true" /> {copy.backToProjects}
           </Link>
           <h1 className="case-title">{project.title}</h1>
           <p className="case-description">{project.description}</p>
           <dl className="project-facts">
             <div>
-              <dt>My role</dt>
+              <dt>{copy.role}</dt>
               <dd>{project.role}</dd>
             </div>
             <div>
-              <dt>Platform</dt>
+              <dt>{copy.platform}</dt>
               <dd>{project.platform}</dd>
             </div>
             <div>
-              <dt>Project</dt>
+              <dt>{copy.project}</dt>
               <dd>{project.category}</dd>
             </div>
           </dl>
@@ -107,7 +111,7 @@ export default function ProjectDetails({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Visit website <FiArrowUpRight aria-hidden="true" />
+                  {copy.visitWebsite} <FiArrowUpRight aria-hidden="true" />
                 </a>
               )}
               {project.codeLink && (
@@ -117,7 +121,7 @@ export default function ProjectDetails({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <FiGithub aria-hidden="true" /> View code
+                  <FiGithub aria-hidden="true" /> {copy.viewCode}
                 </a>
               )}
             </div>
@@ -130,7 +134,7 @@ export default function ProjectDetails({
           className="case-story page-width"
           aria-labelledby="about-heading"
         >
-          <h2 id="about-heading">The project</h2>
+          <h2 id="about-heading">{copy.theProject}</h2>
           <div className="story-copy">
             {project.details?.map((section) => (
               <div key={section.heading}>
@@ -144,7 +148,7 @@ export default function ProjectDetails({
           className="tech-section page-width"
           aria-labelledby="technologies-heading"
         >
-          <h2 id="technologies-heading">Built with</h2>
+          <h2 id="technologies-heading">{copy.builtWith}</h2>
           <ul className="technology-list">
             {project.technologies.map((technology) => (
               <li key={technology}>{technology}</li>
@@ -155,7 +159,7 @@ export default function ProjectDetails({
           className="case-gallery page-width"
           aria-labelledby="screenshots-heading"
         >
-          <h2 id="screenshots-heading">In detail</h2>
+          <h2 id="screenshots-heading">{copy.inDetail}</h2>
           <div
             className={
               screenshots.length % 2
@@ -168,7 +172,7 @@ export default function ProjectDetails({
                 <button
                   type="button"
                   onClick={() => setSelectedImage(index)}
-                  aria-label={`Enlarge image: ${screenshot.caption}`}
+                  aria-label={`${copy.enlarge}: ${screenshot.caption}`}
                   className={
                     isMobileApp
                       ? "gallery-media gallery-media--phone"
@@ -200,13 +204,13 @@ export default function ProjectDetails({
         </section>
         <section
           className="next-project-section page-width"
-          aria-label="Next project"
+          aria-label={copy.nextProject}
         >
-          <p>Next project</p>
+          <p>{copy.nextProject}</p>
           <Link
             href={`/projects/${nextProject.aboutLink}`}
             className="next-project"
-            data-cursor-label="Next project"
+            data-cursor-label={copy.nextProject}
           >
             <span className="next-project-label">
               <TextFill text={nextProject.title} />

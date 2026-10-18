@@ -4,7 +4,7 @@ const themeScript = `(function(){try{var t=localStorage.getItem('portfolio-theme
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html>
       <Head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </Head>
