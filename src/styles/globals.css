@@ -1108,6 +1108,9 @@ a {
     aspect-ratio: 4 / 3;
     margin-top: 4px;
   }
+  .project-row .project-preview--thumbnail-cover .preview-image {
+    object-fit: cover;
+  }
   .project-card .project-preview:not(.project-preview--thumbnail-cover) > picture {
     top: -8px;
   }
