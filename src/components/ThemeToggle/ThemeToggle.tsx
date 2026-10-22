@@ -2,10 +2,12 @@ import { useCopy } from "~/i18n";
 import { FiMoon, FiSun } from "react-icons/fi";
 import { animateInterfaceChange } from "~/utils/interfaceTransition";
 import type { MouseEvent } from "react";
+import { cancelSectionScroll } from "~/utils/sectionScroll";
 
 export default function ThemeToggle() {
   const copy = useCopy();
   const toggleTheme = (event: MouseEvent<HTMLButtonElement>) => {
+    cancelSectionScroll();
     const bounds = event.currentTarget.getBoundingClientRect();
     void animateInterfaceChange(
       "theme",

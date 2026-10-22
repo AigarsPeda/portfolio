@@ -6,6 +6,7 @@ import {
   animateInterfaceChange,
   waitForLocaleCommit,
 } from "~/utils/interfaceTransition";
+import { cancelSectionScroll } from "~/utils/sectionScroll";
 
 const subscribeToHydration = () => () => {};
 const clientSnapshot = () => true;
@@ -42,6 +43,7 @@ export default function LanguageSwitch() {
         )
           return;
         event.preventDefault();
+        cancelSectionScroll();
         document.cookie = `NEXT_LOCALE=${targetLocale}; Path=/; Max-Age=31536000; SameSite=Lax${window.location.protocol === "https:" ? "; Secure" : ""}`;
         void animateInterfaceChange("language", async () => {
           const changed = await router.push(router.asPath, router.asPath, {

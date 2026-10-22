@@ -109,6 +109,15 @@ export async function animateInterfaceChange(
   update: () => void | Promise<void>,
   origin?: Origin,
 ): Promise<void> {
+  const applyUpdate = async () => {
+    const { scrollX, scrollY } = window;
+    await update();
+    if (kind === "language") {
+      // The Pages Router defers fragment scrolling until after the locale commit.
+      await new Promise<void>((resolve) => window.setTimeout(resolve, 0));
+    }
+    window.scrollTo({ left: scrollX, top: scrollY, behavior: "instant" });
+  };
   const request = ++latestRequest;
   const previous = activeChange;
   if (previous) {
@@ -120,7 +129,7 @@ export async function animateInterfaceChange(
     window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
     (kind === "theme" && !document.startViewTransition)
   ) {
-    await update();
+    await applyUpdate();
     return;
   }
 
@@ -129,7 +138,7 @@ export async function animateInterfaceChange(
   let change: ActiveChange | undefined;
   try {
     if (kind === "language") {
-      change = createLanguageReveal(update);
+      change = createLanguageReveal(applyUpdate);
       activeChange = change;
     } else {
       const point = origin ?? { x: innerWidth / 2, y: innerHeight / 2 };
@@ -142,7 +151,7 @@ export async function animateInterfaceChange(
       root.style.setProperty("--theme-reveal-radius", `${radius}px`);
 
       // CSS masks the new snapshot from its first paint, before ready resolves.
-      const transition = document.startViewTransition(update);
+      const transition = document.startViewTransition(applyUpdate);
       change = transition;
       activeChange = change;
       // A skipped snapshot must not prevent the theme from changing.
