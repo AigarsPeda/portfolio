@@ -22,7 +22,7 @@ const languageCopySelector = [
   ".contact-circle > span",
   ".case-actions a",
   ".footer-bottom > a",
-  ".project-category",
+  ".project-row-action",
   ".back-link",
 ].join(",");
 

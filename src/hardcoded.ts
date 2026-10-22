@@ -8,6 +8,7 @@ export const PROJECTS: ProjectType[] = [
   {
     id: 3,
     title: "Math Mews",
+    summary: "A maths game with a virtual cat · In development",
     aboutLink: "math-mews",
     link: "",
     codeLink: "",
@@ -80,6 +81,7 @@ export const PROJECTS: ProjectType[] = [
   {
     id: 6,
     title: "Dentsu Latvia",
+    summary: "A bilingual agency website",
     aboutLink: "dentsu",
     link: "https://dentsu.lv/lv",
     codeLink: "",
@@ -137,6 +139,7 @@ export const PROJECTS: ProjectType[] = [
   {
     id: 4,
     title: "JāņogaGO",
+    summary: "A food-vending website with an interactive 3D experience",
     aboutLink: "janogago",
     link: "https://janogago.lv/",
     codeLink: "",
@@ -196,6 +199,7 @@ export const PROJECTS: ProjectType[] = [
   {
     id: 5,
     title: "OAKS Build",
+    summary: "A construction management website",
     aboutLink: "oaksbuild",
     link: "https://oaksbuild.lv/",
     codeLink: "",
@@ -248,10 +252,12 @@ export const PROJECTS: ProjectType[] = [
   {
     id: 1,
     title: "Wupzy",
+    summary: "A volleyball tournament and scorekeeping app",
     aboutLink: "wupzy",
     link: "https://wupzy.com",
     logo: "/asset/wupzy/wupzy_logo.jpg",
     coverImage: "/asset/wupzy/a_main.webp",
+    thumbnailImage: "/asset/previews/wupzy-cover.webp",
     category: "Tournament app",
     role: "Full-stack development",
     platform: "Web",
@@ -317,11 +323,13 @@ export const PROJECTS: ProjectType[] = [
   {
     id: 2,
     title: "Canvas",
+    summary: "A browser-based drawing and diagram tool",
     aboutLink: "canvas",
     link: "https://aigarspeda.github.io/designer/",
     codeLink: "https://github.com/AigarsPeda/designer",
     logo: "/asset/canvas/canvas_logo.webp",
     coverImage: "/asset/canvas/canvas_a_main.webp",
+    thumbnailImage: "/asset/previews/canvas-cover.webp",
     category: "Drawing tool",
     role: "Frontend development",
     platform: "Web",

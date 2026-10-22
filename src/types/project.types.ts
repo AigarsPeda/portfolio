@@ -1,6 +1,7 @@
 export type ProjectType = {
   id: number;
   title: string;
+  summary: string;
   codeLink: string;
   aboutLink: string;
   technologies: string[];
@@ -9,6 +10,7 @@ export type ProjectType = {
   logo: string | undefined;
   description: string | undefined;
   coverImage: string;
+  thumbnailImage?: string;
   category?: string;
   role: string;
   platform: string;

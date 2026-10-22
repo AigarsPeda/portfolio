@@ -2,6 +2,7 @@ import { PROJECTS } from "~/hardcoded";
 import type { ProjectType } from "~/types/project.types";
 
 type ProjectTranslation = {
+  summary: string;
   description: string;
   category: string;
   role: string;
@@ -12,6 +13,7 @@ type ProjectTranslation = {
 
 const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
   "math-mews": {
+    summary: "Matemātikas spēle ar virtuālu kaķi · Izstrādē",
     category: "Mobilā spēle · Izstrādes stadijā",
     role: "Lietotnes izstrāde",
     platform: "iOS un Android",
@@ -64,6 +66,7 @@ const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
     ],
   },
   dentsu: {
+    summary: "Divvalodu aģentūras mājaslapa",
     category: "Aģentūras mājaslapa",
     role: "Pilna cikla izstrāde",
     platform: "Tīmeklis",
@@ -108,6 +111,7 @@ const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
     ],
   },
   janogago: {
+    summary: "Ēdienu automātu mājaslapa ar 3D pieredzi",
     category: "Uzņēmuma mājaslapa",
     role: "Dizains un izstrāde",
     platform: "Tīmeklis",
@@ -148,6 +152,7 @@ const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
     ],
   },
   oaksbuild: {
+    summary: "Būvniecības vadības mājaslapa",
     category: "Uzņēmuma mājaslapa",
     role: "Dizains un izstrāde",
     platform: "Tīmeklis",
@@ -189,6 +194,7 @@ const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
     ],
   },
   wupzy: {
+    summary: "Volejbola turnīru un rezultātu lietotne",
     category: "Turnīru lietotne",
     role: "Pilna cikla izstrāde",
     platform: "Tīmeklis",
@@ -233,6 +239,7 @@ const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
     ],
   },
   canvas: {
+    summary: "Zīmēšanas un diagrammu rīks pārlūkā",
     category: "Zīmēšanas rīks",
     role: "Saskarnes izstrāde",
     platform: "Tīmeklis",

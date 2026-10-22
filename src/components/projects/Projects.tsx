@@ -10,7 +10,7 @@ export default function Projects() {
         <ProjectCard
           key={project.id}
           project={project}
-          featured={index === 0}
+          priority={index === 0}
         />
       ))}
     </div>
