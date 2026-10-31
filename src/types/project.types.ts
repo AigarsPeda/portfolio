@@ -7,6 +7,9 @@ export type ProjectType = {
   technologies: string[];
   // imagesAssets: string[];
   link: string | undefined;
+  downloadUrl?: string;
+  downloadLabel?: string;
+  downloadNote?: string;
   logo: string | undefined;
   description: string | undefined;
   coverImage: string;

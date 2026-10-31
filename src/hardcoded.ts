@@ -321,6 +321,71 @@ export const PROJECTS: ProjectType[] = [
     ],
   },
   {
+    id: 7,
+    title: "BetterScreenShot",
+    summary: "A Windows screenshot tool with markup and text recognition",
+    aboutLink: "betterscreenshot",
+    link: "",
+    codeLink: "https://github.com/AigarsPeda/BetterScreenShot",
+    downloadUrl: "/downloads/betterscreenshot/BetterScreenShot.exe",
+    downloadLabel: "Download for Windows",
+    downloadNote:
+      "Windows x64 · Portable .exe · 85.2 MiB. No installation or separate .NET runtime needed. Text recognition requires the Microsoft Visual C++ 2015–2022 Redistributable for x64.",
+    logo: "",
+    coverImage: "/asset/betterscreenshot/editor.webp",
+    thumbnailImage: "/asset/previews/betterscreenshot-640.webp",
+    category: "Desktop utility",
+    role: "Design & development",
+    platform: "Windows",
+    description:
+      "A screenshot app I built for myself after I couldn't find a Windows tool I liked. Capture a screen or area, add markup, and copy text directly from an image.",
+    technologies: ["C#", ".NET 8", "WPF", "Windows Forms", "Tesseract OCR"],
+    details: [
+      {
+        heading: "Why I built it",
+        text: "I wanted a screenshot tool that felt right for my everyday work, but I couldn't find anything I liked that was available for Windows. I built BetterScreenShot for myself, with a capture, edit, and copy workflow I could use without switching between apps.",
+      },
+      {
+        heading: "From capture to sharing",
+        text: "Choose a monitor or drag an area, then copy, save, or open the capture in the editor. Add highlights, editable arrows, shapes, and text, with undo and redo across edits. Copy the finished image straight into another app or save it as PNG, JPEG, or BMP. Custom keyboard shortcuts and a tray menu keep capture within reach.",
+      },
+      {
+        heading: "Text stays on your computer",
+        text: "Double-click a word in the image to recognise text, then select a word or a passage across multiple lines. The image and text panel keep the selection in sync. Tesseract runs locally with seven bundled languages, including English and Latvian. Screenshots and recognised text are never sent to a server.",
+      },
+      {
+        heading: "The build",
+        text: "I built the Windows app with C# and .NET 8, using WPF for the editor and Windows Forms for capture overlays. Selection accounts for each monitor's display scaling, while image export and text recognition run in the background. The portable download bundles the application, language models, and .NET runtime into one executable.",
+      },
+    ],
+    screenshots: [
+      {
+        src: "/asset/betterscreenshot/text-recognition.webp",
+        alt: "BetterScreenShot editor with recognised text in a side panel and matching words selected in the image",
+        caption:
+          "Recognise text locally and select it in the image or text panel.",
+      },
+      {
+        src: "/asset/betterscreenshot/text-selection.webp",
+        alt: "BetterScreenShot with a sentence selected across two lines and blue selection handles",
+        caption:
+          "Copy a passage across multiple lines by adjusting the selection handles.",
+      },
+      {
+        src: "/asset/betterscreenshot/capture.webp",
+        alt: "BetterScreenShot launcher with full-screen capture, area selection, and keyboard shortcut settings",
+        caption:
+          "Capture a monitor or select an area, with custom keyboard shortcuts.",
+      },
+      {
+        src: "/asset/betterscreenshot/preview.webp",
+        alt: "BetterScreenShot capture preview with copy, save, edit, and discard controls",
+        caption:
+          "A small preview keeps copy, save, and editing actions close to the capture.",
+      },
+    ],
+  },
+  {
     id: 2,
     title: "Canvas",
     summary: "A browser-based drawing and diagram tool",

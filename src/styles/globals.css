@@ -713,6 +713,16 @@ a {
   margin-top: 24px;
   color: var(--muted);
 }
+.case-title.case-title--long {
+  font-size: clamp(2rem, 7vw, 6.5rem);
+}
+.download-note {
+  max-width: 680px;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
 .project-facts {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -760,6 +770,119 @@ a {
 }
 .case-hero .project-preview--mobile {
   aspect-ratio: 16 / 10;
+}
+.project-preview--betterscreenshot,
+.gallery-media.gallery-media--laptop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.case-hero .project-preview--betterscreenshot,
+.gallery-media.gallery-media--laptop {
+  aspect-ratio: 16 / 11;
+}
+.laptop-frame {
+  --laptop-bezel: clamp(5px, 0.9vw, 13px);
+  width: 90%;
+  flex-shrink: 0;
+}
+.laptop-lid {
+  position: relative;
+  margin-inline: 6%;
+  padding: calc(var(--laptop-bezel) * 1.6) var(--laptop-bezel)
+    var(--laptop-bezel);
+  border: 1px solid #777b80;
+  border-radius: calc(var(--laptop-bezel) * 1.4) calc(var(--laptop-bezel) * 1.4)
+    0 0;
+  background: #202225;
+  box-shadow: inset 0 0 0 1px #101113;
+}
+.laptop-lid::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--laptop-bezel) * 0.5);
+  left: 50%;
+  width: calc(var(--laptop-bezel) * 0.45);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #080b10;
+  box-shadow: 0 0 0 1px #3a3d42;
+  transform: translateX(-50%);
+}
+.laptop-screen {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 2px;
+  background: radial-gradient(ellipse at 20% 15%, #335a70, transparent 65%),
+    linear-gradient(135deg, #1b344b, #122031 70%);
+}
+.laptop-app-window {
+  position: absolute;
+  inset: 8% 7% 14%;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #101827;
+  box-shadow: 0 5px 18px #0005;
+}
+.laptop-app-window > picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+.laptop-frame--notification .laptop-app-window {
+  inset: auto 3% 9% auto;
+  width: 32%;
+  aspect-ratio: 30 / 17;
+}
+.laptop-cursor {
+  position: absolute;
+  top: 38%;
+  left: 35%;
+  width: 3%;
+  height: auto;
+}
+.laptop-taskbar {
+  position: absolute;
+  inset: auto 0 0;
+  height: 6%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5%;
+  background: #101827b3;
+  border-top: 1px solid #ffffff12;
+}
+.laptop-taskbar span {
+  width: 2%;
+  aspect-ratio: 1;
+  border-radius: 2px;
+  background: #80a6bd;
+}
+.laptop-taskbar span:first-child {
+  background: #65b5ed;
+}
+.laptop-base {
+  position: relative;
+  height: calc(var(--laptop-bezel) * 1.3);
+  border-radius: 1px 1px 45% 45% / 1px 1px 80% 80%;
+  background: linear-gradient(#d6d8dc, #9b9fa5 45%, #555a61);
+  box-shadow: 0 8px 12px -6px #0005;
+}
+.laptop-base::after {
+  content: "";
+  position: absolute;
+  inset: 0 42% auto;
+  height: 40%;
+  border-radius: 0 0 6px 6px;
+  background: #797e85;
+}
+.project-card .laptop-frame {
+  --laptop-bezel: 4px;
+  width: 96%;
+}
+.project-preview--betterscreenshot .preview-image {
+  object-fit: contain;
 }
 .case-story {
   display: grid;
@@ -1110,6 +1233,9 @@ a {
   }
   .project-row .project-preview--thumbnail-cover .preview-image {
     object-fit: cover;
+  }
+  .project-row .project-preview--betterscreenshot .preview-image {
+    object-fit: contain;
   }
   .project-card .project-preview:not(.project-preview--thumbnail-cover) > picture {
     top: -8px;

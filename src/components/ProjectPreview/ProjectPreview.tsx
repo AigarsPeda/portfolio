@@ -1,6 +1,8 @@
 import Image from "next/image";
+import LaptopFrame from "~/components/LaptopFrame/LaptopFrame";
 import { useCopy } from "~/i18n";
 import type { ProjectType } from "~/types/project.types";
+import classNames from "~/utils/classNames";
 
 export default function ProjectPreview({
   project,
@@ -39,35 +41,47 @@ export default function ProjectPreview({
     );
   }
 
+  const preview = (
+    <picture>
+      <source
+        srcSet={
+          thumbnailImage ??
+          `/asset/previews/${project.aboutLink}-640.webp 640w, /asset/previews/${project.aboutLink}-960.webp 960w, /asset/previews/${project.aboutLink}-1280.webp 1280w`
+        }
+        sizes={
+          thumbnail
+            ? "(max-width: 767px) 104px, (max-width: 1100px) 224px, 272px"
+            : priority
+              ? "(max-width: 767px) calc(100vw - 40px), 92vw"
+              : "(max-width: 767px) calc(100vw - 40px), 46vw"
+        }
+      />
+      <Image
+        src={thumbnailImage ?? project.coverImage}
+        alt={`${project.title} ${copy.preview}`}
+        fill
+        unoptimized
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : undefined}
+        className="preview-image"
+        sizes="(max-width: 767px) 100vw, 60vw"
+      />
+    </picture>
+  );
+
   return (
     <div
-      className={`project-preview project-preview--${project.aboutLink}${thumbnailImage ? " project-preview--thumbnail-cover" : ""}`}
+      className={classNames(
+        "project-preview",
+        `project-preview--${project.aboutLink}`,
+        Boolean(thumbnailImage) && "project-preview--thumbnail-cover",
+      )}
     >
-      <picture>
-        <source
-          srcSet={
-            thumbnailImage ??
-            `/asset/previews/${project.aboutLink}-640.webp 640w, /asset/previews/${project.aboutLink}-960.webp 960w, /asset/previews/${project.aboutLink}-1280.webp 1280w`
-          }
-          sizes={
-            thumbnail
-              ? "(max-width: 767px) 104px, (max-width: 1100px) 224px, 272px"
-              : priority
-                ? "(max-width: 767px) calc(100vw - 40px), 92vw"
-                : "(max-width: 767px) calc(100vw - 40px), 46vw"
-          }
-        />
-        <Image
-          src={thumbnailImage ?? project.coverImage}
-          alt={`${project.title} ${copy.preview}`}
-          fill
-          unoptimized
-          loading={priority ? "eager" : "lazy"}
-          fetchPriority={priority ? "high" : undefined}
-          className="preview-image"
-          sizes="(max-width: 767px) 100vw, 60vw"
-        />
-      </picture>
+      {project.aboutLink === "betterscreenshot" ? (
+        <LaptopFrame>{preview}</LaptopFrame>
+      ) : (
+        preview
+      )}
     </div>
   );
 }

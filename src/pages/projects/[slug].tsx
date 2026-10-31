@@ -8,14 +8,16 @@ import { useCopy } from "~/i18n";
 import { getProjects } from "~/i18n/projects";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import {
   FiArrowLeft,
   FiArrowUpRight,
+  FiDownload,
   FiGithub,
   FiMaximize2,
 } from "react-icons/fi";
 import ImageModal from "~/components/ImageModal/ImageModal";
+import LaptopFrame from "~/components/LaptopFrame/LaptopFrame";
 import ProjectPreview from "~/components/ProjectPreview/ProjectPreview";
 import SiteFooter from "~/components/SiteFooter/SiteFooter";
 import SiteHeader from "~/components/SiteHeader/SiteHeader";
@@ -71,6 +73,8 @@ export default function ProjectDetails({
     (image) => image.src !== project.coverImage,
   );
   const isMobileApp = project.aboutLink === "math-mews";
+  const isDesktopApp = project.aboutLink === "betterscreenshot";
+  const ScreenshotFrame = isDesktopApp ? LaptopFrame : Fragment;
 
   return (
     <div id="top">
@@ -86,7 +90,15 @@ export default function ProjectDetails({
           <Link href="/#projects" className="back-link">
             <FiArrowLeft aria-hidden="true" /> {copy.backToProjects}
           </Link>
-          <h1 className="case-title">{project.title}</h1>
+          <h1
+            className={
+              project.title.length > 14
+                ? "case-title case-title--long"
+                : "case-title"
+            }
+          >
+            {project.title}
+          </h1>
           <p className="case-description">{project.description}</p>
           <dl className="project-facts">
             <div>
@@ -102,8 +114,20 @@ export default function ProjectDetails({
               <dd>{project.category}</dd>
             </div>
           </dl>
-          {(project.link || project.codeLink) && (
+          {(project.link || project.codeLink || project.downloadUrl) && (
             <div className="case-actions">
+              {project.downloadUrl && (
+                <a
+                  href={project.downloadUrl}
+                  download
+                  className="action-link"
+                  aria-describedby={
+                    project.downloadNote ? "download-note" : undefined
+                  }
+                >
+                  {project.downloadLabel} <FiDownload aria-hidden="true" />
+                </a>
+              )}
               {project.link && (
                 <a
                   href={project.link}
@@ -125,6 +149,11 @@ export default function ProjectDetails({
                 </a>
               )}
             </div>
+          )}
+          {project.downloadUrl && project.downloadNote && (
+            <p id="download-note" className="download-note">
+              {project.downloadNote}
+            </p>
           )}
         </div>
         <div className="case-hero page-width">
@@ -174,25 +203,36 @@ export default function ProjectDetails({
                   onClick={() => setSelectedImage(index)}
                   aria-label={`${copy.enlarge}: ${screenshot.caption}`}
                   className={
-                    isMobileApp
-                      ? "gallery-media gallery-media--phone"
-                      : screenshot.layout === "portrait"
-                        ? "gallery-media gallery-media--portrait"
-                        : "gallery-media"
+                    isDesktopApp
+                      ? "gallery-media gallery-media--laptop"
+                      : isMobileApp
+                        ? "gallery-media gallery-media--phone"
+                        : screenshot.layout === "portrait"
+                          ? "gallery-media gallery-media--portrait"
+                          : "gallery-media"
                   }
                 >
-                  <Image
-                    src={screenshot.src}
-                    alt={screenshot.alt}
-                    fill
-                    unoptimized
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    className={
-                      isMobileApp
-                        ? "gallery-image phone-screenshot-mask"
-                        : "gallery-image"
-                    }
-                  />
+                  <ScreenshotFrame
+                    {...(isDesktopApp
+                      ? {
+                          notification:
+                            screenshot.src.endsWith("/preview.webp"),
+                        }
+                      : {})}
+                  >
+                    <Image
+                      src={screenshot.src}
+                      alt={screenshot.alt}
+                      fill
+                      unoptimized
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className={
+                        isMobileApp
+                          ? "gallery-image phone-screenshot-mask"
+                          : "gallery-image"
+                      }
+                    />
+                  </ScreenshotFrame>
                   <span className="enlarge-icon">
                     <FiMaximize2 aria-hidden="true" />
                   </span>

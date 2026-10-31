@@ -9,6 +9,8 @@ type ProjectTranslation = {
   platform: string;
   details: NonNullable<ProjectType["details"]>;
   screenshots: { alt: string; caption: string }[];
+  downloadLabel?: string;
+  downloadNote?: string;
 };
 
 const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
@@ -235,6 +237,56 @@ const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
         alt: "Wupzy mobilā turnīra izvēlne ar kopīgošanas saiti, QR kodu un izslēgšanas spēļu vadību",
         caption:
           "Turnīra kopīgošana ar saiti vai QR kodu un tālāko posmu pārvaldīšana.",
+      },
+    ],
+  },
+  betterscreenshot: {
+    summary: "Windows ekrānattēlu rīks ar atzīmēm un teksta atpazīšanu",
+    category: "Darbvirsmas rīks",
+    role: "Dizains un izstrāde",
+    platform: "Windows",
+    description:
+      "Ekrānattēlu lietotne, ko izveidoju sev, jo nevarēju atrast sev tīkamu Windows rīku. Uzņem ekrānu vai tā daļu, pievieno atzīmes un kopē tekstu tieši no attēla.",
+    downloadLabel: "Lejupielādēt Windows versiju",
+    downloadNote:
+      "Windows x64 · Portatīvs .exe · 85,2 MiB. Nav jāinstalē lietotne vai atsevišķa .NET izpildvide. Teksta atpazīšanai nepieciešama Microsoft Visual C++ 2015–2022 Redistributable x64 pakotne.",
+    details: [
+      {
+        heading: "Kāpēc to izveidoju",
+        text: "Vēlējos ekrānattēlu rīku, kas būtu ērts manam ikdienas darbam, bet nevarēju atrast sev tīkamu risinājumu Windows vidē. Izveidoju BetterScreenShot savām vajadzībām, lai uzņemtu, rediģētu un kopētu attēlus, nepārslēdzoties starp lietotnēm.",
+      },
+      {
+        heading: "No ekrānattēla līdz kopīgošanai",
+        text: "Izvēlies monitoru vai iezīmē apgabalu, pēc tam kopē, saglabā vai atver attēlu redaktorā. Pievieno izcēlumus, rediģējamas bultas, figūras un tekstu, ar iespēju atsaukt un atjaunot izmaiņas. Gatavo attēlu var uzreiz kopēt citā lietotnē vai saglabāt PNG, JPEG vai BMP formātā. Pielāgojami īsinājumtaustiņi un izvēlne sistēmas teknē ļauj ātri uzņemt nākamo attēlu.",
+      },
+      {
+        heading: "Teksts paliek tavā datorā",
+        text: "Veic dubultklikšķi uz vārda attēlā, lai atpazītu tekstu, un atlasi vārdu vai fragmentu vairākās rindās. Atlase attēlā un teksta panelī tiek sinhronizēta. Tesseract darbojas lokāli ar septiņām iekļautām valodām, tostarp latviešu un angļu. Ekrānattēli un atpazītais teksts netiek nosūtīti uz serveri.",
+      },
+      {
+        heading: "Izstrāde",
+        text: "Windows lietotni izveidoju ar C# un .NET 8, izmantojot WPF redaktoram un Windows Forms ekrāna apgabala atlasei. Atlase ņem vērā katra monitora mērogojumu, savukārt attēlu eksportēšana un teksta atpazīšana notiek fonā. Portatīvajā lejupielādē lietotne, valodu modeļi un .NET izpildvide ir apvienoti vienā izpildfailā.",
+      },
+    ],
+    screenshots: [
+      {
+        alt: "BetterScreenShot redaktors ar atpazīto tekstu sānu panelī un tiem pašiem vārdiem, kas atlasīti attēlā",
+        caption:
+          "Atpazīsti tekstu lokāli un atlasi to attēlā vai teksta panelī.",
+      },
+      {
+        alt: "BetterScreenShot ar divās rindās atlasītu teikumu un ziliem atlases rokturiem",
+        caption: "Kopē fragmentu vairākās rindās, pielāgojot atlases robežas.",
+      },
+      {
+        alt: "BetterScreenShot sākuma logs ar pilna ekrāna uzņemšanu, apgabala atlasi un īsinājumtaustiņu iestatījumiem",
+        caption:
+          "Uzņem monitoru vai atlasītu apgabalu ar pielāgojamiem īsinājumtaustiņiem.",
+      },
+      {
+        alt: "BetterScreenShot priekšskatījums ar kopēšanas, saglabāšanas, rediģēšanas un aizvēršanas pogām",
+        caption:
+          "Neliels priekšskatījums ļauj uzreiz kopēt, saglabāt vai rediģēt uzņemto attēlu.",
       },
     ],
   },
