@@ -246,7 +246,7 @@ const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
     role: "Dizains un izstrāde",
     platform: "Windows",
     description:
-      "Ekrānattēlu lietotne, ko izveidoju sev, jo nevarēju atrast sev tīkamu Windows rīku. Uzņem ekrānu vai tā daļu, pievieno atzīmes un kopē tekstu tieši no attēla.",
+      "Ekrānattēlu lietotne, ko izveidoju sev, jo nevarēju atrast sev tīkamu Windows rīku. Uzņem ekrānu vai tā daļu, atver attēlu, pievieno atzīmes un kopē tekstu tieši no tā.",
     downloadLabel: "Lejupielādēt Windows versiju",
     downloadNote:
       "Windows x64 · Portatīvs .exe · 85,2 MiB. Nav jāinstalē lietotne vai atsevišķa .NET izpildvide. Teksta atpazīšanai nepieciešama Microsoft Visual C++ 2015–2022 Redistributable x64 pakotne.",
@@ -257,7 +257,7 @@ const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
       },
       {
         heading: "No ekrānattēla līdz kopīgošanai",
-        text: "Izvēlies monitoru vai iezīmē apgabalu, pēc tam kopē, saglabā vai atver attēlu redaktorā. Pievieno izcēlumus, rediģējamas bultas, figūras un tekstu, ar iespēju atsaukt un atjaunot izmaiņas. Gatavo attēlu var uzreiz kopēt citā lietotnē vai saglabāt PNG, JPEG vai BMP formātā. Pielāgojami īsinājumtaustiņi un izvēlne sistēmas teknē ļauj ātri uzņemt nākamo attēlu.",
+        text: "Izvēlies monitoru, iezīmē apgabalu vai atver jau esošu attēlu, lai to papildinātu ar atzīmēm. Redaktorā ir peldoša rīkjosla izcēlumiem, rediģējamām bultām, figūrām un tekstam, kā arī iespēja atsaukt un atjaunot izmaiņas. Gatavo attēlu var kopēt citā lietotnē vai saglabāt PNG, JPEG vai BMP formātā. Ir pielāgojami īsinājumtaustiņi, izvēlne sistēmas teknē un gaišā vai tumšā tēma.",
       },
       {
         heading: "Teksts paliek tavā datorā",
@@ -270,23 +270,40 @@ const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
     ],
     screenshots: [
       {
-        alt: "BetterScreenShot redaktors ar atpazīto tekstu sānu panelī un tiem pašiem vārdiem, kas atlasīti attēlā",
-        caption:
-          "Atpazīsti tekstu lokāli un atlasi to attēlā vai teksta panelī.",
+        alt: "BetterScreenShot tumšais redaktors ar peldošu rīkjoslu un atzīmēm attēlā",
+        caption: "Peldoša atzīmju rīkjosla tumšajā tēmā.",
       },
       {
-        alt: "BetterScreenShot ar divās rindās atlasītu teikumu un ziliem atlases rokturiem",
-        caption: "Kopē fragmentu vairākās rindās, pielāgojot atlases robežas.",
+        alt: "Gaišais redaktors ar atpazītu tekstu sānu panelī un atlasītiem vārdiem attēlā",
+        caption: "Atpazīsti tekstu lokāli un atlasi to attēlā vai panelī.",
       },
       {
-        alt: "BetterScreenShot sākuma logs ar pilna ekrāna uzņemšanu, apgabala atlasi un īsinājumtaustiņu iestatījumiem",
-        caption:
-          "Uzņem monitoru vai atlasītu apgabalu ar pielāgojamiem īsinājumtaustiņiem.",
+        alt: "Tumšais redaktors ar atpazītu tekstu sānu panelī un atlasītiem vārdiem attēlā",
+        caption: "Teksta atpazīšana tumšajā tēmā.",
       },
       {
-        alt: "BetterScreenShot priekšskatījums ar kopēšanas, saglabāšanas, rediģēšanas un aizvēršanas pogām",
-        caption:
-          "Neliels priekšskatījums ļauj uzreiz kopēt, saglabāt vai rediģēt uzņemto attēlu.",
+        alt: "Gaišais redaktors ar divās rindās atlasītu teikumu un atbilstošu atlasi teksta panelī",
+        caption: "Atlasi un kopē teksta fragmentu vairākās rindās.",
+      },
+      {
+        alt: "Tumšais redaktors ar divās rindās atlasītu teikumu un atbilstošu atlasi teksta panelī",
+        caption: "Tā pati teksta atlase tumšajā tēmā.",
+      },
+      {
+        alt: "Gaišais sākuma logs ar ekrāna un apgabala uzņemšanu, attēla atvēršanu un tēmas pogu",
+        caption: "Uzņem ekrānu vai apgabalu vai atver attēlu atzīmju pievienošanai.",
+      },
+      {
+        alt: "Tumšais sākuma logs ar ekrāna un apgabala uzņemšanu, attēla atvēršanu un tēmas pogu",
+        caption: "Sākuma logs tumšajā tēmā.",
+      },
+      {
+        alt: "Gaišais ekrānattēla priekšskatījums ar kopēšanas, saglabāšanas, rediģēšanas un aizvēršanas pogām",
+        caption: "Neliels priekšskatījums piedāvā kopēt, saglabāt vai rediģēt attēlu.",
+      },
+      {
+        alt: "Tumšais ekrānattēla priekšskatījums ar kopēšanas, saglabāšanas, rediģēšanas un aizvēršanas pogām",
+        caption: "Ekrānattēla priekšskatījums tumšajā tēmā.",
       },
     ],
   },

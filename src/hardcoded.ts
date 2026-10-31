@@ -332,13 +332,13 @@ export const PROJECTS: ProjectType[] = [
     downloadNote:
       "Windows x64 · Portable .exe · 85.2 MiB. No installation or separate .NET runtime needed. Text recognition requires the Microsoft Visual C++ 2015–2022 Redistributable for x64.",
     logo: "",
-    coverImage: "/asset/betterscreenshot/editor.webp",
+    coverImage: "/asset/betterscreenshot/editor-light.webp",
     thumbnailImage: "/asset/previews/betterscreenshot-640.webp",
     category: "Desktop utility",
     role: "Design & development",
     platform: "Windows",
     description:
-      "A screenshot app I built for myself after I couldn't find a Windows tool I liked. Capture a screen or area, add markup, and copy text directly from an image.",
+      "A screenshot app I built for myself after I couldn't find a Windows tool I liked. Capture a screen or area, open an image, add markup, and copy text directly from it.",
     technologies: ["C#", ".NET 8", "WPF", "Windows Forms", "Tesseract OCR"],
     details: [
       {
@@ -347,7 +347,7 @@ export const PROJECTS: ProjectType[] = [
       },
       {
         heading: "From capture to sharing",
-        text: "Choose a monitor or drag an area, then copy, save, or open the capture in the editor. Add highlights, editable arrows, shapes, and text, with undo and redo across edits. Copy the finished image straight into another app or save it as PNG, JPEG, or BMP. Custom keyboard shortcuts and a tray menu keep capture within reach.",
+        text: "Choose a monitor, drag an area, or open an existing image to annotate. The editor has floating tools for highlights, editable arrows, shapes, and text, with undo and redo across edits. Copy the finished image straight into another app or save it as PNG, JPEG, or BMP. Custom keyboard shortcuts and a tray menu keep capture within reach, and the app now has light and dark themes.",
       },
       {
         heading: "Text stays on your computer",
@@ -360,28 +360,49 @@ export const PROJECTS: ProjectType[] = [
     ],
     screenshots: [
       {
-        src: "/asset/betterscreenshot/text-recognition.webp",
-        alt: "BetterScreenShot editor with recognised text in a side panel and matching words selected in the image",
-        caption:
-          "Recognise text locally and select it in the image or text panel.",
+        src: "/asset/betterscreenshot/editor-dark.webp",
+        alt: "BetterScreenShot dark editor with floating annotation tools over a marked-up image",
+        caption: "Floating annotation tools in the dark theme.",
       },
       {
-        src: "/asset/betterscreenshot/text-selection.webp",
-        alt: "BetterScreenShot with a sentence selected across two lines and blue selection handles",
-        caption:
-          "Copy a passage across multiple lines by adjusting the selection handles.",
+        src: "/asset/betterscreenshot/text-recognition-light.webp",
+        alt: "Light editor with recognised text in a side panel and matching words selected on the image",
+        caption: "Recognise text locally and select it on the image or in the panel.",
       },
       {
-        src: "/asset/betterscreenshot/capture.webp",
-        alt: "BetterScreenShot launcher with full-screen capture, area selection, and keyboard shortcut settings",
-        caption:
-          "Capture a monitor or select an area, with custom keyboard shortcuts.",
+        src: "/asset/betterscreenshot/text-recognition-dark.webp",
+        alt: "Dark editor with recognised text in a side panel and matching words selected on the image",
+        caption: "Text recognition in the dark theme.",
       },
       {
-        src: "/asset/betterscreenshot/preview.webp",
-        alt: "BetterScreenShot capture preview with copy, save, edit, and discard controls",
-        caption:
-          "A small preview keeps copy, save, and editing actions close to the capture.",
+        src: "/asset/betterscreenshot/text-selection-light.webp",
+        alt: "Light editor with a sentence selected across two lines and matching text selected in the panel",
+        caption: "Select and copy a passage across multiple lines.",
+      },
+      {
+        src: "/asset/betterscreenshot/text-selection-dark.webp",
+        alt: "Dark editor with a sentence selected across two lines and matching text selected in the panel",
+        caption: "The same text selection in the dark theme.",
+      },
+      {
+        src: "/asset/betterscreenshot/launcher-light.webp",
+        alt: "Light launcher with screen capture, area selection, open image, and theme controls",
+        caption: "Capture a screen or area, or open an image to annotate.",
+      },
+      {
+        src: "/asset/betterscreenshot/launcher-dark.webp",
+        alt: "Dark launcher with screen capture, area selection, open image, and theme controls",
+        caption: "The launcher in the dark theme.",
+      },
+      {
+        src: "/asset/betterscreenshot/preview-light.webp",
+        alt: "Light screenshot preview with copy, save, edit, and discard controls",
+        caption: "A small preview offers copy, save, edit, and discard actions.",
+      },
+      {
+        src: "/asset/betterscreenshot/preview-dark.webp",
+        alt: "Dark screenshot preview with copy, save, edit, and discard controls",
+        caption: "The screenshot preview in the dark theme.",
       },
     ],
   },

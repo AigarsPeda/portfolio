@@ -216,7 +216,7 @@ export default function ProjectDetails({
                     {...(isDesktopApp
                       ? {
                           notification:
-                            screenshot.src.endsWith("/preview.webp"),
+                            screenshot.src.includes("/preview-"),
                         }
                       : {})}
                   >

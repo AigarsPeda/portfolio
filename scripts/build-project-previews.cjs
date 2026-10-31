@@ -9,7 +9,7 @@ const assets = [
   ["janogago", "janogago/01-home.webp"],
   ["oaksbuild", "oaksbuild/01-home.webp"],
   ["wupzy", "wupzy/a_main.webp"],
-  ["betterscreenshot", "betterscreenshot/editor.webp"],
+  ["betterscreenshot", "betterscreenshot/editor-light.webp"],
   ["canvas", "canvas/canvas_a_main.webp"],
 ];
 

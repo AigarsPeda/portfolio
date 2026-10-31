@@ -822,8 +822,8 @@ a {
   inset: 8% 7% 14%;
   overflow: hidden;
   border-radius: 4px;
-  background: #101827;
-  box-shadow: 0 5px 18px #0005;
+  background: transparent;
+  box-shadow: none;
 }
 .laptop-app-window > picture {
   position: absolute;
@@ -833,7 +833,7 @@ a {
 .laptop-frame--notification .laptop-app-window {
   inset: auto 3% 9% auto;
   width: 32%;
-  aspect-ratio: 30 / 17;
+  aspect-ratio: 334 / 239;
 }
 .laptop-cursor {
   position: absolute;
