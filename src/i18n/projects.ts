@@ -249,7 +249,7 @@ const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
       "Ekrānattēlu lietotne, ko izveidoju sev, jo nevarēju atrast sev tīkamu Windows rīku. Uzņem ekrānu vai tā daļu, atver attēlu, pievieno atzīmes un kopē tekstu tieši no tā.",
     downloadLabel: "Lejupielādēt Windows versiju",
     downloadNote:
-      "Windows x64 · Portatīvs .exe · 85,2 MiB. Nav jāinstalē lietotne vai atsevišķa .NET izpildvide. Teksta atpazīšanai nepieciešama Microsoft Visual C++ 2015–2022 Redistributable x64 pakotne.",
+      "Windows x64 · Portatīvs .exe · Versija 1.1.0 · 85,8 MiB. Nav jāinstalē lietotne vai atsevišķa .NET izpildvide. Teksta atpazīšanai nepieciešama Microsoft Visual C++ 2015–2022 Redistributable x64 pakotne.",
     details: [
       {
         heading: "Kāpēc to izveidoju",
