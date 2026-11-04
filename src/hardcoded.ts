@@ -323,7 +323,7 @@ export const PROJECTS: ProjectType[] = [
   {
     id: 7,
     title: "BetterScreenShot",
-    summary: "A Windows screenshot tool with markup and text recognition",
+    summary: "A Windows screenshot and screen recording tool with markup and text recognition",
     aboutLink: "betterscreenshot",
     link: "",
     codeLink: "https://github.com/AigarsPeda/BetterScreenShot",
@@ -338,7 +338,7 @@ export const PROJECTS: ProjectType[] = [
     role: "Design & development",
     platform: "Windows",
     description:
-      "A screenshot app I built for myself after I couldn't find a Windows tool I liked. Capture a screen or area, open an image, add markup, and copy text directly from it.",
+      "A Windows app for screenshots, scrolling captures, and area recordings. Annotate images, then copy them or recognise text directly from them.",
     technologies: ["C#", ".NET 8", "WPF", "Windows Forms", "Tesseract OCR"],
     details: [
       {
@@ -348,6 +348,10 @@ export const PROJECTS: ProjectType[] = [
       {
         heading: "From capture to sharing",
         text: "Choose a monitor, drag an area, or open an existing image to annotate. The editor has floating tools for highlights, editable arrows, shapes, and text, with undo and redo across edits. Copy the finished image straight into another app or save it as PNG, JPEG, or BMP. Custom keyboard shortcuts and a tray menu keep capture within reach, and the app now has light and dark themes.",
+      },
+      {
+        heading: "Long captures and recordings",
+        text: "Scrolling Capture joins overlapping views as you scroll through a long page. Record Area captures a selected region as an MP4 video or animated GIF, with a video quality choice before recording. When it finishes, preview, copy, or save the recording, or play it in the built-in viewer. Video recording has no audio.",
       },
       {
         heading: "Text stays on your computer",
@@ -363,6 +367,46 @@ export const PROJECTS: ProjectType[] = [
         src: "/asset/betterscreenshot/editor-dark.webp",
         alt: "BetterScreenShot dark editor with floating annotation tools over a marked-up image",
         caption: "Floating annotation tools in the dark theme.",
+      },
+      {
+        src: "/asset/betterscreenshot/record-options-light.png",
+        alt: "Light recording toolbar with video quality, Record video, and Record GIF controls",
+        caption: "Choose video quality, then record a selected area as MP4 or GIF.",
+      },
+      {
+        src: "/asset/betterscreenshot/record-options-dark.png",
+        alt: "Dark recording toolbar with video quality, Record video, and Record GIF controls",
+        caption: "Recording choices in the dark theme.",
+      },
+      {
+        src: "/asset/betterscreenshot/recording-active-light.png",
+        alt: "Light recording toolbar with a red recording indicator, elapsed timer, and Stop button",
+        caption: "The floating toolbar shows the elapsed time while recording.",
+      },
+      {
+        src: "/asset/betterscreenshot/recording-active-dark.png",
+        alt: "Dark recording toolbar with a red recording indicator, elapsed timer, and Stop button",
+        caption: "Active recording in the dark theme.",
+      },
+      {
+        src: "/asset/betterscreenshot/recording-preview-light.png",
+        alt: "Light recording preview with View, Copy, Save, and Discard buttons",
+        caption: "Preview the recording, then view, copy, save, or discard it.",
+      },
+      {
+        src: "/asset/betterscreenshot/recording-preview-dark.png",
+        alt: "Dark recording preview with View, Copy, Save, and Discard buttons",
+        caption: "The recording preview in the dark theme.",
+      },
+      {
+        src: "/asset/betterscreenshot/recording-viewer-light.png",
+        alt: "Light recording viewer playing a video with playback, Copy, and Save controls",
+        caption: "Play the finished recording in the built-in viewer.",
+      },
+      {
+        src: "/asset/betterscreenshot/recording-viewer-dark.png",
+        alt: "Dark recording viewer playing a video with playback, Copy, and Save controls",
+        caption: "The recording viewer in the dark theme.",
       },
       {
         src: "/asset/betterscreenshot/text-recognition-light.webp",
@@ -385,13 +429,13 @@ export const PROJECTS: ProjectType[] = [
         caption: "The same text selection in the dark theme.",
       },
       {
-        src: "/asset/betterscreenshot/launcher-light.webp",
-        alt: "Light launcher with screen capture, area selection, open image, and theme controls",
-        caption: "Capture a screen or area, or open an image to annotate.",
+        src: "/asset/betterscreenshot/launcher-light.png",
+        alt: "Light launcher with screen, area, scrolling, recording, open image, and theme controls",
+        caption: "Start a screenshot, scrolling capture, area recording, or image edit.",
       },
       {
-        src: "/asset/betterscreenshot/launcher-dark.webp",
-        alt: "Dark launcher with screen capture, area selection, open image, and theme controls",
+        src: "/asset/betterscreenshot/launcher-dark.png",
+        alt: "Dark launcher with screen, area, scrolling, recording, open image, and theme controls",
         caption: "The launcher in the dark theme.",
       },
       {

@@ -241,12 +241,12 @@ const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
     ],
   },
   betterscreenshot: {
-    summary: "Windows ekrānattēlu rīks ar atzīmēm un teksta atpazīšanu",
+    summary: "Windows ekrānattēlu un ekrāna ierakstīšanas rīks ar atzīmēm un teksta atpazīšanu",
     category: "Darbvirsmas rīks",
     role: "Dizains un izstrāde",
     platform: "Windows",
     description:
-      "Ekrānattēlu lietotne, ko izveidoju sev, jo nevarēju atrast sev tīkamu Windows rīku. Uzņem ekrānu vai tā daļu, atver attēlu, pievieno atzīmes un kopē tekstu tieši no tā.",
+      "Windows lietotne ekrānattēliem, ritināma satura uzņemšanai un apgabala ierakstīšanai. Pievieno attēliem atzīmes un kopē tos vai atpazīto tekstu.",
     downloadLabel: "Lejupielādēt Windows versiju",
     downloadNote:
       "Windows x64 · Portatīvs .exe · Versija 1.1.0 · 85,8 MiB. Nav jāinstalē lietotne vai atsevišķa .NET izpildvide. Teksta atpazīšanai nepieciešama Microsoft Visual C++ 2015–2022 Redistributable x64 pakotne.",
@@ -258,6 +258,10 @@ const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
       {
         heading: "No ekrānattēla līdz kopīgošanai",
         text: "Izvēlies monitoru, iezīmē apgabalu vai atver jau esošu attēlu, lai to papildinātu ar atzīmēm. Redaktorā ir peldoša rīkjosla izcēlumiem, rediģējamām bultām, figūrām un tekstam, kā arī iespēja atsaukt un atjaunot izmaiņas. Gatavo attēlu var kopēt citā lietotnē vai saglabāt PNG, JPEG vai BMP formātā. Ir pielāgojami īsinājumtaustiņi, izvēlne sistēmas teknē un gaišā vai tumšā tēma.",
+      },
+      {
+        heading: "Gari ekrānattēli un ieraksti",
+        text: "Ritināma satura uzņemšana apvieno pārklājošos skatus, kamēr ritini garu lapu. Izvēlētu ekrāna apgabalu var ierakstīt MP4 video vai animētā GIF formātā, pirms tam izvēloties video kvalitāti. Gatavo ierakstu var priekšskatīt, kopēt, saglabāt vai atskaņot lietotnes skatītājā. Video tiek ierakstīts bez skaņas.",
       },
       {
         heading: "Teksts paliek tavā datorā",
@@ -272,6 +276,38 @@ const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
       {
         alt: "BetterScreenShot tumšais redaktors ar peldošu rīkjoslu un atzīmēm attēlā",
         caption: "Peldoša atzīmju rīkjosla tumšajā tēmā.",
+      },
+      {
+        alt: "Gaišā ierakstīšanas rīkjosla ar video kvalitātes, video un GIF izvēli",
+        caption: "Izvēlies video kvalitāti un ieraksti apgabalu MP4 vai GIF formātā.",
+      },
+      {
+        alt: "Tumšā ierakstīšanas rīkjosla ar video kvalitātes, video un GIF izvēli",
+        caption: "Ierakstīšanas iespējas tumšajā tēmā.",
+      },
+      {
+        alt: "Gaišā ierakstīšanas rīkjosla ar sarkanu indikatoru, taimeri un apturēšanas pogu",
+        caption: "Peldošā rīkjosla ierakstīšanas laikā rāda pagājušo laiku.",
+      },
+      {
+        alt: "Tumšā ierakstīšanas rīkjosla ar sarkanu indikatoru, taimeri un apturēšanas pogu",
+        caption: "Aktīvs ieraksts tumšajā tēmā.",
+      },
+      {
+        alt: "Gaišais ieraksta priekšskatījums ar skatīšanas, kopēšanas, saglabāšanas un atmešanas pogām",
+        caption: "Priekšskati ierakstu un pēc tam skati, kopē, saglabā vai atmet to.",
+      },
+      {
+        alt: "Tumšais ieraksta priekšskatījums ar skatīšanas, kopēšanas, saglabāšanas un atmešanas pogām",
+        caption: "Ieraksta priekšskatījums tumšajā tēmā.",
+      },
+      {
+        alt: "Gaišais video skatītājs ar atskaņošanas, kopēšanas un saglabāšanas vadīklām",
+        caption: "Atskaņo gatavo ierakstu lietotnes skatītājā.",
+      },
+      {
+        alt: "Tumšais video skatītājs ar atskaņošanas, kopēšanas un saglabāšanas vadīklām",
+        caption: "Ieraksta skatītājs tumšajā tēmā.",
       },
       {
         alt: "Gaišais redaktors ar atpazītu tekstu sānu panelī un atlasītiem vārdiem attēlā",
@@ -290,11 +326,11 @@ const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
         caption: "Tā pati teksta atlase tumšajā tēmā.",
       },
       {
-        alt: "Gaišais sākuma logs ar ekrāna un apgabala uzņemšanu, attēla atvēršanu un tēmas pogu",
-        caption: "Uzņem ekrānu vai apgabalu vai atver attēlu atzīmju pievienošanai.",
+        alt: "Gaišais sākuma logs ar ekrāna, apgabala, ritināma satura un ieraksta vadīklām",
+        caption: "Sāc ekrānattēlu, ritināma satura uzņemšanu, apgabala ierakstu vai attēla rediģēšanu.",
       },
       {
-        alt: "Tumšais sākuma logs ar ekrāna un apgabala uzņemšanu, attēla atvēršanu un tēmas pogu",
+        alt: "Tumšais sākuma logs ar ekrāna, apgabala, ritināma satura un ieraksta vadīklām",
         caption: "Sākuma logs tumšajā tēmā.",
       },
       {

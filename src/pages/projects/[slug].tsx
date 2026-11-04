@@ -215,8 +215,7 @@ export default function ProjectDetails({
                   <ScreenshotFrame
                     {...(isDesktopApp
                       ? {
-                          notification:
-                            screenshot.src.includes("/preview-"),
+                          notification: screenshot.src.includes("preview-"),
                         }
                       : {})}
                   >
