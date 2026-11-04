@@ -330,7 +330,7 @@ export const PROJECTS: ProjectType[] = [
     downloadUrl: "/downloads/betterscreenshot/BetterScreenShot.exe",
     downloadLabel: "Download for Windows",
     downloadNote:
-      "Windows x64 · Portable .exe · Version 1.1.0 · 85.8 MiB. No installation or separate .NET runtime needed. Text recognition requires the Microsoft Visual C++ 2015–2022 Redistributable for x64.",
+      "Windows x64 · Portable .exe · Version 1.1.1 · 85.8 MiB. No installation or separate .NET runtime needed. Text recognition requires the Microsoft Visual C++ 2015–2022 Redistributable for x64.",
     logo: "",
     coverImage: "/asset/betterscreenshot/editor-light.webp",
     thumbnailImage: "/asset/previews/betterscreenshot-640.webp",
