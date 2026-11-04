@@ -249,7 +249,7 @@ const LATVIAN_PROJECTS: Record<string, ProjectTranslation> = {
       "Windows lietotne ekrānattēliem, ritināma satura uzņemšanai un apgabala ierakstīšanai. Pievieno attēliem atzīmes un kopē tos vai atpazīto tekstu.",
     downloadLabel: "Lejupielādēt Windows versiju",
     downloadNote:
-      "Windows x64 · Instalētājs .exe · Versija 1.1.4 · 85,9 MiB. Atveriet failu, lai automātiski instalētu vai atjauninātu lietotni. Atsevišķa .NET izpildvide nav nepieciešama. Teksta atpazīšanai nepieciešama Microsoft Visual C++ 2015–2022 Redistributable x64 pakotne.",
+      "Windows x64 · Instalētājs .exe · Versija 1.1.5 · 85,9 MiB. Atveriet failu, lai automātiski instalētu vai atjauninātu lietotni. Atsevišķa .NET izpildvide nav nepieciešama. Teksta atpazīšanai nepieciešama Microsoft Visual C++ 2015–2022 Redistributable x64 pakotne.",
     details: [
       {
         heading: "Kāpēc to izveidoju",
