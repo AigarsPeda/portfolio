@@ -22,4 +22,4 @@ TypeScript 7.0.2 runs `npm run typecheck` and is required to pass before every p
 
 The latest Next.js ESLint configuration supports ESLint 10, though npm reports older peer ranges in some bundled plugins. See [Next.js's compatibility note](https://nextjs.org/docs/app/api-reference/config/eslint#setup-eslint).
 
-`npm audit` currently reports six high-severity entries caused by one unpatched `braces` advisory in the sitemap and lint tooling dependency chains. There is no patched upstream version yet. See [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm). Avoid `npm audit fix --force`, which proposes downgrading the framework's lint configuration and sitemap package.
+The `minimatch@^10.2.2` override pins the lint tooling's transitive dependency to 11.0.1 to fix [GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249). Remove the override once ESLint, `@eslint/config-array`, and `@typescript-eslint/typescript-estree` require a patched version upstream. The older `braces` advisory, [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm), was withdrawn on October 23, 2026.
